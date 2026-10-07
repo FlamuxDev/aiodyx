@@ -26,13 +26,13 @@ export const UI = {
     notFound: { title: 'Page not found', body: "The page you're looking for isn't here. Try the home page." },
   },
   ar: {
-    skip: 'روح للمحتوى',
+    skip: 'انتقل إلى المحتوى',
     menu: 'القائمة',
     mainNav: 'الرئيسية',
-    mobileNav: 'الجوال',
-    crumbs: 'وين أنت',
-    wa: (topic?: string) => `هلا، أبغى جلسة مجانية عن Odoo${topic ? ` (${topic})` : ''}.`,
-    notFound: { title: 'الصفحة مو موجودة', body: 'ما لقينا الصفحة اللي تبيها. جرّب الصفحة الرئيسية.' },
+    mobileNav: 'قائمة الجوال',
+    crumbs: 'مسار التنقّل',
+    wa: (topic?: string) => `مرحبًا، أرغب في جلسة مجانية عن Odoo${topic ? ` (${topic})` : ''}.`,
+    notFound: { title: 'الصفحة غير موجودة', body: 'لم نعثر على الصفحة المطلوبة. جرّب الصفحة الرئيسية.' },
   },
 } as const;
 

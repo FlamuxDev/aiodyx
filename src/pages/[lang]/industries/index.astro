@@ -19,12 +19,12 @@ const short = (s: string) => s.split(/\s+و|\s*[&,]\s*/)[0];
 // UI chrome: the quick matcher.
 const M = {
   ar: {
-    title: 'وش أقرب وصف لشغلك؟',
-    lead: 'اختر، ونوريك القطاع والتطبيقات اللي تناسبك.',
-    labels: { retail: 'أبيع للناس مباشرة', wholesale: 'أبيع بالجملة', manufacturing: 'أصنّع منتجات', services: 'أقدّم خدمات', construction: 'أنفّذ مشاريع', restaurants: 'عندي مطعم أو كافيه' } as Record<string, string>,
-    see: 'شوف القطاع',
-    jump: 'روح للشرح',
-    painsLabel: 'تعاني من هذا؟',
+    title: 'ما الوصف الأقرب لعملك؟',
+    lead: 'اختر، لنعرض لك القطاع والتطبيقات المناسبة.',
+    labels: { retail: 'أبيع للأفراد مباشرة', wholesale: 'أبيع بالجملة', manufacturing: 'أصنّع منتجات', services: 'أقدّم خدمات', construction: 'أنفّذ مشاريع', restaurants: 'أملك مطعمًا أو مقهى' } as Record<string, string>,
+    see: 'استعرض القطاع',
+    jump: 'انتقل إلى الشرح',
+    painsLabel: 'هل تعاني من هذا؟',
   },
   en: {
     title: 'Which description fits your business best?',

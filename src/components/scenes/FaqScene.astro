@@ -4,7 +4,7 @@ export interface Props { lang: 'ar' | 'en' | string }
 const { lang } = Astro.props;
 const rtl = lang === 'ar';
 const t = rtl
-  ? { q: 'كم تاخذ مدة التطبيق؟', a: 'غالباً من 4 إلى 8 أسابيع، وتختلف حسب حجم شغلك.' }
+  ? { q: 'كم تستغرق مدة التنفيذ؟', a: 'غالباً من 4 إلى 8 أسابيع، وتختلف بحسب حجم عملك.' }
   : { q: 'How long does setup take?', a: 'Usually 4 to 8 weeks, depending on the size of your business.' };
 ---
 <div class="scene" aria-hidden="true" dir={rtl ? 'rtl' : 'ltr'}>

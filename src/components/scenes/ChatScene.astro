@@ -4,7 +4,7 @@ export interface Props { lang: 'ar' | 'en' | string }
 const { lang } = Astro.props;
 const rtl = lang === 'ar';
 const t = rtl
-  ? { name: 'AIODYX', status: 'متصل الآن', me: 'هلا، أبغى أعرف عن Odoo', them: 'هلا فيك! متى يناسبك نكلمك؟', time1: '10:24', time2: '10:25', chip: 'نرد خلال دقائق' }
+  ? { name: 'AIODYX', status: 'متصل الآن', me: 'مرحبًا، أرغب في معرفة المزيد عن Odoo', them: 'أهلًا بك! متى يناسبك أن نتواصل معك؟', time1: '10:24', time2: '10:25', chip: 'نرد خلال دقائق' }
   : { name: 'AIODYX', status: 'Online now', me: "Hi, I'd like to know about Odoo", them: 'Hi there! When is a good time to call you?', time1: '10:24', time2: '10:25', chip: 'We reply within minutes' };
 ---
 <div class="scene" aria-hidden="true" dir={rtl ? 'rtl' : 'ltr'}>
