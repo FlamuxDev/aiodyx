@@ -42,16 +42,7 @@
     "name": "Tester",
     "viewport": "",
     "ua": "curl/8.22.0",
-    "replies": [
-      {
-        "id": "1c690867-8741-420e-9925-1f9bde32a119",
-        "createdAt": "2026-10-07T06:07:42.584Z",
-        "name": "R",
-        "text": "edited reply",
-        "tokenHash": "e26d2da3ab585c9840b157a4a9b5639fda905c2ad33d04d2c598be8883b51236",
-        "editedAt": "2026-10-07T06:07:47.113Z"
-      }
-    ],
+    "replies": [],
     "tokenHash": "e33cdf9c7f7120b98e8c78408953e07f2ecd183006b5606df349b4c212acf43e"
   },
   {
