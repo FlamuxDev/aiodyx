@@ -1,1 +1,25 @@
-[]
+[
+  {
+    "id": "39d70825-fe7e-4515-bd84-966516eb1d27",
+    "createdAt": "2026-10-07T06:15:01.888Z",
+    "updatedAt": "2026-10-07T06:15:01.888Z",
+    "status": "open",
+    "page": "/ar/",
+    "lang": "ar",
+    "kind": "text",
+    "anchor": {
+      "exact": "مبيعات والمخزون والحساب",
+      "prefix": "عودية شركتك كلها في نظام واحد ال",
+      "suffix": "ات والموظفون في Odoo، كلها متراب",
+      "selector": "#main > section:nth-of-type(1) > div > div:nth-of-type(1) > p:nth-of-type(2)",
+      "section": "شركتك كلها في نظام واحد",
+      "element": ""
+    },
+    "note": "ملاحظة من الجوال",
+    "name": "",
+    "viewport": "390x800",
+    "ua": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/153.0.0.0 Safari/537.36",
+    "replies": [],
+    "tokenHash": "e88180c0d2382f193793dedc6f0b15c0628740d728ae6686fb155f4489bdc0c6"
+  }
+]
