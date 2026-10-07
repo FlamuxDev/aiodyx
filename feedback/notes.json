@@ -1,1 +1,26 @@
-[]
+[
+  {
+    "id": "ed902913-f879-4842-82e0-c42f91a35b90",
+    "createdAt": "2026-10-07T06:38:33.496Z",
+    "updatedAt": "2026-10-07T06:38:33.496Z",
+    "status": "open",
+    "page": "/aiodyx/ar/apps/",
+    "lang": "ar",
+    "kind": "element",
+    "anchor": {
+      "exact": "المشتريات",
+      "prefix": "",
+      "suffix": "",
+      "selector": "#operate > div > ul > li:nth-of-type(2) > a > div:nth-of-type(2) > span > h3",
+      "section": "#operate · التشغيل والمخزون",
+      "element": "h3 \"المشتريات\""
+    },
+    "note": "المبيعات",
+    "name": "Alex",
+    "viewport": "1908x942",
+    "ua": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/149.0.0.0 Safari/537.36",
+    "replies": [],
+    "tokenHash": "005a38db94f32870b83f59f90bf3b31bd5cd8d1f58538ca777ec04afb3d33083",
+    "shot": "feedback/shots/ed902913-f879-4842-82e0-c42f91a35b90.webp"
+  }
+]
