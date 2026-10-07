@@ -19,8 +19,31 @@
     "name": "",
     "viewport": "1280x639",
     "ua": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/154.0.0.0 Safari/537.36",
+    "shot": "feedback/shots/89092336-7f26-4be7-9521-014f521ae971.webp",
     "replies": [],
-    "tokenHash": "7c21c3dbd1458b962955161a20fbb95948aed2c3460a5156765b693348ffa830",
-    "shot": "feedback/shots/89092336-7f26-4be7-9521-014f521ae971.webp"
+    "tokenHash": "7c21c3dbd1458b962955161a20fbb95948aed2c3460a5156765b693348ffa830"
+  },
+  {
+    "id": "5ffb6511-bdeb-4aef-93fa-67615468653a",
+    "createdAt": "2026-10-07T21:21:35.061Z",
+    "updatedAt": "2026-10-07T21:21:35.061Z",
+    "status": "open",
+    "page": "/aiodyx/ar/",
+    "lang": "ar",
+    "kind": "element",
+    "anchor": {
+      "exact": "© 2026 AIODYX. جميع الحقوق محفوظة. Odoo علامة تجارية مسجلة لشركة Odoo S.A.",
+      "prefix": "",
+      "suffix": "",
+      "selector": "body > footer > div:nth-of-type(2) > p",
+      "section": "لنتحدث عن شركتك",
+      "element": "p \"© 2026 AIODYX. جميع الحقوق محفوظة. Odoo علامة تجارية مسجلة ل\""
+    },
+    "note": "© 2026 AIODYX جميع الحقوق محفوظة لشركة امبريلا برايم",
+    "name": "مهند",
+    "viewport": "1440x765",
+    "ua": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/154.0.0.0 Safari/537.36",
+    "replies": [],
+    "tokenHash": "dc61628c0cb5609d11633dcc414162ab0e712088f25590f492278f98da092b40"
   }
 ]
