@@ -160,5 +160,28 @@
     "ua": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/153.0.0.0 Safari/537.36",
     "replies": [],
     "tokenHash": "83ba021acb570beba262883af95e224a01e89051c1e95fdc84ebfe83c575b35f"
+  },
+  {
+    "id": "c3bbd067-ae12-4e5e-b372-05ce611c940c",
+    "createdAt": "2026-10-07T06:11:14.235Z",
+    "updatedAt": "2026-10-07T06:11:14.235Z",
+    "status": "open",
+    "page": "/ar/",
+    "lang": "ar",
+    "kind": "element",
+    "anchor": {
+      "exact": "شركتك كلها في نظام واحد",
+      "prefix": "",
+      "suffix": "",
+      "selector": "#main > section:nth-of-type(1) > div > div:nth-of-type(1) > h1",
+      "section": "شركتك كلها في نظام واحد",
+      "element": "h1 \"شركتك كلها في نظام واحد\""
+    },
+    "note": "العنوان الرئيسي كبير جدًا.",
+    "name": "",
+    "viewport": "1280x900",
+    "ua": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/153.0.0.0 Safari/537.36",
+    "replies": [],
+    "tokenHash": "ae07af689f4509ad81bb0c756c9dcbb5e46adecc473830086c7237d9da5fbb29"
   }
 ]
