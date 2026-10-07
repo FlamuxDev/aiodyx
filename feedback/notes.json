@@ -1,1 +1,25 @@
-[]
+[
+  {
+    "id": "b127c2ba-4ffe-4c16-b170-c06587b1e917",
+    "createdAt": "2026-10-07T06:08:41.025Z",
+    "updatedAt": "2026-10-07T06:08:41.025Z",
+    "status": "open",
+    "page": "/c/",
+    "lang": "",
+    "kind": "page",
+    "anchor": {
+      "exact": "",
+      "prefix": "",
+      "suffix": "",
+      "selector": "",
+      "section": "",
+      "element": ""
+    },
+    "note": "c1",
+    "name": "",
+    "viewport": "",
+    "ua": "curl/8.22.0",
+    "replies": [],
+    "tokenHash": "e33cdf9c7f7120b98e8c78408953e07f2ecd183006b5606df349b4c212acf43e"
+  }
+]
