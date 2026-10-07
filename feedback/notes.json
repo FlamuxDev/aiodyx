@@ -45,5 +45,29 @@
     "ua": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/154.0.0.0 Safari/537.36",
     "replies": [],
     "tokenHash": "dc61628c0cb5609d11633dcc414162ab0e712088f25590f492278f98da092b40"
+  },
+  {
+    "id": "9aa966c9-7024-4313-9264-0740d08ba209",
+    "createdAt": "2026-10-07T21:24:14.530Z",
+    "updatedAt": "2026-10-07T21:24:14.530Z",
+    "status": "open",
+    "page": "/aiodyx/ar/about/",
+    "lang": "ar",
+    "kind": "element",
+    "anchor": {
+      "exact": "AIODYX شريك Odoo في الأردن والسعودية. نجهّز ونُدرّب وندعم.",
+      "prefix": "",
+      "suffix": "",
+      "selector": "#main > section:nth-of-type(1) > div > div:nth-of-type(1) > p",
+      "section": "من نحن",
+      "element": "p \"AIODYX شريك Odoo في الأردن والسعودية. نجهّز ونُدرّب وندعم.\""
+    },
+    "note": "AIODYX كتابة نبذة عن شركة شمسية و أمبريلا برايم",
+    "name": "مهند",
+    "viewport": "1440x765",
+    "ua": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/154.0.0.0 Safari/537.36",
+    "replies": [],
+    "tokenHash": "dc61628c0cb5609d11633dcc414162ab0e712088f25590f492278f98da092b40",
+    "shot": "feedback/shots/9aa966c9-7024-4313-9264-0740d08ba209.webp"
   }
 ]
