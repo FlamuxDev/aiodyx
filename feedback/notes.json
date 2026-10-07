@@ -117,7 +117,7 @@
   {
     "id": "db855472-a079-401b-a78f-d41bbcdc3ab8",
     "createdAt": "2026-10-07T06:10:17.090Z",
-    "updatedAt": "2026-10-07T06:10:17.090Z",
+    "updatedAt": "2026-10-07T06:11:16.747Z",
     "status": "open",
     "page": "/ar/",
     "lang": "ar",
@@ -135,7 +135,15 @@
     "viewport": "1280x900",
     "ua": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/153.0.0.0 Safari/537.36",
     "shot": "feedback/shots/db855472-a079-401b-a78f-d41bbcdc3ab8.webp",
-    "replies": [],
+    "replies": [
+      {
+        "id": "09586908-652b-45f4-bdea-f4e13121b024",
+        "createdAt": "2026-10-07T06:11:16.747Z",
+        "name": "",
+        "text": "تمت المراجعة، شكرًا.",
+        "tokenHash": "ae07af689f4509ad81bb0c756c9dcbb5e46adecc473830086c7237d9da5fbb29"
+      }
+    ],
     "tokenHash": "99543e7d86e26be4ae35f67e2edea5a6214e9be682b43325cb3b29a2806a18b8"
   },
   {
