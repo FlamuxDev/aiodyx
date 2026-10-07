@@ -237,5 +237,28 @@
     "ua": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/153.0.0.0 Safari/537.36",
     "replies": [],
     "tokenHash": "347e141b5985f396e5db89f20eede6b5c5972f3bacb649eaaeff824faed0b48a"
+  },
+  {
+    "id": "0552a585-a3d2-409b-875d-734659fb5e4e",
+    "createdAt": "2026-10-07T06:13:05.595Z",
+    "updatedAt": "2026-10-07T06:13:05.595Z",
+    "status": "open",
+    "page": "/en/faq/",
+    "lang": "en",
+    "kind": "page",
+    "anchor": {
+      "exact": "",
+      "prefix": "",
+      "suffix": "",
+      "selector": "",
+      "section": "",
+      "element": ""
+    },
+    "note": "General remark",
+    "name": "",
+    "viewport": "1280x900",
+    "ua": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/153.0.0.0 Safari/537.36",
+    "replies": [],
+    "tokenHash": "8046eff6234420255caafd3ba968503cbf9927cd58f48b98d3a83b9bc126a6c2"
   }
 ]
