@@ -134,8 +134,31 @@
     "name": "مراجع",
     "viewport": "1280x900",
     "ua": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/153.0.0.0 Safari/537.36",
+    "shot": "feedback/shots/db855472-a079-401b-a78f-d41bbcdc3ab8.webp",
     "replies": [],
-    "tokenHash": "99543e7d86e26be4ae35f67e2edea5a6214e9be682b43325cb3b29a2806a18b8",
-    "shot": "feedback/shots/db855472-a079-401b-a78f-d41bbcdc3ab8.webp"
+    "tokenHash": "99543e7d86e26be4ae35f67e2edea5a6214e9be682b43325cb3b29a2806a18b8"
+  },
+  {
+    "id": "e7815368-3f15-4dbd-ad8f-ad2c20a48e87",
+    "createdAt": "2026-10-07T06:10:43.557Z",
+    "updatedAt": "2026-10-07T06:10:43.557Z",
+    "status": "open",
+    "page": "/ar/",
+    "lang": "ar",
+    "kind": "text",
+    "anchor": {
+      "exact": "نص قديم لم يعد موجودًا",
+      "prefix": "",
+      "suffix": "",
+      "selector": "main > p",
+      "section": "x",
+      "element": ""
+    },
+    "note": "ملاحظة على نص محذوف",
+    "name": "سارة",
+    "viewport": "",
+    "ua": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/153.0.0.0 Safari/537.36",
+    "replies": [],
+    "tokenHash": "83ba021acb570beba262883af95e224a01e89051c1e95fdc84ebfe83c575b35f"
   }
 ]
