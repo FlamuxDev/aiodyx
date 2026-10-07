@@ -8,7 +8,8 @@
     "build": "astro build",
     "preview": "astro preview",
     "og": "rsvg-convert -w 1200 -h 630 scripts/og.svg -o public/og.png",
-    "lan": "astro build && astro preview --host 0.0.0.0 --port 8080"
+    "lan": "astro build && astro preview --host 0.0.0.0 --port 8080",
+    "notes": "node scripts/notes.mjs"
   },
   "dependencies": {
     "@astrojs/sitemap": "^3.7.4",
@@ -16,6 +17,7 @@
     "@fontsource/ibm-plex-sans-arabic": "^5.3.0",
     "@fontsource/plus-jakarta-sans": "^5.3.0",
     "astro": "^7.3.5",
+    "modern-screenshot": "^4.7.0",
     "three": "^0.186.1"
   }
 }
