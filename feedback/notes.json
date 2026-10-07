@@ -25,7 +25,7 @@
   {
     "id": "2b445f03-5336-4955-badb-198b50f88a3d",
     "createdAt": "2026-10-07T06:16:39.873Z",
-    "updatedAt": "2026-10-07T06:16:39.873Z",
+    "updatedAt": "2026-10-07T06:16:42.616Z",
     "status": "open",
     "page": "/en/",
     "lang": "",
@@ -42,8 +42,16 @@
     "name": "Lina",
     "viewport": "",
     "ua": "curl/8.22.0",
-    "replies": [],
-    "tokenHash": "dc439a7f3f7e57e89f27caf59fde0239a3ce73150cca6feedec7ab3a8cf71c54",
-    "shot": "feedback/shots/2b445f03-5336-4955-badb-198b50f88a3d.webp"
+    "shot": "feedback/shots/2b445f03-5336-4955-badb-198b50f88a3d.webp",
+    "replies": [
+      {
+        "id": "28438c36-797b-4532-a941-10334f723f06",
+        "createdAt": "2026-10-07T06:16:42.616Z",
+        "name": "Owner",
+        "text": "Will fix.",
+        "tokenHash": "dc439a7f3f7e57e89f27caf59fde0239a3ce73150cca6feedec7ab3a8cf71c54"
+      }
+    ],
+    "tokenHash": "dc439a7f3f7e57e89f27caf59fde0239a3ce73150cca6feedec7ab3a8cf71c54"
   }
 ]
