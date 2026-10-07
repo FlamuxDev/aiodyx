@@ -44,5 +44,29 @@
     "ua": "curl/8.22.0",
     "replies": [],
     "tokenHash": "e33cdf9c7f7120b98e8c78408953e07f2ecd183006b5606df349b4c212acf43e"
+  },
+  {
+    "id": "e111f282-0ea0-4f41-8073-a46370f6cc7e",
+    "createdAt": "2026-10-07T06:07:38.995Z",
+    "updatedAt": "2026-10-07T06:07:38.995Z",
+    "status": "open",
+    "page": "/aiodyx/en/",
+    "lang": "en",
+    "kind": "element",
+    "anchor": {
+      "exact": "logo",
+      "prefix": "",
+      "suffix": "",
+      "selector": "body > header > img",
+      "section": "",
+      "element": "img \"logo\""
+    },
+    "note": "element note",
+    "name": "B",
+    "viewport": "",
+    "ua": "curl/8.22.0",
+    "replies": [],
+    "tokenHash": "e26d2da3ab585c9840b157a4a9b5639fda905c2ad33d04d2c598be8883b51236",
+    "shot": "feedback/shots/e111f282-0ea0-4f41-8073-a46370f6cc7e.webp"
   }
 ]
