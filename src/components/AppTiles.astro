@@ -1,0 +1,12 @@
+---
+import AppIcon from './AppIcon.astro';
+import Icon from './Icon.astro';
+import { href, type Lang } from '../lib/site';
+// Equal link tiles for apps. cols 3 = horizontal rows (home); cols 4/5 = stacked tiles. Pick cols so the last row is full.
+const { lang, apps, cols = 3 } = Astro.props as { lang: Lang; apps: { slug: string; name: string }[]; cols?: 3 | 4 | 5 };
+---
+<ul class={`tiles tiles--${cols}`} style={`--cols:${cols}`} role="list">
+  {apps.map((a) => (
+    <li><a class="cell" href={href(lang, `apps/${a.slug}/`)}><AppIcon name={a.slug} size={44} /><span>{a.name}</span><Icon name="arrow" size={20} /></a></li>
+  ))}
+</ul>

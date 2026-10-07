@@ -1,0 +1,51 @@
+---
+import Icon from '../components/Icon.astro';
+import { DATA, tel, type Lang } from '../lib/site';
+// Offices grouped by country. variant "cards" (home) adds a dotted-map backdrop and a city skyline line drawing.
+const { lang, bodies, variant = 'rows' } = Astro.props as { lang: Lang; bodies?: { name: string; body: string }[]; variant?: 'rows' | 'cards' };
+const d = DATA[lang];
+const countries = [...new Set(d.offices.map((o) => o.country))].map((c, i) => ({
+  name: bodies?.[i]?.name ?? c,
+  body: bodies?.[i]?.body,
+  city: i === 0 ? 'amman' : 'riyadh',
+  offices: d.offices.filter((o) => o.country === c),
+}));
+---
+<ul class={`offices ${variant === 'cards' ? 'offices--cards' : ''}`}>
+  {countries.map((c) => (
+    <li class={`office ${variant === 'cards' ? 'ocard' : ''}`}>
+      {variant === 'cards' && (
+        <div class="ocard__art" aria-hidden="true">
+          {c.city === 'amman' ? (
+            <svg viewBox="0 0 400 90" preserveAspectRatio="xMidYMax slice" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round">
+              <path d="M0 88h400"/>
+              <path d="M8 88V66h22v22M36 88V54h20v34M62 88V70h26v18M94 88V58h18v30M118 88V72h24v18"/>
+              <path d="M170 88V50h96v38M170 50l48-16 48 16"/>
+              <path d="M184 50v38M200 50v38M216 50v38M232 50v38M248 50v38"/>
+              <path d="M290 88V62h20v26M316 88V48h18v40M340 88V68h24v20M370 88V56h22v32"/>
+              <path d="M142 88V74c0-8 14-8 14 0v14"/>
+            </svg>
+          ) : (
+            <svg viewBox="0 0 400 90" preserveAspectRatio="xMidYMax slice" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round">
+              <path d="M0 88h400"/>
+              <path d="M10 88V64h22v24M38 88V52h18v36M62 88V70h24v18"/>
+              <path d="M128 88V34l9-16 9 16v54M137 18v-6"/><circle cx="137" cy="30" r="6.500"/>
+              <path d="M200 88V10h46v78"/><path d="M208 10q15 52 30 0"/>
+              <path d="M270 88V46h20v42M296 88V60h24v28M326 88V50h18v38M350 88V68h24v20"/>
+              <path d="M376 88V58h18v30"/>
+            </svg>
+          )}
+        </div>
+      )}
+      <div class={variant === 'cards' ? 'ocard__body' : 'office__in'}>
+        <h3>{c.name}</h3>
+        {c.body && <p>{c.body}</p>}
+        <div class="office__rows">
+          {c.offices.map((o) => (
+            <a class="office__row" href={tel(o.phone)}><span>{o.label}</span><b><Icon name="phone" size={18} /><span class="tel" dir="ltr">{o.phone}</span></b></a>
+          ))}
+        </div>
+      </div>
+    </li>
+  ))}
+</ul>

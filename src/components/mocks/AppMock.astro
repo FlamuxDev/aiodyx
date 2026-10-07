@@ -1,0 +1,386 @@
+---
+// Decorative mini interface of one Odoo app. Props: slug (one of the 9 app slugs) and lang. aria-hidden, no focusables.
+import AppIcon from '../AppIcon.astro';
+const { slug, lang = 'ar' } = Astro.props as { slug: string; lang?: 'ar' | 'en' };
+const ar = lang === 'ar';
+const L = (a: string, e: string) => (ar ? a : e);
+const sar = (n: string) => (ar ? `${n} ر.س` : `SAR ${n}`);
+const dir = ar ? 'rtl' : 'ltr';
+---
+<div class={`m m-${slug}`} dir={dir} style={`--dir:${ar ? -1 : 1}`} aria-hidden="true">
+
+{slug === 'accounting' && (<>
+  <div class="c spark r" style="--d:.1s">
+    <div class="hd"><span class="lbl">{L('صافي الربح الشهري', 'Monthly net profit')}</span><span class="pill up">▲ 12%</span></div>
+    <div class="big">{sar('38,400')}</div>
+    <svg viewBox="0 0 200 56" class="sp">
+      <defs><linearGradient id="spg" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#3fb59a" stop-opacity=".35"/><stop offset="1" stop-color="#3fb59a" stop-opacity="0"/></linearGradient></defs>
+      <path class="area" d="M0 44L33 38L66 41L100 28L133 30L166 16L200 8V56H0Z" fill="url(#spg)"/>
+      <path class="ln" pathLength="1" d="M0 44L33 38L66 41L100 28L133 30L166 16L200 8" fill="none" stroke="#0e6b5c" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"/>
+    </svg>
+    <div class="ticks"><span>{L('يناير','Jan')}</span><span>{L('مارس','Mar')}</span><span>{L('مايو','May')}</span><span>{L('يوليو','Jul')}</span></div>
+  </div>
+  <div class="c inv r" style="--d:.3s">
+    <div class="hd"><div class="row"><AppIcon name="accounting" size={22}/><b>INV/2026/0148</b></div><span class="badge ok">{L('مدفوعة','Paid')}</span></div>
+    <div class="cust"><span class="av">{L('ن','N')}</span><div><div class="t">{L('شركة النخبة للتجارة','Al Nokhba Trading')}</div><div class="s">{L('الرياض','Riyadh')}</div></div></div>
+    <div class="ln-row"><span>{L('ترخيص + تهيئة النظام','Licence + setup')}</span><span class="n">{sar('6,000')}</span></div>
+    <div class="ln-row"><span>{L('تدريب الفريق (3 أيام)','Team training (3 days)')}</span><span class="n">{sar('2,400')}</span></div>
+    <div class="ln-row"><span>{L('ضريبة القيمة المضافة 15%','VAT 15%')}</span><span class="n">{sar('1,260')}</span></div>
+    <div class="tot"><span>{L('الإجمالي','Total')}</span><span class="n">{sar('9,660')}</span></div>
+  </div>
+</>)}
+
+{slug === 'sales-crm' && (<>
+  <div class="kb">
+    {[
+      [L('جديد','New'), '3', [[L('مؤسسة الأفق','Ofuq Est.'), '45,000', 'a'], [L('مجموعة الراجح','Rajeh Group'), '18,500', 'b']]],
+      [L('عرض سعر','Quote'), '2', [[L('شركة نبراس','Nibras Co.'), '72,000', 'c'], [L('مصنع الوادي','Wadi Factory'), '120,000', 'move']]],
+      [L('تم البيع','Won'), '1', [[L('مطاعم الديوان','Diwan Foods'), '96,000', 'won'], null]],
+    ].map(([title, cnt, cards], i) => (
+      <div class="col r" style={`--d:${0.1 + i * 0.12}s`}>
+        <div class="ch"><span>{title}</span><i>{cnt}</i></div>
+        {(cards as any[]).map((cd) => cd ? (
+          <div class={`deal ${cd[2] === 'move' ? 'mv' : ''} ${cd[2] === 'won' ? 'won' : ''}`}>
+            <div class="t">{cd[0]}</div>
+            <div class="n">{sar(cd[1])}</div>
+            <div class="foot"><span class="av sm">{cd[2] === 'b' ? L('س','S') : L('ع','A')}</span><span class="tag">{cd[2] === 'won' ? '✓' : cd[2] === 'move' ? '90%' : '40%'}</span></div>
+          </div>
+        ) : <div class="slot"></div>)}
+      </div>
+    ))}
+  </div>
+  <div class="c toast2 r" style="--d:.6s">
+    <AppIcon name="sales-crm" size={22}/>
+    <div><div class="s">{L('مبيعات هذا الشهر','Won this month')}</div><div class="t n">{sar('248,000')}</div></div>
+    <span class="pill up">▲ 18%</span>
+  </div>
+</>)}
+
+{slug === 'inventory' && (<>
+  <div class="c stk r" style="--d:.1s">
+    <div class="hd"><div class="row"><AppIcon name="inventory" size={22}/><b>{L('المخزون','Stock')}</b></div>
+      <div class="chips"><span class="chip on">{L('الرياض','Riyadh')}</span><span class="chip">{L('جدة','Jeddah')}</span></div></div>
+    {[
+      [L('كرتون تغليف M','Packing box M'), 'PK-204', 86, '1,240', ''],
+      [L('طابعة ملصقات','Label printer'), 'LB-110', 58, '64', ''],
+      [L('ورق حراري 80 مم','Thermal roll 80mm'), 'TR-080', 12, '9', 'low'],
+      [L('أكياس شحن','Mailer bags'), 'MB-031', 72, '530', ''],
+    ].map(([n, sku, pct, q, st], i) => (
+      <div class={`srow ${st}`}>
+        <span class="thumb" style={`--h:${[160, 200, 38, 260][i]}`}></span>
+        <div class="nm"><div class="t">{n}</div><div class="s">{sku}</div></div>
+        <div class="bar"><i style={`--w:${pct}%;--d:${0.3 + i * 0.12}s`}></i></div>
+        <span class="q n">{q}</span>
+      </div>
+    ))}
+  </div>
+  <div class="c alert r" style="--d:.5s">
+    <span class="wi">!</span>
+    <div><div class="t">{L('مخزون منخفض','Low stock')}</div><div class="s">{L('ورق حراري 80 مم · متبقي 9 فقط','Thermal roll 80mm · only 9 left')}</div></div>
+  </div>
+</>)}
+
+{slug === 'purchase' && (<>
+  <div class="chipf r" style="--d:.7s"><span class="dot"></span>{L('اقتراح إعادة الطلب: 120 وحدة','Reorder suggestion: 120 units')}</div>
+  <div class="c po r" style="--d:.1s">
+    <div class="hd"><div class="row"><AppIcon name="purchase" size={22}/><div><div class="t">{L('أمر شراء P00217','Purchase order P00217')}</div><div class="s">{L('مؤسسة الخليج للتوريد','Gulf Supply Est.')}</div></div></div><span class="n big2">{sar('14,820')}</span></div>
+    <div class="stp">
+      <div class="stline"><i></i></div>
+      {[L('طلب','Request'), L('مؤكد','Confirmed'), L('مستلم','Received')].map((s, i) => (
+        <div class={`st s${i}`}><span class="nd">{i === 0 ? '✓' : i === 1 ? '✓' : ''}</span><span class="sl">{s}</span></div>
+      ))}
+    </div>
+    <div class="ln-row"><span>{L('حبوب قهوة 1 كجم × 80','Coffee beans 1kg × 80')}</span><span class="n">{sar('9,600')}</span></div>
+    <div class="ln-row"><span>{L('أكواب ورقية × 40 كرتون','Paper cups × 40 cartons')}</span><span class="n">{sar('5,220')}</span></div>
+  </div>
+  <div class="c cmp r" style="--d:.35s">
+    <div class="s">{L('مقارنة الموردين','Vendor comparison')}</div>
+    <div class="vr"><span>{L('الخليج','Gulf')}</span><span class="n">{sar('14,820')}</span><span class="badge ok sm">{L('الأفضل','Best')}</span></div>
+    <div class="vr dim"><span>{L('الرواد','Alrowad')}</span><span class="n">{sar('15,400')}</span><span></span></div>
+  </div>
+</>)}
+
+{slug === 'manufacturing' && (<>
+  <div class="c bom r" style="--d:.1s">
+    <div class="hd"><div class="row"><AppIcon name="manufacturing" size={22}/><div><div class="t">{L('أمر تصنيع MO/0042','Work order MO/0042')}</div><div class="s">{L('كرسي مكتب · 50 وحدة','Office chair · 50 units')}</div></div></div></div>
+    <div class="s cap">{L('قائمة المواد','Bill of materials')}</div>
+    {[
+      [L('هيكل معدني','Steel frame'), '50', 'ok'],
+      [L('مقعد جلد','Leather seat'), '50', 'ok'],
+      [L('عجلات','Casters'), '250', 'ok'],
+      [L('مساند ذراع','Armrests'), '100', 'wait'],
+    ].map(([n, q, st]) => (
+      <div class="brow"><span class={`ck ${st}`}>{st === 'ok' ? '✓' : ''}</span><span class="t">{n}</span><span class="n q">{ar ? `${q} ×` : `× ${q}`}</span></div>
+    ))}
+  </div>
+  <div class="c ring r" style="--d:.4s">
+    <svg viewBox="0 0 64 64" width="84" height="84">
+      <circle cx="32" cy="32" r="26" fill="none" stroke="#e8f3f0" stroke-width="7"/>
+      <circle class="rg" cx="32" cy="32" r="26" fill="none" stroke="#0e6b5c" stroke-width="7" stroke-linecap="round" pathLength="100" transform="rotate(-90 32 32)"/>
+    </svg>
+    <div class="rt"><b class="n">72%</b></div>
+    <div class="s">{L('قيد التنفيذ','In progress')}</div>
+  </div>
+</>)}
+
+{slug === 'hr-payroll' && (<>
+  <div class="c slip r" style="--d:.1s">
+    <div class="hd"><div class="row"><span class="av lg">{L('ف','F')}</span><div><div class="t">{L('فهد العتيبي','Fahad Al-Otaibi')}</div><div class="s">{L('مسير رواتب · مارس','Payslip · March')}</div></div></div></div>
+    <div class="ln-row"><span>{L('الراتب الأساسي','Basic salary')}</span><span class="n">{sar('9,000')}</span></div>
+    <div class="ln-row"><span>{L('بدل سكن','Housing')}</span><span class="n">{sar('2,250')}</span></div>
+    <div class="ln-row"><span>{L('بدل نقل','Transport')}</span><span class="n">{sar('900')}</span></div>
+    <div class="ln-row neg"><span>{L('التأمينات','GOSI')}</span><span class="n">{ar ? `${sar("877")} −` : `− ${sar("877")}`}</span></div>
+    <div class="net"><span>{L('صافي الراتب','Net pay')}</span><span class="n">{sar('11,273')}</span></div>
+  </div>
+  <div class="c wk r" style="--d:.4s">
+    <div class="s">{L('الحضور هذا الأسبوع','Attendance this week')}</div>
+    <div class="days">
+      {[[L('أحد','Sun'), 'p'], [L('اثنين','Mon'), 'p'], [L('ثلاثاء','Tue'), 'l'], [L('أربعاء','Wed'), 'p'], [L('خميس','Thu'), 'p'], [L('جمعة','Fri'), 'o'], [L('سبت','Sat'), 'o']].map(([d, s], i) => (
+        <div class={`dy ${s}`} style={`--d:${0.5 + i * 0.06}s`}><i></i><span>{d}</span></div>
+      ))}
+    </div>
+  </div>
+</>)}
+
+{slug === 'point-of-sale' && (<>
+  <div class="dev r" style="--d:.1s">
+    <div class="scr">
+      <div class="grid">
+        {[
+          [L('قهوة','Coffee'), '14', '#e8f3f0'], [L('عصير','Juice'), '16', '#fdf6e7'], [L('كرواسون','Croissant'), '12', '#fdf6e7'],
+          [L('ساندوتش','Sandwich'), '22', '#eef6f3'], [L('ماء','Water'), '3', '#eef1fb'], [L('كيك','Cake'), '18', '#e8f3f0'],
+        ].map(([n, p, bg], i) => (
+          <div class={`tile ${i === 0 ? 'sel' : ''}`}><span class="im" style={`background:${bg}`}><i></i></span><span class="t">{n}</span><span class="s n">{p}</span></div>
+        ))}
+      </div>
+      <div class="rc">
+        <div class="rh"><AppIcon name="point-of-sale" size={20}/><b>{L('الطلب #52','Order #52')}</b></div>
+        <div class="rl"><span>{L('قهوة','Coffee')} ×2</span><span class="n">28</span></div>
+        <div class="rl"><span>{L('كرواسون','Croissant')}</span><span class="n">12</span></div>
+        <div class="rl"><span>{L('كيك','Cake')}</span><span class="n">18</span></div>
+        <div class="rl tx"><span>{L('الضريبة 15%','VAT 15%')}</span><span class="n">8.70</span></div>
+        <div class="rtot"><span>{L('الإجمالي','Total')}</span><span class="n">66.70</span></div>
+        <div class="pay">{L('ادفع','Pay')}</div>
+      </div>
+    </div>
+  </div>
+</>)}
+
+{slug === 'website-ecommerce' && (<>
+  <div class="win r" style="--d:.1s">
+    <div class="bar2"><span class="d"></span><span class="d"></span><span class="d"></span><span class="url">aiodyx-store.sa</span></div>
+    <div class="nav2"><b>{L('متجر الواحة','Oasis Store')}</b><span class="sp2"></span><span class="lk">{L('الرئيسية','Home')}</span><span class="lk">{L('المنتجات','Shop')}</span>
+      <span class="cart"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 4h2.5l2 11h10l2-8H7"/><circle cx="9" cy="19.5" r="1.3"/><circle cx="17" cy="19.5" r="1.3"/></svg><i class="cb">3</i></span></div>
+    <div class="shop">
+      <div class="pc"><div class="ph p1"><i></i></div><div class="t">{L('حقيبة جلد طبيعي','Leather tote')}</div><div class="rate">★★★★★</div><div class="pr"><span class="n">{sar('389')}</span><span class="add">{L('أضف للسلة','Add')}</span></div></div>
+      <div class="pc"><div class="ph p2"><i></i></div><div class="t">{L('ساعة كلاسيك','Classic watch')}</div><div class="rate">★★★★☆</div><div class="pr"><span class="n">{sar('520')}</span><span class="add">{L('أضف للسلة','Add')}</span></div></div>
+    </div>
+  </div>
+  <div class="c toast r" style="--d:1s">
+    <span class="ok2">✓</span>
+    <div><div class="t">{L('طلب جديد #1048','New order #1048')}</div><div class="s n">{sar('389')} · {L('الدمام','Dammam')}</div></div>
+  </div>
+</>)}
+
+{slug === 'project-timesheets' && (<>
+  <div class="c gt r" style="--d:.1s">
+    <div class="hd"><div class="row"><AppIcon name="project-timesheets" size={22}/><b>{L('إطلاق المتجر','Store launch')}</b></div><span class="pill">{L('أسبوع 12','Week 12')}</span></div>
+    <div class="gh"><span></span><span>{L('أحد','Sun')}</span><span>{L('اثنين','Mon')}</span><span>{L('ثلاثاء','Tue')}</span><span>{L('أربعاء','Wed')}</span><span>{L('خميس','Thu')}</span></div>
+    <div class="gb">
+      <div class="today"></div>
+      {[
+        [L('التصميم','Design'), 0, 40, ''], [L('البرمجة','Build'), 25, 55, 'b'], [L('ربط الدفع','Payments'), 55, 30, 'c'], [L('الاختبار','Testing'), 75, 25, 'd'],
+      ].map(([n, s, w, c], i) => (
+        <div class="gr"><span class="gn">{n}</span><div class="gl"><i class={`bar3 ${c}`} style={`--s:${s}%;--w:${w}%;--d:${0.25 + i * 0.12}s`}></i></div></div>
+      ))}
+    </div>
+  </div>
+  <div class="c hrs r" style="--d:.5s">
+    <div class="s">{L('الساعات المسجلة','Hours logged')}</div>
+    {[[L('أحمد','Ahmed'), 32, L('أ','A')], [L('سارة','Sara'), 28, L('س','S')], [L('خالد','Khalid'), 19, L('خ','K')]].map(([n, h, a], i) => (
+      <div class="hr"><span class="av sm">{a}</span><span class="nm">{n}</span><div class="bar"><i style={`--w:${(h as number) * 2.6}%;--d:${0.7 + i * 0.1}s`}></i></div><span class="n q">{h}{L(' س',' h')}</span></div>
+    ))}
+  </div>
+</>)}
+
+</div>
+
+<style>
+  .m { --ink:#15201d; --muted:#4a5a55; --line:#e3e9e7; --grey:#f4f7f6; --tint:#eef6f3; --pr:#0e6b5c; --soft:#e8f3f0; --amber:#b7791f; --amber-bg:#fdf6e7;
+    position:relative; inline-size:100%; max-inline-size:500px; margin-inline:auto; font-size:12px; line-height:1.4; color:var(--ink); text-align:start; font-family:inherit; display:block; padding-block:4px; }
+  .m * { box-sizing:border-box; }
+  .n { font-variant-numeric:tabular-nums; font-feature-settings:"tnum"; unicode-bidi:plaintext; }
+  .c { position:relative; background:#fff; border:1px solid var(--line); border-radius:12px; padding:14px; box-shadow:0 1px 2px rgba(21,32,29,.04), 0 14px 30px -14px rgba(21,32,29,.16); }
+  .hd { display:flex; align-items:center; justify-content:space-between; gap:10px; margin-block-end:10px; }
+  .row { display:flex; align-items:center; gap:8px; min-inline-size:0; }
+  .t { font-weight:600; font-size:12.5px; }
+  .s { color:var(--muted); font-size:11px; }
+  b { font-weight:600; font-size:13px; }
+  .lbl { color:var(--muted); font-size:11.5px; }
+  .big { font-size:22px; font-weight:700; letter-spacing:-.01em; }
+  .pill { font-size:10.5px; padding:2px 8px; border-radius:99px; background:var(--grey); color:var(--muted); font-weight:500; white-space:nowrap; }
+  .pill.up { background:var(--soft); color:var(--pr); font-weight:600; }
+  .badge { font-size:10.5px; padding:2px 9px; border-radius:99px; font-weight:600; white-space:nowrap; }
+  .badge.ok { background:var(--soft); color:var(--pr); }
+  .badge.sm { font-size:10px; padding:1px 7px; }
+  .av { display:inline-grid; place-items:center; inline-size:26px; block-size:26px; border-radius:50%; background:var(--soft); color:var(--pr); font-weight:600; font-size:11px; flex:none; }
+  .av.sm { inline-size:20px; block-size:20px; font-size:10px; overflow:hidden; }
+  .av.lg { inline-size:32px; block-size:32px; font-size:13px; }
+  .ln-row { display:flex; justify-content:space-between; gap:10px; padding-block:6px; border-block-start:1px solid var(--line); color:var(--muted); }
+  .ln-row .n { color:var(--ink); white-space:nowrap; }
+  .bar { flex:1; block-size:6px; background:var(--grey); border-radius:9px; overflow:hidden; }
+  .bar i { display:block; block-size:100%; inline-size:var(--w); background:var(--pr); border-radius:9px; animation:grow 1s cubic-bezier(.2,.7,.2,1) both; animation-delay:var(--d,.3s); }
+
+  .r { animation:rise .7s cubic-bezier(.2,.7,.2,1) both; animation-delay:var(--d,0s); }
+  @keyframes rise { from { opacity:0; transform:translateY(8px); } to { opacity:1; transform:none; } }
+  @keyframes grow { from { inline-size:0; } }
+  @keyframes slidein { from { opacity:0; transform:translateX(calc(var(--dir) * -24px)); } to { opacity:1; transform:none; } }
+  @keyframes draw { from { stroke-dashoffset:1; } to { stroke-dashoffset:0; } }
+
+  /* accounting */
+  .spark { inline-size:80%; margin-inline-start:auto; padding-block-end:48px; }
+  .sp { display:block; inline-size:100%; block-size:auto; margin-block-start:8px; overflow:visible; }
+  .sp .ln { stroke-dasharray:1; animation:draw 1.6s ease-out .3s both; }
+  .sp .area { animation:rise 1.2s ease-out .8s both; }
+  .ticks { display:flex; justify-content:space-between; color:var(--muted); font-size:10px; margin-block-start:4px; }
+  .m[dir="rtl"] .sp { transform:scaleX(-1); }
+  .tot { display:flex; justify-content:space-between; align-items:center; background:var(--soft); color:var(--pr); border-radius:8px; padding:8px 10px; margin-block-start:6px; font-weight:700; }
+  .tot .n { font-size:14px; }
+  .inv { inline-size:88%; margin-block-start:-44px; z-index:2; padding:16px; }
+  .inv .cust { display:flex; gap:9px; align-items:center; margin-block-end:8px; }
+
+  /* sales */
+  .kb { display:grid; grid-template-columns:repeat(3,1fr); gap:8px; background:var(--grey); border:1px solid var(--line); border-radius:12px; padding:10px; }
+  .col { display:flex; flex-direction:column; gap:8px; min-inline-size:0; }
+  .ch { display:flex; justify-content:space-between; align-items:center; font-weight:600; font-size:11.5px; padding-inline:2px; }
+  .ch i { font-style:normal; font-size:10px; color:var(--muted); background:#fff; border:1px solid var(--line); border-radius:99px; padding:0 6px; }
+  .deal { background:#fff; border:1px solid var(--line); border-radius:8px; padding:9px; box-shadow:0 1px 2px rgba(21,32,29,.05); min-block-size:76px; display:flex; flex-direction:column; gap:3px; }
+  .deal .t { font-size:11.5px; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
+  .deal .n { font-weight:700; font-size:12px; white-space:nowrap; color:var(--pr); }
+  .deal .foot { display:flex; justify-content:space-between; align-items:center; margin-block-start:auto; }
+  .tag { font-size:10px; color:var(--muted); background:var(--grey); border-radius:99px; padding:0 6px; }
+  .deal.won { border-color:#b9ddd3; background:linear-gradient(#fff,var(--tint)); }
+  .deal.won .tag { background:var(--pr); color:#fff; }
+  .slot { min-block-size:76px; border:1.5px dashed #bcd0ca; border-radius:8px; }
+  .deal.mv { position:relative; z-index:3; animation:mvcard 1.6s cubic-bezier(.5,0,.2,1) 1.4s both; }
+  @keyframes mvcard { 0% { transform:none; box-shadow:0 1px 2px rgba(21,32,29,.05); } 15% { transform:translateY(-3px) rotate(calc(var(--dir) * 1.5deg)); box-shadow:0 12px 20px -8px rgba(21,32,29,.28); } 85% { transform:translateX(calc(var(--dir) * (100% + 8px))) translateY(calc(-3px + 100% * 0)) rotate(0); box-shadow:0 12px 20px -8px rgba(21,32,29,.28); } 100% { transform:translateX(calc(var(--dir) * (100% + 8px))); border-color:#b9ddd3; box-shadow:0 1px 2px rgba(21,32,29,.05); } }
+  .toast2 { display:flex; align-items:center; gap:10px; inline-size:78%; margin-block-start:8px; margin-inline-start:auto; z-index:4; padding:10px 12px; }
+  .toast2 > div { flex:1; }
+
+  /* inventory */
+  .stk { inline-size:94%; padding-block-end:44px; }
+  .chips { display:flex; gap:4px; }
+  .chip { font-size:10.5px; padding:2px 9px; border:1px solid var(--line); border-radius:99px; color:var(--muted); }
+  .chip.on { background:var(--soft); color:var(--pr); border-color:#b9ddd3; font-weight:600; }
+  .srow { display:grid; grid-template-columns:30px 1.3fr 1fr 44px; align-items:center; gap:10px; padding-block:7px; border-block-start:1px solid var(--line); }
+  .srow .thumb { inline-size:30px; block-size:30px; border-radius:7px; background:hsl(var(--h) 45% 90%); border:1px solid hsl(var(--h) 35% 82%); }
+  .srow .nm { min-inline-size:0; } .srow .nm .t, .srow .nm .s { white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
+  .srow .q { text-align:end; font-weight:600; }
+  .srow.low { background:var(--amber-bg); margin-inline:-14px; padding-inline:14px; border-color:#f1e1bb; }
+  .srow.low .bar i { background:var(--amber); } .srow.low .q { color:var(--amber); }
+  .alert { display:flex; align-items:center; gap:10px; inline-size:82%; margin-block-start:-34px; margin-inline-start:auto; z-index:2; border-color:#f1e1bb; padding:10px 12px; }
+  .wi { display:grid; place-items:center; inline-size:24px; block-size:24px; border-radius:50%; background:var(--amber-bg); color:var(--amber); font-weight:700; border:1px solid #f1e1bb; flex:none; }
+
+  /* purchase */
+  .m-purchase { padding-block-start:18px; }
+  .po { inline-size:92%; z-index:2; }
+  .big2 { font-weight:700; font-size:15px; white-space:nowrap; }
+  .stp { position:relative; display:grid; grid-template-columns:repeat(3,1fr); margin-block:14px 10px; }
+  .stline { position:absolute; inset-inline:16.6%; inset-block-start:10px; block-size:3px; background:var(--line); border-radius:3px; }
+  .stline i { display:block; block-size:100%; background:var(--pr); border-radius:3px; inline-size:50%; animation:grow 1.2s cubic-bezier(.2,.7,.2,1) .5s both; }
+  .st { position:relative; display:flex; flex-direction:column; align-items:center; gap:5px; }
+  .nd { inline-size:22px; block-size:22px; border-radius:50%; background:#fff; border:2px solid var(--line); display:grid; place-items:center; font-size:11px; color:#fff; font-weight:700; }
+  .st.s0 .nd, .st.s1 .nd { background:var(--pr); border-color:var(--pr); }
+  .st.s1 .nd { box-shadow:0 0 0 4px rgba(14,107,92,.14); }
+  .sl { font-size:11px; color:var(--muted); } .st.s1 .sl { color:var(--ink); font-weight:600; }
+  .chipf { position:absolute; inset-block-start:-6px; inset-inline-end:2%; z-index:4; display:flex; align-items:center; gap:7px; background:var(--amber-bg); color:#8a5a13; border:1px dashed #d9b86a; border-radius:99px; padding:5px 12px; font-size:11px; font-weight:600; box-shadow:0 8px 18px -10px rgba(120,80,10,.4); animation-name:rise; }
+  .chipf .dot { inline-size:7px; block-size:7px; border-radius:50%; background:var(--amber); animation:pulse 2.4s ease-in-out infinite; }
+  @keyframes pulse { 50% { opacity:.35; } }
+  .cmp { inline-size:76%; margin-inline-start:auto; margin-block-start:-8px; padding:30px 14px 10px; }
+  .vr { display:grid; grid-template-columns:1fr auto 52px; gap:8px; align-items:center; padding-block:3px; }
+  .vr.dim { color:var(--muted); }
+
+  /* manufacturing */
+  .m-manufacturing { padding-block-start:0; display:flow-root; }
+  .bom { inline-size:90%; padding-block-end:18px; margin-block-start:68px; }
+  .cap { margin-block:4px 4px; }
+  .brow { display:flex; align-items:center; gap:9px; padding-block:6px; border-block-start:1px solid var(--line); }
+  .brow .t { flex:1; font-weight:500; } .brow .q { color:var(--muted); }
+  .ck { inline-size:16px; block-size:16px; border-radius:5px; border:1.5px solid var(--line-2,#cdd8d5); display:grid; place-items:center; font-size:10px; color:#fff; font-weight:700; }
+  .ck.ok { background:var(--pr); border-color:var(--pr); } .ck.wait { border-color:var(--amber); background:var(--amber-bg); }
+  .ring { position:absolute; inset-block-start:0; inset-inline-end:0; z-index:3; inline-size:118px; padding:12px 8px 10px; display:flex; flex-direction:column; align-items:center; gap:2px; text-align:center; }
+  .ring svg { display:block; }
+  .rt { position:absolute; inset-block-start:34px; inset-inline:0; text-align:center; } .rt b { font-size:16px; }
+  .rg { stroke-dasharray:100; stroke-dashoffset:28; animation:ringin 1.6s cubic-bezier(.2,.7,.2,1) .4s both; }
+  @keyframes ringin { from { stroke-dashoffset:100; } }
+
+  /* hr */
+  .slip { inline-size:72%; z-index:1; padding-block-end:44px; }
+  .ln-row.neg .n { color:#a8453a; }
+  .net { display:flex; justify-content:space-between; align-items:center; background:var(--soft); color:var(--pr); border-radius:8px; padding:9px 10px; margin-block-start:6px; font-weight:700; }
+  .net .n { font-size:15px; }
+  .wk { inline-size:68%; margin-inline-start:auto; margin-block-start:-40px; z-index:3; }
+  .days { display:grid; grid-template-columns:repeat(7,1fr); gap:3px; margin-block-start:8px; }
+  .dy { display:flex; flex-direction:column; align-items:center; gap:4px; animation:rise .5s ease-out both; animation-delay:var(--d); }
+  .dy i { display:block; inline-size:100%; max-inline-size:26px; aspect-ratio:1; border-radius:7px; background:var(--pr); }
+  .dy.l i { background:var(--amber); } .dy.o i { background:var(--grey); border:1px dashed var(--line); }
+  .dy span { font-size:9.5px; color:var(--muted); }
+
+  /* pos */
+  .dev { background:#1c2926; border-radius:20px; padding:8px; box-shadow:0 24px 40px -22px rgba(21,32,29,.5); }
+  .scr { background:var(--grey); border-radius:13px; padding:10px; display:grid; grid-template-columns:1.5fr 1fr; gap:10px; }
+  .grid { display:grid; grid-template-columns:repeat(3,1fr); gap:7px; align-content:start; }
+  .tile { background:#fff; border:1px solid var(--line); border-radius:9px; padding:7px 4px 6px; display:flex; flex-direction:column; align-items:center; gap:2px; }
+  .tile.sel { border-color:var(--pr); box-shadow:0 0 0 2px rgba(14,107,92,.14); }
+  .tile .im { inline-size:100%; block-size:36px; border-radius:6px; display:grid; place-items:center; }
+  .tile .im i { inline-size:16px; block-size:16px; border-radius:50% 50% 5px 5px; background:rgba(14,107,92,.45); }
+  .tile .t { font-size:11px; font-weight:600; } .tile .s { font-size:10.5px; color:var(--pr); font-weight:600; }
+  .rc { background:#fff; border:1px solid var(--line); border-radius:9px; padding:10px; display:flex; flex-direction:column; gap:5px; }
+  .rh { display:flex; align-items:center; gap:6px; margin-block-end:3px; }
+  .rl { display:flex; justify-content:space-between; font-size:11px; gap:6px; } .rl.tx { color:var(--muted); }
+  .rtot { display:flex; justify-content:space-between; font-weight:700; font-size:13px; border-block-start:1px dashed #bcd0ca; padding-block-start:7px; margin-block-start:3px; }
+  .pay { margin-block-start:auto; text-align:center; background:var(--pr); color:#fff; border-radius:7px; padding:8px; font-weight:600; font-size:12.5px; }
+  .rl { animation:rise .5s ease-out both; } .rl:nth-of-type(2){animation-delay:.5s} .rl:nth-of-type(3){animation-delay:.7s} .rl:nth-of-type(4){animation-delay:.9s}
+
+  /* ecommerce */
+  .win { background:#fff; border:1px solid var(--line); border-radius:12px; overflow:hidden; box-shadow:0 1px 2px rgba(21,32,29,.04), 0 18px 34px -16px rgba(21,32,29,.2); }
+  .bar2 { direction:ltr; display:flex; align-items:center; gap:5px; padding:9px 12px; background:var(--grey); border-block-end:1px solid var(--line); }
+  .bar2 .d { inline-size:8px; block-size:8px; border-radius:50%; background:#d3dcd9; }
+  .url { margin-inline-start:10px; flex:1; max-inline-size:200px; background:#fff; border:1px solid var(--line); border-radius:99px; padding:2px 12px; font-size:10.5px; color:var(--muted); direction:ltr; text-align:start; }
+  .nav2 { display:flex; align-items:center; gap:14px; padding:10px 14px; border-block-end:1px solid var(--line); }
+  .sp2 { flex:1; } .lk { color:var(--muted); font-size:11px; }
+  .cart { position:relative; display:inline-flex; color:var(--ink); }
+  .cb { position:absolute; inset-block-start:-6px; inset-inline-end:-8px; background:var(--pr); color:#fff; font-style:normal; font-size:9.5px; font-weight:700; min-inline-size:15px; block-size:15px; border-radius:99px; display:grid; place-items:center; animation:pop .5s cubic-bezier(.3,1.6,.5,1) 1.3s both; }
+  @keyframes pop { from { transform:scale(0); } to { transform:none; } }
+  .shop { display:grid; grid-template-columns:1fr 1fr; gap:12px; padding:14px 14px 56px; }
+  .pc .ph { block-size:112px; border-radius:9px; display:grid; place-items:center; margin-block-end:8px; }
+  .ph.p1 { background:linear-gradient(135deg,#e8f3f0,#cfe6df); } .ph.p2 { background:linear-gradient(135deg,#fdf6e7,#f3e4bd); }
+  .ph i { inline-size:50px; block-size:42px; border-radius:6px 6px 12px 12px; background:rgba(255,255,255,.75); border:2px solid rgba(14,107,92,.35); }
+  .ph.p2 i { inline-size:44px; block-size:44px; border-radius:50%; border-color:rgba(183,121,31,.45); }
+  .pc .rate { color:#d49a2a; font-size:10.5px; letter-spacing:1px; margin-block:1px 5px; }
+  .pr { display:flex; justify-content:space-between; align-items:center; gap:6px; }
+  .pr .n { font-weight:700; font-size:12px; }
+  .add { font-size:10.5px; background:var(--pr); color:#fff; padding:3px 9px; border-radius:6px; font-weight:600; white-space:nowrap; }
+  .toast { position:absolute; inset-block-end:-4px; inset-inline-end:-6px; z-index:5; display:flex; align-items:center; gap:10px; padding:10px 14px; animation:slidein .7s cubic-bezier(.2,.8,.2,1) var(--d) both; }
+  .ok2 { inline-size:24px; block-size:24px; border-radius:50%; background:var(--pr); color:#fff; display:grid; place-items:center; font-size:12px; font-weight:700; flex:none; }
+  .m-website-ecommerce { padding-block-end:12px; }
+
+  /* project */
+  .gt { inline-size:100%; padding-block-end:40px; }
+  .gh, .gr { display:grid; grid-template-columns:62px repeat(5,1fr); align-items:center; }
+  .gh { color:var(--muted); font-size:10px; padding-block-end:6px; border-block-end:1px solid var(--line); }
+  .gh span { text-align:center; } 
+  .gb { position:relative; }
+  .gr { block-size:34px; border-block-end:1px solid var(--grey); }
+  .gn { font-size:11px; font-weight:500; white-space:nowrap; }
+  .gl { grid-column:2 / -1; position:relative; block-size:100%; display:flex; align-items:center; }
+  .bar3 { display:block; margin-inline-start:var(--s); inline-size:var(--w); block-size:16px; border-radius:6px; background:var(--pr); animation:grow 1s cubic-bezier(.2,.7,.2,1) both; animation-delay:var(--d); }
+  .bar3.b { background:#3a8f7e; } .bar3.c { background:var(--mint); } .bar3.d { background:#a9d6ca; }
+  .today { position:absolute; inset-block:0; inset-inline-start:calc(62px + (100% - 62px) * .5); inline-size:0; border-inline-start:1.5px dashed var(--pr); z-index:1; opacity:.55; }
+  .hrs { inline-size:66%; margin-inline-start:auto; margin-block-start:-30px; z-index:2; padding:12px 14px; }
+  .hr { display:grid; grid-template-columns:20px 44px 1fr 34px; align-items:center; gap:8px; padding-block:4px; }
+  .hr .nm { font-size:11px; } .hr .q { text-align:end; font-weight:600; font-size:11px; }
+
+  @media (max-width:420px) { .m { font-size:11.5px; } .scr { grid-template-columns:1.3fr 1fr; padding:8px; gap:8px; } .tile .im { block-size:28px; } .shop { padding-inline:10px; gap:8px; } .nav2 .lk { display:none; } .spark, .inv { } .ring { inline-size:104px; } }
+  @media (prefers-reduced-motion: reduce) { .m *, .m { animation:none !important; transition:none !important; } }
+</style>

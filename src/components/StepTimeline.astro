@@ -1,0 +1,44 @@
+---
+import Icon from './Icon.astro';
+import { type Lang } from '../lib/site';
+// Scroll-driven project timeline: a centre spine (start side on phones) fills with emerald as you scroll; steps
+// alternate sides; the "what we need from you" block is styled as a clipboard note. No JS: spine is full, all steps shown.
+const { lang, steps, fromYou } = Astro.props as { lang: Lang; steps: { title: string; body: string; fromYou: string }[]; fromYou: string };
+const icons = ['phone', 'target', 'layers', 'sheet', 'user', 'grow', 'shield'];
+const n = (i: number) => String(i + 1).padStart(2, '0');
+---
+<div class="tl" data-tl>
+  <div class="tl__spine" aria-hidden="true"><i class="tl__fill"></i></div>
+  <ol class="tl__list" role="list">
+    {steps.map((s, i) => (
+      <li class="tl__step" style={`--i:${i}`}>
+        <span class="tl__node" aria-hidden="true"><Icon name={icons[i % icons.length]} size={20} /></span>
+        <article class="tl__card">
+          <header><span class="tl__num">{n(i)}</span><h2 class="h-md">{s.title}</h2></header>
+          <p>{s.body}</p>
+          <aside class="tl__need">
+            <span class="tl__lbl"><Icon name="check" size={14} />{fromYou}</span>
+            <span>{s.fromYou}</span>
+          </aside>
+        </article>
+      </li>
+    ))}
+  </ol>
+</div>
+<script>
+  const tl = document.querySelector<HTMLElement>('[data-tl]');
+  if (tl && !matchMedia('(prefers-reduced-motion: reduce)').matches) {
+    tl.classList.add('is-js');
+    const steps = [...tl.querySelectorAll<HTMLElement>('.tl__step')];
+    const update = () => {
+      const r = tl.getBoundingClientRect();
+      const mid = innerHeight * 0.55;
+      const p = Math.min(1, Math.max(0, (mid - r.top) / r.height));
+      tl.style.setProperty('--p', p.toFixed(4));
+      steps.forEach((s) => s.classList.toggle('on', s.getBoundingClientRect().top + 24 < mid));
+    };
+    update();
+    addEventListener('scroll', update, { passive: true });
+    addEventListener('resize', update);
+  }
+</script>

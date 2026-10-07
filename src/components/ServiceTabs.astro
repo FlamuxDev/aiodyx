@@ -1,0 +1,119 @@
+---
+import Icon from './Icon.astro';
+import { type Lang } from '../lib/site';
+// "Project file" tabs: one tab per service, the active panel shows title, summary, a 2-column checklist and a small
+// dedicated mini-visual. Without JS every panel shows stacked; on phones they stay stacked cards.
+const { lang, services } = Astro.props as { lang: Lang; services: { slug: string; name: string; summary: string; points: string[] }[] };
+const ar = lang === 'ar';
+const T = ar
+  ? { approved: 'معتمدة', solved: 'تم الحل', field: 'ملاحظات العميل', newf: 'حقل جديد', tag: 'تذكرة', rows: 'سطر', ok: 'جاهز' }
+  : { approved: 'Approved', solved: 'Solved', field: 'Customer notes', newf: 'New field', tag: 'Ticket', rows: 'rows', ok: 'Ready' };
+const n = (i: number) => String(i + 1);
+// QR-ish pattern
+const qr = [...'1110111010101100101110111101001110111011010010111'];
+---
+<div class="svt" data-svt>
+  <div class="svt__tabs" role="tablist" aria-label="Services">
+    {services.map((s, i) => (
+      <button type="button" role="tab" class="svt__tab" id={`svt-t-${s.slug}`} aria-controls={s.slug} aria-selected={i === 0 ? 'true' : 'false'} tabindex={i === 0 ? 0 : -1}>
+        <span class="svt__n">{n(i)}</span><span class="svt__tn">{s.name}</span>
+      </button>
+    ))}
+  </div>
+  <div class="svt__panels">
+    {services.map((s, i) => (
+      <section class="svt__panel" role="tabpanel" id={s.slug} aria-labelledby={`svt-t-${s.slug}`} tabindex="0">
+        <div class="svt__main">
+          <p class="eyebrow"><bdi dir="ltr">{n(i)} / {services.length}</bdi></p>
+          <h2 class="h-md">{s.name}</h2>
+          <p class="svt__sum">{s.summary}</p>
+          <ul class="checks checks--2 svt__pts" role="list">
+            {s.points.map((t) => <li><Icon name="check" size={18} /><span>{t}</span></li>)}
+          </ul>
+        </div>
+        <div class="svt__vis" aria-hidden="true">
+          {s.slug === 'implementation' && (
+            <div class="v v-imp">
+              <div class="v-imp__ring"><svg viewBox="0 0 64 64"><circle cx="32" cy="32" r="26" /><circle class="rg" cx="32" cy="32" r="26" pathLength="100" /></svg><b>80%</b></div>
+              <ul>
+                <li class="d"><i></i><b></b></li><li class="d"><i></i><b></b></li><li class="d"><i></i><b></b></li><li><i></i><b></b></li><li class="o"><i></i><b></b></li>
+              </ul>
+            </div>
+          )}
+          {s.slug === 'customization' && (
+            <div class="v v-cus">
+              <div class="v-cus__row"><span></span><i></i></div>
+              <div class="v-cus__row"><span></span><i></i></div>
+              <div class="v-cus__row v-cus__row--new"><span class="n">{T.field}</span><i></i><em>+ {T.newf}</em></div>
+              <div class="v-cus__row"><span></span><i></i></div>
+            </div>
+          )}
+          {s.slug === 'data-migration' && (
+            <div class="v v-mig">
+              <div class="v-mig__x">
+                <div class="h"><i></i><i></i><i></i></div>
+                {[0, 1, 2, 3].map(() => <div class="r"><i></i><i></i><i></i></div>)}
+              </div>
+              <div class="v-mig__flow"><i></i><i></i><i></i></div>
+              <div class="v-mig__o">
+                <div class="h"></div>
+                {[0, 1, 2, 3].map(() => <div class="r"><i></i><b></b><s></s></div>)}
+              </div>
+            </div>
+          )}
+          {s.slug === 'training' && (
+            <div class="v v-trn">
+              <div class="v-trn__scr"><div class="bars"><i style="--h:40%"></i><i style="--h:65%"></i><i style="--h:50%"></i><i style="--h:85%"></i></div><div class="ln"><b></b><b></b></div></div>
+              <div class="v-trn__ppl">{[0, 1, 2, 3, 4].map((k) => <span style={`--k:${k}`}></span>)}</div>
+            </div>
+          )}
+          {s.slug === 'support' && (
+            <div class="v v-sup">
+              <div class="b b--in"><i></i><i></i></div>
+              <div class="b b--out"><i></i></div>
+              <div class="b b--in"><i></i></div>
+              <div class="v-sup__ok"><Icon name="check" size={16} />{T.solved}</div>
+            </div>
+          )}
+          {s.slug === 'e-invoicing' && (
+            <div class="v v-inv">
+              <div class="v-inv__doc">
+                <div class="hd"><b></b><i></i></div>
+                <div class="ls"><span></span><span></span><span></span></div>
+                <div class="qr"><svg viewBox="0 0 7 7" shape-rendering="crispEdges">{qr.map((c, k) => c === '1' && <rect x={k % 7} y={Math.floor(k / 7)} width="1" height="1" />)}</svg></div>
+              </div>
+              <div class="v-inv__stamp"><Icon name="check" size={16} /><span>{T.approved}</span><small>ZATCA · JoFotara</small></div>
+            </div>
+          )}
+        </div>
+      </section>
+    ))}
+  </div>
+</div>
+<script>
+  const root = document.querySelector<HTMLElement>('[data-svt]');
+  if (root) {
+    root.classList.add('is-js');
+    const tabs = [...root.querySelectorAll<HTMLButtonElement>('[role="tab"]')];
+    const panels = [...root.querySelectorAll<HTMLElement>('[role="tabpanel"]')];
+    const show = (i: number, focus = false) => {
+      tabs.forEach((t, k) => { t.setAttribute('aria-selected', String(k === i)); t.tabIndex = k === i ? 0 : -1; });
+      panels.forEach((p, k) => (p.hidden = k !== i));
+      if (focus) tabs[i].focus();
+    };
+    tabs.forEach((t, i) => {
+      t.addEventListener('click', () => show(i));
+      t.addEventListener('keydown', (e) => {
+        const k = e.key;
+        const dir = getComputedStyle(root).direction === 'rtl' ? -1 : 1;
+        if (k === 'ArrowRight') { e.preventDefault(); show((i + dir + tabs.length) % tabs.length, true); }
+        else if (k === 'ArrowLeft') { e.preventDefault(); show((i - dir + tabs.length) % tabs.length, true); }
+        else if (k === 'Home') { e.preventDefault(); show(0, true); }
+        else if (k === 'End') { e.preventDefault(); show(tabs.length - 1, true); }
+      });
+    });
+    const fromHash = () => { const i = panels.findIndex((p) => '#' + p.id === location.hash); if (i >= 0) show(i); };
+    fromHash(); if (!location.hash || panels.findIndex((p) => '#' + p.id === location.hash) < 0) show(0);
+    addEventListener('hashchange', fromHash);
+  }
+</script>

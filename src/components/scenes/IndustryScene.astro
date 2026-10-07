@@ -1,0 +1,414 @@
+---
+// Decorative hero scene per industry: a mini real-world drawing plus system chips.
+export interface Props { slug: string; lang: 'ar' | 'en' | string }
+const { slug, lang } = Astro.props;
+const rtl = lang === 'ar';
+
+const T = {
+  ar: {
+    retail: { receipt: 'إيصال', total: 'الإجمالي', chip: 'مبيعات جدة', val: '+12%' },
+    wholesale: { wh: 'المستودع', order: 'طلب', stores: ['الرياض', 'جدة', 'الدمام'], eta: 'في الطريق' },
+    manufacturing: { wo: 'أمر تصنيع', steps: ['قص', 'تجميع', 'فحص', 'تغليف'], done: '3 من 4' },
+    services: { days: ['الأحد', 'الاثنين', 'الثلاثاء', 'الأربعاء', 'الخميس'], inv: 'فاتورة جاهزة', amt: '4,800 ر.س' },
+    construction: { bars: ['حفر', 'هيكل', 'تشطيب', 'تسليم'], title: 'الميزانية والفعلي', pct: '82%' },
+    restaurants: { kitchen: 'المطبخ', table: 'طاولة 3', items: ['برجر ×2', 'سلطة ×1', 'عصير ×2'] },
+  },
+  en: {
+    retail: { receipt: 'Receipt', total: 'Total', chip: 'Jeddah sales', val: '+12%' },
+    wholesale: { wh: 'Warehouse', order: 'Order', stores: ['Riyadh', 'Jeddah', 'Dammam'], eta: 'On the way' },
+    manufacturing: { wo: 'Work order', steps: ['Cut', 'Assemble', 'Inspect', 'Pack'], done: '3 of 4' },
+    services: { days: ['Sun', 'Mon', 'Tue', 'Wed', 'Thu'], inv: 'Invoice ready', amt: 'SAR 4,800' },
+    construction: { bars: ['Dig', 'Frame', 'Finish', 'Handover'], title: 'Budget vs actual', pct: '82%' },
+    restaurants: { kitchen: 'Kitchen', table: 'Table 3', items: ['Burger ×2', 'Salad ×1', 'Juice ×2'] },
+  },
+};
+const t: any = (T as any)[lang === 'ar' ? 'ar' : 'en'];
+
+// calendar helpers (services)
+const colX = (i: number) => (rtl ? 50 + (4 - i) * 76 : 50 + i * 76);
+const blocks = [
+  { c: 0, r: 0, h: 2, k: 'g' }, { c: 0, r: 3, h: 1, k: 'a' },
+  { c: 1, r: 1, h: 3, k: 'g' }, { c: 2, r: 0, h: 1, k: 'g' },
+  { c: 2, r: 2, h: 2, k: 'm' }, { c: 3, r: 1, h: 2, k: 'g' },
+  { c: 4, r: 0, h: 2, k: 'm' }, { c: 4, r: 3, h: 1, k: 'g' },
+  { c: 2, r: 4, h: 1, k: 'g' }, { c: 0, r: 4, h: 1, k: 'm' },
+];
+const invX = rtl ? 30 : 250;
+
+// gantt (construction)
+const gx = (off: number, w: number) => (rtl ? 440 - off - w : 40 + off);
+const gantt = [
+  { off: 0, w: 96 }, { off: 70, w: 150 }, { off: 190, w: 120 }, { off: 290, w: 96 },
+];
+const todayX = rtl ? 440 - 214 : 40 + 214;
+---
+<div class="scene" aria-hidden="true" dir={rtl ? 'rtl' : 'ltr'}>
+  {slug === 'retail' && (
+    <svg viewBox="0 0 480 400" class={rtl ? 'rtl' : ''}>
+      <rect class="bg" x="1" y="1" width="478" height="398" rx="20" />
+      <g transform="translate(0,34)">
+      <line class="ln mu" x1="24" y1="322" x2="456" y2="322" />
+      <g class="shelf">
+        <!-- awning -->
+        <g class="pop" style="--d:.1s">
+          {[0, 1, 2, 3, 4, 5].map((i) => (
+            <path d={`M${40 + i * 41.67} 56 h41.67 v14 a20.8 14 0 0 1 -41.67 0 z`} class={'ln ' + (i % 2 ? 'fw' : 'fs')} />
+          ))}
+        </g>
+        <path class="ln draw" pathLength="1" style="--d:.2s" d="M46 84 V322 M284 84 V322" />
+        {[130, 215, 300].map((y, i) => (
+          <line class="ln draw" pathLength="1" style={`--d:${0.3 + i * 0.15}s`} x1="40" y1={y} x2="290" y2={y} />
+        ))}
+        <!-- row 1 -->
+        <g class="pop" style="--d:.7s">
+          {[60, 92, 124].map((x, i) => (
+            <g>
+              <rect class={'ln ' + (i === 1 ? 'fp' : 'fs')} x={x} y="86" width="24" height="44" rx="5" />
+              <rect class="ln fw" x={x + 6} y="74" width="12" height="12" rx="2" />
+              <line class="ln" x1={x + 3} y1="104" x2={x + 21} y2="104" />
+            </g>
+          ))}
+          <rect class="ln fw" x="162" y="94" width="44" height="36" rx="3" />
+          <path class="ln" d="M162 106 h44 M178 94 v12" />
+          <rect class="ln ft" x="222" y="100" width="28" height="30" rx="6" />
+          <rect class="ln fw" x="224" y="94" width="24" height="6" rx="2" />
+          <rect class="ln fm" x="258" y="96" width="20" height="34" rx="4" style="fill-opacity:.35" />
+        </g>
+        <!-- row 2 -->
+        <g class="pop" style="--d:.85s">
+          <rect class="ln fs" x="60" y="175" width="50" height="40" rx="3" />
+          <path class="ln" d="M60 187 h50" />
+          <rect class="ln fw" x="118" y="163" width="34" height="52" rx="3" />
+          <path class="ln" d="M126 175 h18 M126 183 h12" />
+          <rect class="ln fp" x="160" y="185" width="40" height="30" rx="3" />
+          <circle class="ln fa" cx="222" cy="203" r="12" /><circle class="ln fa" cx="248" cy="203" r="12" /><circle class="ln fa" cx="235" cy="182" r="12" />
+        </g>
+        <!-- row 3 -->
+        <g class="pop" style="--d:1s">
+          <rect class="ln ft" x="60" y="260" width="70" height="40" rx="3" />
+          <path class="ln" d="M60 272 h70 M76 260 v12 M114 260 v12" />
+          <rect class="ln fw" x="140" y="266" width="52" height="34" rx="3" />
+          <path class="ln" d="M148 278 h36" />
+          <rect class="ln fs" x="200" y="254" width="70" height="46" rx="3" />
+          <path class="ln" d="M235 254 v46 M200 270 h70" />
+        </g>
+        <!-- price tags -->
+        <g class="pop" style="--d:1.1s">
+          {[[60, 130], [130, 130], [200, 130], [70, 215], [150, 215], [230, 215], [80, 300], [170, 300], [230, 300]].map(([x, y]) => (
+            <rect class="ln fw" x={x} y={y + 5} width="20" height="9" rx="2" />
+          ))}
+        </g>
+      </g>
+      <g class="floatA">
+        <g class="pop" style="--d:.9s">
+          <path class="shadow" d="M322 78 h120 v176 l-10 -7 -10 7 -10 -7 -10 7 -10 -7 -10 7 -10 -7 -10 7 -10 -7 -10 7 -10 -7 -10 7 z" />
+          <path class="ln fw" d="M318 72 h120 v176 l-10 -7 -10 7 -10 -7 -10 7 -10 -7 -10 7 -10 -7 -10 7 -10 -7 -10 7 -10 -7 -10 7 z" />
+          <text x="378" y="98" text-anchor="middle" class="t-b" font-size="14">{t.retail.receipt}</text>
+          <path class="ln mu" d="M332 108 h92" stroke-dasharray="3 4" />
+          {[122, 142, 162, 182].map((y, i) => (
+            <g>
+              <rect x="332" y={y} width={34 + (i % 2) * 14} height="6" rx="3" class="bar" />
+              <rect x="396" y={y} width="28" height="6" rx="3" class="bar2" />
+            </g>
+          ))}
+          <path class="ln mu" d="M332 204 h92" stroke-dasharray="3 4" />
+          <text x={rtl ? 424 : 332} y="228" font-size="12" class="t-m" text-anchor="start">{t.retail.total}</text>
+          <text x={rtl ? 332 : 424} y="228" font-size="14" class="t-b" text-anchor={rtl ? 'start' : 'end'} style="direction:ltr;unicode-bidi:isolate">1,240</text>
+        </g>
+      </g>
+      <g class="floatB">
+        <g class="pop" style="--d:1.3s">
+          <rect class="shadow" x="300" y="274" width="156" height="58" rx="12" />
+          <rect class="ln fw" x="300" y="270" width="156" height="58" rx="12" />
+          <circle cx="324" cy="299" r="12" class="fs" />
+          <path class="ln pr" d="M319 303 l5 -6 l4 3 l5 -7" />
+          <text x={rtl ? 442 : 346} y="293" font-size="12.5" class="t-m" text-anchor="start">{t.retail.chip}</text>
+          <text x={rtl ? 442 : 346} y="314" font-size="17" class="t-b pri" text-anchor={rtl ? 'end' : 'start'} style="direction:ltr;unicode-bidi:isolate">{t.retail.val}</text>
+        </g>
+      </g>
+      </g>
+    </svg>
+  )}
+
+  {slug === 'wholesale' && (
+    <svg viewBox="0 0 480 400" class={rtl ? 'rtl' : ''}>
+      <rect class="bg" x="1" y="1" width="478" height="398" rx="20" />
+      <!-- routes -->
+      <g class="ln mu" style="stroke-dasharray:4 6;" fill="none">
+        <path d="M140 235 C 230 235, 250 110, 388 110" />
+        <path d="M140 235 C 250 235, 300 232, 388 232" />
+        <path d="M140 235 C 230 235, 260 335, 388 335" />
+      </g>
+      <g class="ln pr" fill="none">
+        <path class="draw" pathLength="1" style="--d:.4s;animation-duration:1.2s" d="M140 235 C 230 235, 250 110, 388 110" />
+        <path class="draw" pathLength="1" style="--d:.6s;animation-duration:1.2s" d="M140 235 C 250 235, 300 232, 388 232" />
+        <path class="draw" pathLength="1" style="--d:.8s;animation-duration:1.2s" d="M140 235 C 230 235, 260 335, 388 335" />
+      </g>
+      <!-- warehouse -->
+      <g class="pop" style="--d:.1s">
+        <path class="ln fw" d="M36 252 V192 L88 160 L140 192 V252 Z" />
+        <rect class="ln fs" x="68" y="214" width="40" height="38" />
+        <path class="ln" d="M68 224 h40 M68 234 h40 M68 244 h40" />
+        <path class="ln" d="M36 192 h104" />
+        <text x="88" y="278" font-size="14" text-anchor="middle" class="t-b">{t.wholesale.wh}</text>
+      </g>
+      <!-- stores -->
+      {[88, 210, 313].map((y, i) => (
+        <g class="pop" style={`--d:${0.5 + i * 0.2}s`}>
+          <rect class="ln fw" x="390" y={y + 8} width="64" height="36" />
+          <path class="ln fs" d={`M386 ${y + 8} h72 l-6 -12 h-60 z`} />
+          <rect class="ln" x="414" y={y + 24} width="16" height="20" />
+          <text x="422" y={y + 64} font-size="13" text-anchor="middle" class="t-m">{t.wholesale.stores[i]}</text>
+          <circle cx="388" cy={[110, 232, 335][i]} r="5" class="fp" />
+        </g>
+      ))}
+      <!-- trucks -->
+      <g class="truck t1"><circle r="9" class="halo" /><rect x="-8" y="-5" width="16" height="10" rx="2.5" class="fp" /><rect x="-8" y="-5" width="9" height="10" rx="2" fill="#fff" fill-opacity=".35" /></g>
+      <g class="truck t2"><circle r="9" class="halo" /><rect x="-8" y="-5" width="16" height="10" rx="2.5" class="fp" /><rect x="-8" y="-5" width="9" height="10" rx="2" fill="#fff" fill-opacity=".35" /></g>
+      <!-- order cards -->
+      <g class="floatA">
+        <g class="pop" style="--d:1s">
+          <rect class="shadow" x="176" y="56" width="108" height="42" rx="10" />
+          <rect class="ln fw" x="176" y="52" width="108" height="42" rx="10" />
+          <circle cx="198" cy="73" r="9" class="fs" /><path class="ln pr" d="M193 73 l4 4 l7 -8" />
+          <text x={rtl ? 270 : 214} y="70" font-size="12" class="t-m" text-anchor="start">{t.wholesale.order}</text>
+          <text x={rtl ? 270 : 214} y="86" font-size="14" class="t-b" text-anchor={rtl ? 'end' : 'start'} style="direction:ltr;unicode-bidi:isolate">#1042</text>
+        </g>
+      </g>
+      <g class="floatB">
+        <g class="pop" style="--d:1.2s">
+          <rect class="shadow" x="146" y="330" width="112" height="42" rx="10" />
+          <rect class="ln fw" x="146" y="326" width="112" height="42" rx="10" />
+          <circle cx="168" cy="347" r="9" class="fa" /><path class="ln amb" d="M168 341 v6 l4 3" />
+          <text x={rtl ? 244 : 186} y="344" font-size="12" class="t-m" text-anchor="start">{t.wholesale.order}</text>
+          <text x={rtl ? 244 : 186} y="360" font-size="14" class="t-b" text-anchor={rtl ? 'end' : 'start'} style="direction:ltr;unicode-bidi:isolate">#1043</text>
+        </g>
+      </g>
+    </svg>
+  )}
+
+  {slug === 'manufacturing' && (
+    <svg viewBox="0 0 480 400" class={rtl ? 'rtl' : ''}>
+      <rect class="bg" x="1" y="1" width="478" height="398" rx="20" />
+      <g transform="translate(0,18)">
+      <!-- work order chip -->
+      <g class="pop" style="--d:.2s">
+        <rect class="shadow" x="110" y="46" width="260" height="84" rx="14" />
+        <rect class="ln fw" x="110" y="42" width="260" height="84" rx="14" />
+        <rect x={rtl ? 330 : 128} y="58" width="22" height="22" rx="6" class="fs" />
+        <path class="ln pr" d={rtl ? 'M336 69 l4 4 l7 -8' : 'M134 69 l4 4 l7 -8'} />
+        <text x={rtl ? 322 : 160} y="74" font-size="14" class="t-b" text-anchor="start">{t.manufacturing.wo} <tspan style="direction:ltr;unicode-bidi:isolate">MO-218</tspan></text>
+        <text x={rtl ? 128 : 352} y="74" font-size="13" class="t-m" text-anchor={rtl ? 'start' : 'end'} style="direction:ltr;unicode-bidi:isolate">75%</text>
+        <rect x="128" y="96" width="224" height="8" rx="4" class="bar" />
+        <rect x={rtl ? 352 - 168 : 128} y="96" width="168" height="8" rx="4" class="fp prog" />
+        <text x={rtl ? 352 : 128} y="118" font-size="11.5" class="t-m" text-anchor="start" style="display:none">{t.manufacturing.done}</text>
+      </g>
+      <path class="ln mu" style="stroke-dasharray:3 5" d="M240 126 V176 M240 176 H305 V198" fill="none" />
+      <!-- belt -->
+      <path class="ln draw" pathLength="1" style="--d:.3s" d="M36 306 H444" />
+      <path class="ln mu" d="M36 318 H444" />
+      <g class="ln mu">
+        {Array.from({ length: 17 }).map((_, i) => <circle cx={52 + i * 24} cy="313" r="1.8" class="fm" stroke="none" />)}
+      </g>
+      <path class="ln pr draw" pathLength="1" style="--d:.5s;animation-duration:1.2s" d="M85 266 V306 M195 266 V306 M305 266 V306 M415 266 V306" fill="none" />
+      <!-- stations -->
+      {[85, 195, 305, 415].map((cx, i) => (
+        <g class="pop" style={`--d:${0.5 + i * 0.18}s`}>
+          <rect class="ln fw" x={cx - 32} y="204" width="64" height="62" rx="12" />
+          {i === 0 && (<g><circle class="ln pr" cx={cx} cy="235" r="9" /><circle class="ln pr" cx={cx} cy="235" r="15" style="stroke-dasharray:4 4.7" /></g>)}
+          {i === 1 && (<g><path class="ln pr" d={`M${cx - 14} 250 H${cx + 14} M${cx - 8} 250 V236 L${cx + 6} 224 L${cx + 12} 232`} /><circle class="fp" cx={cx + 12} cy="232" r="3" /></g>)}
+          {i === 2 && (<g><circle class="ln pr" cx={cx - 3} cy="232" r="11" /><path class="ln pr" d={`M${cx + 5} 240 l9 9 M${cx - 8} 232 l4 4 l7 -8`} /></g>)}
+          {i === 3 && (<g><rect class="ln pr fs" x={cx - 14} y="224" width="28" height="24" rx="2" /><path class="ln pr" d={`M${cx - 14} 233 h28 M${cx} 224 v9`} /></g>)}
+          <text x={cx} y="342" font-size="13" text-anchor="middle" class="t-m">{t.manufacturing.steps[i]}</text>
+        </g>
+      ))}
+      <g class="item"><rect x="-8" y="-16" width="16" height="16" rx="3" class="fa ln amb" /><path class="ln amb" d="M-8 -9 h16" /></g>
+      </g>
+    </svg>
+  )}
+
+  {slug === 'services' && (
+    <svg viewBox="0 0 480 400" class={rtl ? 'rtl' : ''}>
+      <rect class="bg" x="1" y="1" width="478" height="398" rx="20" />
+      <rect class="ln fw" x="30" y="40" width="420" height="270" rx="14" />
+      <path class="ln mu" d="M30 78 H450" />
+      {[1, 2, 3, 4].map((i) => (<path class="ln mu" d={`M${50 + i * 76} 40 V310`} style="stroke-dasharray:2 4" />))}
+      {[1, 2, 3, 4, 5].map((r) => (<path class="ln mu" d={`M30 ${78 + r * 38} H450`} style="stroke-dasharray:2 4" />))}
+      {t.services.days.map((d: string, i: number) => (
+        <text x={colX(i) + 38} y="64" font-size="13" text-anchor="middle" class="t-m">{d}</text>
+      ))}
+      {blocks.map((b, i) => (
+        <g class="pop" style={`--d:${0.3 + i * 0.12}s`}>
+          <rect x={colX(b.c) + 4} y={78 + b.r * 38 + 4} width="68" height={b.h * 38 - 8} rx="7" class={b.k === 'a' ? 'fa' : b.k === 'm' ? 'ft' : 'fs'} stroke={b.k === 'a' ? '#c98a2b' : 'var(--primary)'} stroke-width="1.5" />
+          <rect x={colX(b.c) + 12} y={78 + b.r * 38 + 13} width="34" height="5" rx="2.5" fill={b.k === 'a' ? '#c98a2b' : 'var(--primary)'} fill-opacity=".55" />
+          {b.h > 1 && <rect x={colX(b.c) + 12} y={78 + b.r * 38 + 24} width="24" height="5" rx="2.5" fill={b.k === 'a' ? '#c98a2b' : 'var(--primary)'} fill-opacity=".3" />}
+        </g>
+      ))}
+      <g class="floatB">
+        <g class="pop" style="--d:1.6s">
+          <rect class="shadow" x={invX} y="290" width="200" height="66" rx="14" />
+          <rect class="ln fw" x={invX} y="286" width="200" height="66" rx="14" />
+          <rect x={invX + 14} y="298" width="32" height="42" rx="5" class="fs ln pr" />
+          <path class="ln pr" d={`M${invX + 21} 311 h18 M${invX + 21} 319 h18 M${invX + 21} 327 h10`} />
+          <text x={rtl ? invX + 186 : invX + 60} y="313" font-size="13" class="t-m" text-anchor="start">{t.services.inv}</text>
+          <text x={rtl ? invX + 186 : invX + 60} y="336" font-size="18" class="t-b pri" text-anchor="start">{t.services.amt}</text>
+        </g>
+      </g>
+    </svg>
+  )}
+
+  {slug === 'construction' && (
+    <svg viewBox="0 0 480 400" class={rtl ? 'rtl' : ''}>
+      <rect class="bg" x="1" y="1" width="478" height="398" rx="20" />
+      <!-- gantt -->
+      <rect class="ln fw" x="30" y="24" width="420" height="128" rx="14" />
+      <path class="ln mu" d="M30 44 H450" style="display:none" />
+      {gantt.map((g, i) => (
+        <g>
+          <rect x={gx(g.off, g.w)} y={40 + i * 26} width={g.w} height="18" rx="9" class={'gbar ' + (rtl ? 'orR' : 'orL') + (i === 3 ? ' fut' : '')} style={`--d:${0.3 + i * 0.2}s`} />
+          <text x={gx(g.off, g.w) + g.w / 2} y={40 + i * 26 + 13} font-size="11.5" text-anchor="middle" class="t-w pop2" style={`--d:${0.8 + i * 0.2}s`}>{t.construction.bars[i]}</text>
+        </g>
+      ))}
+      <path class="ln amb" style="stroke-dasharray:3 4" d={`M${todayX} 32 V146`} />
+      <!-- crane + building -->
+      <g class="ln" fill="none">
+        <path class="draw" pathLength="1" style="--d:.5s;animation-duration:1.2s" d="M52 360 H276" />
+        <path class="draw" pathLength="1" style="--d:.7s;animation-duration:1.2s" d="M66 360 V240 M126 360 V240 M186 360 V240 M246 360 V240" />
+        <path class="draw" pathLength="1" style="--d:.9s" d="M66 320 H246 M66 280 H246 M66 240 H246" />
+        <path class="draw mu2" pathLength="1" style="--d:1.1s;stroke-dasharray:1" d="M66 240 V204 M126 240 V204 M186 240 V204" />
+        <path class="draw pr" pathLength="1" style="--d:1.2s;animation-duration:1.2s" d="M296 360 V196 M310 360 V196 M296 340 L310 322 M296 322 L310 304 M296 304 L310 286 M296 286 L310 268 M296 268 L310 250 M296 250 L310 232 M296 232 L310 214 M296 214 L310 196 M284 360 H322" />
+        <path class="draw pr" pathLength="1" style="--d:1.5s;animation-duration:1.2s" d="M120 196 H352 M303 196 V172 M303 172 L160 196 M303 172 L350 196" />
+        <path class="draw amb" pathLength="1" style="--d:1.9s" d="M190 196 V212" />
+        <path class="draw amb" pathLength="1" style="--d:2s" d="M172 212 h36 v9 h-36 z" />
+      </g>
+      <!-- budget chip -->
+      <g class="floatB">
+        <g class="pop" style="--d:1.5s">
+          <rect class="shadow" x="318" y="286" width="144" height="72" rx="14" />
+          <rect class="ln fw" x="318" y="284" width="144" height="72" rx="14" />
+          <text x={rtl ? 448 : 332} y="306" font-size="12.5" class="t-m" text-anchor="start">{t.construction.title}</text>
+          <rect x="332" y="318" width="116" height="7" rx="3.5" class="bar" />
+          <rect x={rtl ? 448 - 116 : 332} y="318" width="116" height="7" rx="3.5" class="bar3" />
+          <rect x={rtl ? 448 - 95 : 332} y="332" width="95" height="7" rx="3.5" class="fp" />
+          <text x={rtl ? 332 : 448} y="342" font-size="11" class="t-b pri" text-anchor={rtl ? 'start' : 'end'} display="none">{t.construction.pct}</text>
+        </g>
+      </g>
+    </svg>
+  )}
+
+  {slug === 'restaurants' && (
+    <svg viewBox="0 0 480 400" class={rtl ? 'rtl' : ''}>
+      <rect class="bg" x="1" y="1" width="478" height="398" rx="20" />
+      <rect class="ln mu draw2" x="24" y="40" width="278" height="326" rx="16" style="stroke-dasharray:5 6" />
+      <!-- round tables -->
+      {[[80, 108, 1, 1], [255, 112, 2, 0], [190, 232, 3, 1], [250, 322, 4, 0]].map(([x, y, n, o], i) => (
+        <g class="pop" style={`--d:${0.2 + i * 0.15}s`}>
+          {[[0, -34], [34, 0], [0, 34], [-34, 0]].map(([dx, dy]) => (<circle cx={x + dx} cy={y + dy} r="6" class={o ? 'fs ln pr' : 'fw ln'} />))}
+          <circle cx={x} cy={y} r="24" class={'ln ' + (o ? 'fs pr' : 'fw')} />
+          <text x={x} y={y + 5} font-size="14" text-anchor="middle" class={o ? 't-b pri' : 't-m'}>{n}</text>
+        </g>
+      ))}
+      <!-- square tables -->
+      {[[168, 98, 5, 0], [88, 232, 6, 1]].map(([x, y, n, o], i) => (
+        <g class="pop" style={`--d:${0.5 + i * 0.15}s`}>
+          {[[0, -34], [34, 0], [0, 34], [-34, 0]].map(([dx, dy]) => (<rect x={x + dx - 6} y={y + dy - 6} width="12" height="12" rx="4" class={o ? 'fs ln pr' : 'fw ln'} />))}
+          <rect x={x - 24} y={y - 24} width="48" height="48" rx="8" class={'ln ' + (o ? 'fs pr' : 'fw')} />
+          <text x={x} y={y + 5} font-size="14" text-anchor="middle" class={o ? 't-b pri' : 't-m'}>{n}</text>
+        </g>
+      ))}
+      <!-- long table -->
+      <g class="pop" style="--d:.9s">
+        {[0, 1, 2].map((i) => <rect x={72 + i * 34} y="288" width="12" height="9" rx="3" class="fs ln pr" />)}
+        <rect x="64" y="300" width="112" height="34" rx="8" class="ln fs pr" />
+        {[0, 1, 2].map((i) => <rect x={72 + i * 34} y="337" width="12" height="9" rx="3" class="fs ln pr" />)}
+        <text x="120" y="322" font-size="14" text-anchor="middle" class="t-b pri">7</text>
+      </g>
+      <!-- ticket -->
+      <g class="floatA">
+        <g class="pop" style="--d:1.1s">
+          <path class="shadow" d="M326 66 h130 v206 l-10 8 -10 -8 -10 8 -10 -8 -10 8 -10 -8 -10 8 -10 -8 -10 8 -10 -8 -10 8 -10 -8 -10 8 z" />
+          <path class="ln fw" d="M322 60 h130 v206 l-10 8 -10 -8 -10 8 -10 -8 -10 8 -10 -8 -10 8 -10 -8 -10 8 -10 -8 -10 8 -10 -8 -10 8 z" />
+          <rect x="322" y="60" width="130" height="38" rx="0" class="fp" />
+          <text x={rtl ? 440 : 334} y="84" font-size="14" class="t-w t-b" text-anchor="start">{t.restaurants.kitchen}</text>
+          <text x={rtl ? 334 : 440} y="84" font-size="13" class="t-w" text-anchor="end">{t.restaurants.table}</text>
+          {t.restaurants.items.map((it: string, i: number) => (
+            <g>
+              <circle cx={rtl ? 436 : 340} cy={124 + i * 34} r="6" class={i === 0 ? 'fp' : 'fw'} stroke="var(--primary)" stroke-width="1.5" />
+              {i === 0 && <path d={`M${rtl ? 433 : 337} ${124} l2.4 2.4 l4 -5`} stroke="#fff" stroke-width="1.5" fill="none" stroke-linecap="round" transform={`translate(${rtl ? -3.4 : 3.4},0)`} display="none" />}
+              <text x={rtl ? 424 : 354} y={129 + i * 34} font-size="13.5" class={i === 0 ? 't-m strike' : ''} text-anchor="start">{it}</text>
+            </g>
+          ))}
+          <path class="ln mu" d="M334 232 h106" style="stroke-dasharray:3 4" />
+          <rect x="334" y="242" width="50" height="6" rx="3" class="bar" />
+        </g>
+      </g>
+      <!-- pulse of new order -->
+      <g class="pop" style="--d:1.6s">
+        <rect class="shadow" x="332" y="302" width="124" height="44" rx="12" />
+        <rect class="ln fw" x="332" y="298" width="124" height="44" rx="12" />
+        <circle cx="354" cy="320" r="9" class="fa" /><circle cx="354" cy="320" r="3.5" fill="#c98a2b" class="blink" />
+        <rect x="374" y="311" width="64" height="6" rx="3" class="bar" /><rect x="374" y="324" width="42" height="6" rx="3" class="bar2" />
+      </g>
+    </svg>
+  )}
+</div>
+
+<style>
+  .scene { width: 100%; max-width: 520px; margin-inline: auto; font-family: var(--font); }
+  svg { display: block; width: 100%; height: auto; }
+  svg.rtl { direction: rtl; }
+  text { font-family: var(--font); fill: var(--ink); }
+  .t-m { fill: var(--muted); }
+  .t-w { fill: #fff; }
+  .t-b { font-weight: 600; }
+  .pri { fill: var(--primary); }
+  .bg { fill: var(--tint); stroke: var(--line); stroke-width: 1.5; }
+  .ln { fill: none; stroke: var(--ink); stroke-width: 1.5; stroke-linecap: round; stroke-linejoin: round; }
+  .ln.pr { stroke: var(--primary); }
+  .ln.mu { stroke: var(--line-2); }
+  .pr { stroke: var(--primary); } .amb { stroke: #c98a2b; } .mu2 { stroke: var(--line-2); }
+  .ln.amb { stroke: #c98a2b; }
+  .fw { fill: #fff; } .fs { fill: var(--primary-soft); } .ft { fill: var(--tint); }
+  .fp { fill: var(--primary); } .fm { fill: var(--mint); } .fa { fill: #fdf6e7; }
+  .ln.fw { fill: #fff; } .ln.fs { fill: var(--primary-soft); } .ln.ft { fill: var(--tint); }
+  .ln.fp { fill: var(--primary); } .ln.fa { fill: #fdf6e7; } .ln.fm { fill: var(--mint); }
+  .shadow { fill: var(--ink); opacity: .06; }
+  .bar { fill: var(--line); } .bar2 { fill: var(--line-2); } .bar3 { fill: var(--line-2); }
+  .halo { fill: var(--primary); opacity: .18; }
+  .strike { text-decoration: line-through; }
+
+  .draw { stroke-dasharray: 1; stroke-dashoffset: 1; animation: draw 1s ease-out forwards; animation-delay: var(--d, 0s); }
+  .pop { opacity: 0; animation: pop .7s ease-out forwards; animation-delay: var(--d, 0s); }
+  .pop2 { opacity: 0; animation: fade .5s ease-out forwards; animation-delay: var(--d, 0s); }
+  .floatA { animation: float 7s ease-in-out infinite; }
+  .floatB { animation: float 8s ease-in-out -3s infinite; }
+  .blink { animation: blink 2.4s ease-in-out infinite; }
+
+  .truck { offset-rotate: 0deg; animation: drive 6s ease-in-out infinite; }
+  .t1 { offset-path: path("M140 235 C 230 235, 250 110, 388 110"); }
+  .t2 { offset-path: path("M140 235 C 230 235, 260 335, 388 335"); animation-delay: -3s; }
+  .item { offset-path: path("M50 306 H430"); offset-rotate: 0deg; animation: drive 7s ease-in-out infinite; animation-delay: .8s; offset-distance: 20%; }
+
+  .gbar { fill: var(--primary); }
+  .gbar.fut { fill: var(--mint); }
+  .gbar { transform-box: fill-box; animation: grow 1s ease-out both; animation-delay: var(--d, 0s); }
+  .orL { transform-origin: left center; } .orR { transform-origin: right center; }
+  .prog { transform-box: fill-box; transform-origin: left center; animation: grow 1.2s ease-out .6s both; }
+  .rtl .prog { transform-origin: right center; }
+  .draw2 { animation: fade .8s ease-out both; }
+
+  @keyframes draw { to { stroke-dashoffset: 0; } }
+  @keyframes pop { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: none; } }
+  @keyframes fade { from { opacity: 0; } to { opacity: 1; } }
+  @keyframes grow { from { transform: scaleX(0); } to { transform: scaleX(1); } }
+  @keyframes float { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-5px); } }
+  @keyframes blink { 0%, 100% { opacity: 1; } 50% { opacity: .35; } }
+  @keyframes drive { from { offset-distance: 0%; } to { offset-distance: 100%; } }
+
+  @media (prefers-reduced-motion: reduce) {
+    * { animation: none !important; }
+    .draw { stroke-dashoffset: 0; }
+    .pop, .pop2 { opacity: 1; }
+    .truck, .item { offset-distance: 55%; }
+  }
+</style>

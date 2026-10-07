@@ -1,0 +1,175 @@
+---
+import Base from '../../layouts/Base.astro';
+import Icon from '../../components/Icon.astro';
+import SectionHead from '../../components/SectionHead.astro';
+import AppBento from '../../components/AppBento.astro';
+import IndustryTabs from '../../components/IndustryTabs.astro';
+import ChaosOrder from '../../components/ChaosOrder.astro';
+import Faq from '../../components/Faq.astro';
+import Offices from '../../components/Offices.astro';
+import CtaBand from '../../components/CtaBand.astro';
+import { DATA, abs, href, tel, waUrl, heroTitle, langPaths, type Lang } from '../../lib/site';
+import { faqNode } from '../../lib/schema';
+
+export const getStaticPaths = langPaths;
+const { lang } = Astro.params as { lang: Lang };
+const d = DATA[lang];
+const p = d.pages.home;
+const w = d.pages['why-odoo'];
+const call = tel(d.offices[2].phone);
+const wa = waUrl(lang);
+const after = p.whyOdoo.points.slice(0, 4);
+const before = w.problems.items.slice(0, 4);
+const steps = p.howWeWork.steps.slice(0, 3);
+const faqs = p.faqTeaser.items.slice(0, 3);
+const fq = d.pages.faq.cta;
+const ar = lang === 'ar';
+const T = ar
+  ? { inv: 'فاتورة INV-0148', paid: 'مدفوعة', stock: 'تنبيه مخزون', stockSub: 'باقي 58 قطعة', deal: 'صفقة جديدة', dealSub: '45,000 ر.س',
+      trust: ['3 مكاتب', 'الأردن والسعودية', 'عربي وإنجليزي', 'جاهز لـ ZATCA وJoFotara'],
+      cost: 'التكلفة', time: 'المدة', plan: 'خطة', hi: 'هلا، نبغى نرتب شركتنا', re: 'تمام، نتكلم متى؟' }
+  : { inv: 'Invoice INV-0148', paid: 'Paid', stock: 'Stock alert', stockSub: '58 pieces left', deal: 'New deal', dealSub: 'SAR 45,000',
+      trust: ['3 offices', 'Jordan and Saudi Arabia', 'Arabic and English', 'ZATCA and JoFotara ready'],
+      cost: 'Cost', time: 'Timeline', plan: 'Plan', hi: 'Hi, we want to get organised', re: 'Great, when can we talk?' };
+const trustIcons = ['target', 'globe', 'chat', 'receipt'];
+const n = (i: number) => String(i + 1).padStart(2, '0');
+// Static isometric stack: shown until (or instead of) the WebGL scene.
+const iso = (cy: number, fill: string, left: string, right: string) => {
+  const a = 120, b = 69, t = 20;
+  const top = `${200},${cy - b} ${200 + a},${cy} ${200},${cy + b} ${200 - a},${cy}`;
+  const l = `${200 - a},${cy} ${200},${cy + b} ${200},${cy + b + t} ${200 - a},${cy + t}`;
+  const r = `${200 + a},${cy} ${200},${cy + b} ${200},${cy + b + t} ${200 + a},${cy + t}`;
+  return { top, l, r, fill, left, right };
+};
+const stack = [['#dde9e5', '#c9d9d4', '#b9ccc6'], ['#ffffff', '#e4eeea', '#d3e1dc'], ['#bfe6da', '#9fd3c4', '#8bc4b4'], ['#3fb59a', '#2f9d84', '#278a73'], ['#0e6b5c', '#0b5a4d', '#084a3f']]
+  .map(([f, l, r], i) => iso(300 - i * 34, f, l, r));
+---
+<Base lang={lang} path="" title={p.seo.title} description={p.seo.description} extra={[faqNode(lang, abs(href(lang)), faqs)]}>
+  <!-- 1. Hero: promise + 3D anchor with three floating UI cards -->
+  <section class="hero">
+    <div class="wrap hero__grid">
+      <div class="hero__text">
+        <p class="kicker">{p.hero.eyebrow}</p>
+        <h1 set:html={heroTitle(lang)} />
+        <p class="hero__sub">{p.hero.body}</p>
+        <div class="hero__btns">
+          <a class="btn btn--wa" href={wa} rel="noopener"><Icon name="whatsapp" size={20} />{d.site.cta.whatsapp}</a>
+          <a class="btn btn--line" href={call}><Icon name="phone" size={20} />{d.site.cta.call}</a>
+        </div>
+      </div>
+      <div class="hero__vis">
+        <div class="hero3d" data-hero3d aria-hidden="true">
+          <svg class="hero3d__fb" viewBox="0 0 400 400" focusable="false">
+            {stack.map((s) => (
+              <g><polygon points={s.l} fill={s.left} /><polygon points={s.r} fill={s.right} /><polygon points={s.top} fill={s.fill} /></g>
+            ))}
+          </svg>
+        </div>
+        <div class="fc fc--a" aria-hidden="true"><span class="fc__i fc__i--ok"><Icon name="check" size={16} /></span><div><b>{T.inv}</b><small>{T.paid}</small></div></div>
+        <div class="fc fc--b" aria-hidden="true"><span class="fc__i fc__i--warn"><Icon name="gauge" size={16} /></span><div><b>{T.stock}</b><small>{T.stockSub}</small></div></div>
+        <div class="fc fc--c" aria-hidden="true"><span class="fc__i"><Icon name="grow" size={16} /></span><div><b>{T.deal}</b><small>{T.dealSub}</small></div></div>
+      </div>
+    </div>
+  </section>
+  <div class="trust">
+    <ul class="wrap trust__list" role="list">
+      {T.trust.map((t, i) => <li><Icon name={trustIcons[i]} size={18} />{t}</li>)}
+    </ul>
+  </div>
+
+  <!-- 2. Why: chaos to order -->
+  <section class="sec sec--grey" aria-labelledby="ba">
+    <div class="wrap split">
+      <SectionHead id="ba" side eyebrow={d.site.nav.whyOdoo} title={p.whyOdoo.title} href={href(lang, 'why-odoo/')} label={p.whyOdoo.cta} />
+      <ChaosOrder bad={before} good={after} />
+    </div>
+  </section>
+
+  <!-- 3. Apps (bento with real mock previews) -->
+  <section class="sec" aria-labelledby="apps">
+    <div class="wrap">
+      <SectionHead id="apps" eyebrow={d.site.nav.apps} title={p.appsTeaser.title} href={href(lang, 'apps/')} label={p.appsTeaser.cta} />
+      <AppBento lang={lang} apps={d.apps} />
+    </div>
+  </section>
+
+  <!-- 4. Industries: tab switcher -->
+  <section class="sec sec--grey" aria-labelledby="ind">
+    <div class="wrap">
+      <SectionHead id="ind" eyebrow={d.site.nav.industries} title={p.industriesTeaser.title} href={href(lang, 'industries/')} label={d.site.cta.allIndustries} />
+      <IndustryTabs lang={lang} />
+    </div>
+  </section>
+
+  <!-- 5. How we work: three cards, each with its own mini visual -->
+  <section class="sec" aria-labelledby="how">
+    <div class="wrap">
+      <SectionHead id="how" eyebrow={d.site.nav.howWeWork} title={p.howWeWork.title} href={href(lang, 'how-we-work/')} label={d.site.cta.howWeWork} />
+      <ol class="hsteps" role="list">
+        {steps.map((s, i) => (
+          <li class="hs" style={`--i:${i}`}>
+            <span class="hs__node">{i + 1}</span>
+            <div class="hs__vis" aria-hidden="true">
+              {i === 0 && (
+                <div class="hv-chat"><span class="o">{T.hi}</span><span class="i">{T.re}</span><span class="dots"><i></i><i></i><i></i></span></div>
+              )}
+              {i === 1 && (
+                <div class="hv-doc">
+                  <div class="t"><b>{T.plan}</b><i></i></div>
+                  <div class="c"><span><Icon name="check" size={12} /></span><u></u></div>
+                  <div class="c"><span><Icon name="check" size={12} /></span><u></u></div>
+                  <div class="c"><span><Icon name="check" size={12} /></span><u></u></div>
+                  <div class="m"><em><Icon name="receipt" size={13} />{T.cost}</em><em><Icon name="clock" size={13} />{T.time}</em></div>
+                </div>
+              )}
+              {i === 2 && (
+                <div class="v v-mig hv-mig">
+                  <div class="v-mig__x"><div class="h"><i></i><i></i><i></i></div>{[0, 1, 2].map(() => <div class="r"><i></i><i></i><i></i></div>)}</div>
+                  <div class="v-mig__flow"><i></i><i></i><i></i></div>
+                  <div class="v-mig__o"><div class="h"></div>{[0, 1, 2].map(() => <div class="r"><i></i><b></b><s></s></div>)}</div>
+                </div>
+              )}
+            </div>
+            <h3>{s.title}</h3>
+            <p>{s.body}</p>
+          </li>
+        ))}
+      </ol>
+    </div>
+  </section>
+
+  <!-- 6. FAQ + ask card -->
+  <section class="sec sec--grey" aria-labelledby="faq">
+    <div class="wrap">
+      <SectionHead id="faq" eyebrow={d.site.nav.faq} title={p.faqTeaser.title} href={href(lang, 'faq/')} label={p.faqTeaser.cta} />
+      <div class="faqgrid">
+        <Faq items={faqs} />
+        <aside class="ask">
+          <span class="ask__ico" aria-hidden="true"><Icon name="chat" size={26} /></span>
+          <h3>{fq.title}</h3>
+          <p>{fq.body}</p>
+          <a class="btn btn--wa" href={wa} rel="noopener"><Icon name="whatsapp" size={20} />{d.site.cta.whatsapp}</a>
+          <a class="btn btn--line" href={call}><Icon name="phone" size={20} />{d.site.cta.call}</a>
+        </aside>
+      </div>
+    </div>
+  </section>
+
+  <!-- 7. Offices -->
+  <section class="sec" aria-labelledby="where">
+    <div class="wrap">
+      <SectionHead id="where" eyebrow={d.site.nav.contact} title={p.presence.title} />
+      <Offices lang={lang} variant="cards" />
+    </div>
+  </section>
+  <CtaBand lang={lang} chat title={p.finalCta.title} body={p.finalCta.body} button={d.site.cta.whatsapp} />
+</Base>
+
+<script>
+  const stage = document.querySelector<HTMLElement>('[data-hero3d]');
+  if (stage) {
+    const go = () => import('../../scripts/hero3d').then((m) => m.init(stage)).catch(() => {});
+    const idle = (window as any).requestIdleCallback as undefined | ((f: () => void, o?: object) => void);
+    window.addEventListener('load', () => (idle ? idle(go, { timeout: 2500 }) : setTimeout(go, 600)), { once: true });
+  }
+</script>

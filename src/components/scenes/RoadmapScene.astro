@@ -1,0 +1,93 @@
+---
+// A road that draws itself through five milestones and ends at a flag.
+export interface Props { lang: 'ar' | 'en' | string }
+const { lang } = Astro.props;
+const rtl = lang === 'ar';
+const labels = rtl
+  ? ['استشارة', 'دراسة', 'تجهيز', 'تدريب', 'دعم']
+  : ['Consult', 'Study', 'Setup', 'Training', 'Support'];
+const base: [number, number][] = [[62, 322], [142, 252], [240, 306], [332, 222], [412, 140]];
+const pts = base.map(([x, y]) => [rtl ? 480 - x : x, y] as [number, number]);
+let d = `M${pts[0][0]} ${pts[0][1]}`;
+for (let i = 1; i < pts.length; i++) {
+  const [x1, y1] = pts[i - 1];
+  const [x2, y2] = pts[i];
+  const mx = (x1 + x2) / 2;
+  d += ` C${mx} ${y1}, ${mx} ${y2}, ${x2} ${y2}`;
+}
+// label above for odd dots, below for even
+const above = [false, true, false, false, false];
+const [fx, fy] = pts[4];
+---
+<div class="scene" aria-hidden="true" dir={rtl ? 'rtl' : 'ltr'}>
+  <svg viewBox="0 0 480 400" class={rtl ? 'rtl' : ''}>
+    <rect class="bg" x="1" y="1" width="478" height="398" rx="20" />
+
+    <!-- quiet contour lines -->
+    <g class="ln mu" style="opacity:.6">
+      <path d="M20 360 C 120 330, 200 372, 300 346 S 430 330, 462 352" />
+      <path d="M20 380 C 140 352, 220 390, 320 366 S 440 352, 462 372" />
+      <path d="M20 70 C 90 50, 150 90, 230 62 S 340 40, 462 74" />
+    </g>
+
+    <path d={d} pathLength="1" class="road-o draw" style="--d:.2s" />
+    <path d={d} pathLength="1" class="road-i draw" style="--d:.2s" />
+    <path d={d} pathLength="1" class="road-c draw" style="--d:.2s" />
+
+    {pts.map(([x, y], i) => (
+      <g class="stop" style={`--d:${0.2 + i * 0.5}s`}>
+        <circle cx={x} cy={y} r="19" class="ring" />
+        <circle cx={x} cy={y} r="13" class={i === 4 ? 'dot last' : 'dot'} />
+        <text x={x} y={y + 5} font-size="14" text-anchor="middle" class="num t-b" style="direction:ltr">{i + 1}</text>
+        <g transform={`translate(${i === 4 ? x : x},${i === 4 ? y - 100 : above[i] ? y - 46 : y + 46})`}>
+          <rect x="-44" y="-15" width="88" height="30" rx="15" class="pill" />
+          <text x="0" y="5" font-size="14" text-anchor="middle" class="t-b">{labels[i]}</text>
+        </g>
+      </g>
+    ))}
+
+    <!-- flag -->
+    <g class="flag" style="--d:2.6s">
+      <path d={`M${fx} ${fy - 14} V${fy - 62}`} class="ln pr" />
+      <path d={rtl ? `M${fx} ${fy - 62} h-34 l8 12 l-8 12 h34 z` : `M${fx} ${fy - 62} h34 l-8 12 l8 12 h-34 z`} class="flagc" />
+    </g>
+  </svg>
+</div>
+
+<style>
+  .scene { width: 100%; max-width: 520px; margin-inline: auto; font-family: var(--font); }
+  svg { display: block; width: 100%; height: auto; }
+  svg.rtl { direction: rtl; }
+  text { font-family: var(--font); fill: var(--ink); }
+  .t-b { font-weight: 600; }
+  .bg { fill: var(--tint); stroke: var(--line); stroke-width: 1.5; }
+  .ln { fill: none; stroke: var(--ink); stroke-width: 1.5; stroke-linecap: round; stroke-linejoin: round; }
+  .ln.mu { stroke: var(--line-2); } .ln.pr { stroke: var(--primary); }
+
+  .draw { stroke-dasharray: 1; stroke-dashoffset: 1; animation: draw 2.6s ease-out forwards; animation-delay: var(--d, 0s); }
+  .road-o { fill: none; stroke: var(--line-2); stroke-width: 20; stroke-linecap: round; stroke-linejoin: round; }
+  .road-i { fill: none; stroke: #fff; stroke-width: 17; stroke-linecap: round; stroke-linejoin: round; }
+  .road-c { fill: none; stroke: var(--mint); stroke-width: 1.5; stroke-linecap: round; }
+
+  .ring { fill: #fff; stroke: var(--primary); stroke-width: 1.5; }
+  .dot { fill: var(--primary); }
+  .dot.last { fill: var(--primary); }
+  .num { fill: #fff; }
+  .pill { fill: #fff; stroke: var(--line-2); stroke-width: 1.5; }
+  .flagc { fill: var(--primary); stroke: var(--primary); stroke-width: 1.5; stroke-linejoin: round; }
+
+  .stop { opacity: 0; animation: pop .7s ease-out forwards; animation-delay: var(--d, 0s); }
+  .flag { opacity: 0; animation: pop .7s ease-out forwards; animation-delay: var(--d, 0s); }
+  .flagc { transform-box: fill-box; transform-origin: left center; animation: wave 4s ease-in-out 3.3s infinite; }
+  .rtl .flagc { transform-origin: right center; }
+
+  @keyframes draw { to { stroke-dashoffset: 0; } }
+  @keyframes pop { from { opacity: 0; transform: translateY(6px); } to { opacity: 1; transform: none; } }
+  @keyframes wave { 0%, 100% { transform: skewY(0); } 50% { transform: skewY(5deg); } }
+
+  @media (prefers-reduced-motion: reduce) {
+    * { animation: none !important; }
+    .draw { stroke-dashoffset: 0; }
+    .stop, .flag { opacity: 1; }
+  }
+</style>

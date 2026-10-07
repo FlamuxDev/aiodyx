@@ -1,0 +1,16 @@
+---
+import Icon from './Icon.astro';
+// One section-header pattern for the whole site: small emerald eyebrow, H2, optional lead, optional "see all" link.
+// `side` stacks everything (link below) for use in the left column of a heading | content split.
+const { title, eyebrow, lead, href, label, id, side = false } = Astro.props as {
+  title: string; eyebrow?: string; lead?: string; href?: string; label?: string; id?: string; side?: boolean;
+};
+---
+<header class={`shead ${side ? 'shead--side' : ''}`}>
+  <div class="shead__text">
+    {eyebrow && <p class="eyebrow">{eyebrow}</p>}
+    <h2 id={id} class="h-lg">{title}</h2>
+    {lead && <p class="lead">{lead}</p>}
+  </div>
+  {href && label && <a class="textlink" href={href}>{label}<Icon name="arrow" size={20} /></a>}
+</header>

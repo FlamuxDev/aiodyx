@@ -1,0 +1,24 @@
+---
+import Base from '../../layouts/Base.astro';
+import FaqScene from '../../components/scenes/FaqScene.astro';
+import PageHead from '../../components/PageHead.astro';
+import Faq from '../../components/Faq.astro';
+import CtaBand from '../../components/CtaBand.astro';
+import { DATA, abs, href, langPaths, type Lang } from '../../lib/site';
+import { faqNode } from '../../lib/schema';
+
+export const getStaticPaths = langPaths;
+const { lang } = Astro.params as { lang: Lang };
+const d = DATA[lang];
+const p = d.pages.faq;
+---
+<Base lang={lang} path="faq/" title={p.seo.title} description={p.seo.description} crumbs={[{ name: d.site.nav.faq, href: href(lang, 'faq/') }]}
+  extra={[faqNode(lang, abs(href(lang, 'faq/')), p.items)]}>
+  <PageHead title={p.intro.title} lead={p.intro.body}>
+    <FaqScene slot="visual" lang={lang} />
+  </PageHead>
+  <section class="sec">
+    <div class="wrap"><div class="col-8"><Faq items={p.items} /></div></div>
+  </section>
+  <CtaBand lang={lang} title={p.cta.title} body={p.cta.body} button={p.cta.button} />
+</Base>

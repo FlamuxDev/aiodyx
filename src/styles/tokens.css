@@ -1,0 +1,40 @@
+/* ==========================================================================
+   AIODYX design tokens v7: calm emerald. White surface, green-tinted grey
+   alternate sections, emerald primary, mint accent for decoration only.
+   Contrast: --ink #15201d on white 16:1, --muted #4a5a55 7.3:1, white on --primary
+   #0e6b5c 6.4:1, --primary on white 6.4:1. Violet survives only in the logo.
+   ========================================================================== */
+:root {
+  color-scheme: light;
+
+  --white: #fff;
+  --bg: #fff;
+  --grey: #f4f7f6;
+  --tint: #eef6f3;
+
+  --line: #e3e9e7;
+  --line-2: #cdd8d5;
+
+  --ink: #15201d;
+  --ink-2: #2b3a36;
+  --muted: #4a5a55;
+
+  --primary: #0e6b5c;
+  --primary-hover: #0a5549;
+  --primary-soft: #e8f3f0;
+
+  --mint: #3fb59a; /* decoration / on dark only, never text on white */
+  --brand-mark: #0e6b5c;
+
+  --r: 8px;
+  --r-sm: 6px;
+
+  --font: "IBM Plex Sans", "IBM Plex Sans Arabic", system-ui, sans-serif;
+
+  --pad: 20px;
+  --max: 1160px;
+  --sec: clamp(64px, 8vw, 96px);
+  --head-gap: clamp(32px, 4vw, 40px);
+  --gap: 24px;
+  --nav-h: 72px;
+}

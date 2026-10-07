@@ -1,0 +1,27 @@
+---
+import Base from '../../layouts/Base.astro';
+import RoadmapScene from '../../components/scenes/RoadmapScene.astro';
+import Icon from '../../components/Icon.astro';
+import StepTimeline from '../../components/StepTimeline.astro';
+import PageHead from '../../components/PageHead.astro';
+import CtaBand from '../../components/CtaBand.astro';
+import { DATA, href, langPaths, type Lang } from '../../lib/site';
+
+export const getStaticPaths = langPaths;
+const { lang } = Astro.params as { lang: Lang };
+const d = DATA[lang];
+const p = d.pages['how-we-work'];
+const n = (i: number) => String(i + 1).padStart(2, '0');
+---
+<Base lang={lang} path="how-we-work/" title={p.seo.title} description={p.seo.description} crumbs={[{ name: d.site.nav.howWeWork, href: href(lang, 'how-we-work/') }]}>
+  <PageHead title={p.intro.title} lead={p.intro.body}>
+    <RoadmapScene slot="visual" lang={lang} />
+  </PageHead>
+  <section class="sec" aria-label={p.intro.title}>
+    <div class="wrap">
+      <StepTimeline lang={lang} steps={p.steps} fromYou={d.site.labels.fromYou} />
+      <div class="tlnote"><span aria-hidden="true"><Icon name="clock" size={22} /></span><p>{p.note}</p></div>
+    </div>
+  </section>
+  <CtaBand lang={lang} title={p.cta.title} body={p.cta.body} button={p.cta.button} />
+</Base>

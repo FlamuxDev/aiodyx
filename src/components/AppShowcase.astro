@@ -1,0 +1,22 @@
+---
+import AppIcon from './AppIcon.astro';
+import AppMock from './mocks/AppMock.astro';
+import Icon from './Icon.astro';
+import { DATA, href, type Lang } from '../lib/site';
+// Showcase card for one app: a cropped, scaled window of its real mock on top, then icon, name, promise, "for whom".
+const { lang, app, wide = false, flip = false } = Astro.props as { lang: Lang; app: any; wide?: boolean; flip?: boolean };
+const d = DATA[lang];
+---
+<li class={`sc ${wide ? 'sc--wide' : ''} ${flip ? 'sc--flip' : ''}`}>
+  <a href={href(lang, `apps/${app.slug}/`)}>
+    <div class="sc__win" aria-hidden="true">
+      <div class="sc__bar"><i></i><i></i><i></i></div>
+      <div class="sc__stage"><div class="sc__mock"><AppMock slug={app.slug} lang={lang} /></div></div>
+    </div>
+    <div class="sc__body">
+      <span class="sc__top"><AppIcon name={app.slug} size={40} /><h3>{app.name}</h3><Icon name="arrow" size={20} /></span>
+      <p class="sc__promise">{app.promise}</p>
+      <p class="sc__for"><span class="label">{d.site.labels.appFor}</span>{app.for}</p>
+    </div>
+  </a>
+</li>

@@ -1,0 +1,66 @@
+---
+import Icon from './Icon.astro';
+import AppIcon from './AppIcon.astro';
+import IndustryIcon from './IndustryIcon.astro';
+import IndustryScene from './scenes/IndustryScene.astro';
+import { DATA, href, type Lang } from '../lib/site';
+// Home: six industry tabs; the active panel shows that industry's scene beside promise, two pains, app chips and a link.
+const { lang } = Astro.props as { lang: Lang };
+const d = DATA[lang];
+const short = (s: string) => s.split(/\s+و|\s*[&,]\s*/)[0];
+---
+<div class="it" data-it>
+  <div class="it__tabs" role="tablist" aria-label={d.site.nav.industries}>
+    {d.industries.map((it, i) => (
+      <button type="button" role="tab" class="it__tab" id={`it-t-${it.slug}`} aria-controls={`it-p-${it.slug}`} aria-selected={i === 0 ? 'true' : 'false'} tabindex={i === 0 ? 0 : -1}>
+        <IndustryIcon slug={it.slug} size={26} /><span>{it.name}</span>
+      </button>
+    ))}
+  </div>
+  <div class="it__panels">
+    {d.industries.map((it) => (
+      <div class="it__panel" role="tabpanel" id={`it-p-${it.slug}`} aria-labelledby={`it-t-${it.slug}`}>
+        <div class="it__scene"><IndustryScene slug={it.slug} lang={lang} /></div>
+        <div class="it__text">
+          <h3 class="h-md"><a href={href(lang, `industries/${it.slug}/`)}>{it.name}</a></h3>
+          <p class="it__promise">{it.promise}</p>
+          <ul class="it__pains">
+            {it.pains.slice(0, 2).map((t) => <li><span aria-hidden="true"><Icon name="close" size={14} /></span>{t}</li>)}
+          </ul>
+          <ul class="achips" role="list">
+            {(it.apps as string[]).map((s) => { const a = d.apps.find((x) => x.slug === s)!; return <li><a href={href(lang, `apps/${a.slug}/`)}><AppIcon name={a.slug} size={26} />{short(a.name)}</a></li>; })}
+          </ul>
+          <a class="textlink" href={href(lang, `industries/${it.slug}/`)}>{d.site.cta.learnMore}<Icon name="arrow" size={20} /></a>
+        </div>
+      </div>
+    ))}
+  </div>
+  <ul class="it__links" role="list">
+    {d.industries.map((it) => <li><a href={href(lang, `industries/${it.slug}/`)}>{it.name}</a></li>)}
+  </ul>
+</div>
+<script>
+  const root = document.querySelector<HTMLElement>('[data-it]');
+  if (root) {
+    root.classList.add('is-js');
+    const tabs = [...root.querySelectorAll<HTMLButtonElement>('[role="tab"]')];
+    const panels = [...root.querySelectorAll<HTMLElement>('[role="tabpanel"]')];
+    const show = (i: number, focus = false) => {
+      tabs.forEach((t, k) => { t.setAttribute('aria-selected', String(k === i)); t.tabIndex = k === i ? 0 : -1; });
+      panels.forEach((p, k) => (p.hidden = k !== i));
+      if (focus) tabs[i].focus();
+      tabs[i].scrollIntoView({ block: 'nearest', inline: 'nearest' });
+    };
+    tabs.forEach((t, i) => {
+      t.addEventListener('click', () => show(i));
+      t.addEventListener('keydown', (e) => {
+        const dir = getComputedStyle(root).direction === 'rtl' ? -1 : 1;
+        if (e.key === 'ArrowRight') { e.preventDefault(); show((i + dir + tabs.length) % tabs.length, true); }
+        else if (e.key === 'ArrowLeft') { e.preventDefault(); show((i - dir + tabs.length) % tabs.length, true); }
+        else if (e.key === 'Home') { e.preventDefault(); show(0, true); }
+        else if (e.key === 'End') { e.preventDefault(); show(tabs.length - 1, true); }
+      });
+    });
+    show(0);
+  }
+</script>

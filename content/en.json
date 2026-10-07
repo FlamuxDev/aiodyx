@@ -1,0 +1,1241 @@
+{
+  "site": {
+    "name": "AIODYX",
+    "tagline": "Odoo for companies in Jordan and Saudi Arabia",
+    "nav": {
+      "home": "Home",
+      "whyOdoo": "Why Odoo",
+      "apps": "Apps",
+      "industries": "Industries",
+      "services": "Services",
+      "howWeWork": "How we work",
+      "about": "About",
+      "faq": "FAQ",
+      "contact": "Contact"
+    },
+    "cta": {
+      "primary": "Book a free consultation",
+      "whatsapp": "WhatsApp us",
+      "call": "Call us",
+      "learnMore": "Read more",
+      "allApps": "See all apps",
+      "allIndustries": "See all industries",
+      "allServices": "See our services",
+      "allFaq": "All questions",
+      "howWeWork": "See how we work"
+    },
+    "labels": {
+      "appFor": "Who it's for",
+      "appFeatures": "What it does day to day",
+      "appOutcome": "What changes for you",
+      "appConnects": "How it works with the other apps",
+      "industryPains": "Sounds familiar?",
+      "industryApps": "Apps that fit",
+      "industryDay": "A normal day with Odoo",
+      "faq": "Common questions",
+      "phone": "Phone",
+      "whatsapp": "WhatsApp",
+      "step": "Step",
+      "fromYou": "What we need from you"
+    },
+    "footer": {
+      "about": "AIODYX sets up and supports Odoo for companies in Jordan and Saudi Arabia.",
+      "officesTitle": "Offices",
+      "pagesTitle": "Pages",
+      "appsTitle": "Apps",
+      "trademark": "Odoo is a registered trademark of Odoo S.A.",
+      "rights": "All rights reserved."
+    }
+  },
+  "pages": {
+    "home": {
+      "seo": {
+        "title": "AIODYX | Odoo Partner in Jordan and Saudi Arabia",
+        "description": "AIODYX sets up Odoo for companies in Jordan and Saudi Arabia. Sales, stock, accounting and staff in one system. Book a free consultation."
+      },
+      "hero": {
+        "eyebrow": "Odoo partner in Jordan and Saudi Arabia",
+        "title": "Run your whole company from one system",
+        "body": "Sales, stock, purchasing, accounting and staff, all in Odoo and all connected. We set it up around how your company already works, move your data, train your team, and stay with you after launch.",
+        "primary": "Book a free consultation",
+        "secondary": "Why Odoo"
+      },
+      "whatWeDo": {
+        "title": "What we do",
+        "body": [
+          "Many companies run on a mix of Excel sheets, an accounting program and a lot of phone calls. Nobody has the full picture until someone spends a day putting it together.",
+          "An ERP system fixes that. ERP simply means one system for the whole company. Sales, stock, purchasing, accounting and HR live in the same place, so when one person records something, everyone else sees it.",
+          "Odoo is that system. At AIODYX, we set it up for companies in Jordan and Saudi Arabia, and we stay to support it."
+        ]
+      },
+      "whyOdoo": {
+        "title": "Why companies choose Odoo",
+        "points": [
+          {
+            "title": "One system, not five",
+            "body": "Invoices, stock, purchases and salaries in one place. Nobody copies numbers from one program to another anymore."
+          },
+          {
+            "title": "Start small, add later",
+            "body": "Begin with the apps you need today, like sales and accounting. Add inventory, HR or a website when you're ready, without changing systems."
+          },
+          {
+            "title": "Arabic and English",
+            "body": "Each user works in the language they prefer. The Arabic screens read right to left."
+          },
+          {
+            "title": "Ready for local e-invoicing",
+            "body": "Odoo supports ZATCA e-invoicing in Saudi Arabia and can send invoices to JoFotara in Jordan."
+          },
+          {
+            "title": "Today's numbers, today",
+            "body": "Sales, cash and stock update as your team works. You don't wait for month-end to know where you stand."
+          },
+          {
+            "title": "Use it from anywhere",
+            "body": "Odoo runs in the browser on a computer, tablet or phone. There are also Odoo apps for iPhone and Android."
+          }
+        ],
+        "cta": "Why Odoo"
+      },
+      "appsTeaser": {
+        "title": "The apps your team will use",
+        "body": "Odoo is made of apps. Each one covers a part of your business, and they all share the same data. Here are the main ones.",
+        "cta": "See all apps"
+      },
+      "industriesTeaser": {
+        "title": "Set up for your kind of business",
+        "body": "A restaurant and a factory need different things from the same system. See how Odoo fits your sector.",
+        "cta": "See all industries"
+      },
+      "howWeWork": {
+        "title": "How we work",
+        "body": "Clear steps, so you always know what comes next and what we need from you.",
+        "steps": [
+          {
+            "title": "Free consultation",
+            "body": "A call or a meeting to understand your business and what's slowing you down. No commitment."
+          },
+          {
+            "title": "Study and plan",
+            "body": "We look at how work runs today and write down what Odoo will cover, the cost and the timeline."
+          },
+          {
+            "title": "Setup and data",
+            "body": "We set up the apps, bring in your products, customers and opening balances, and test everything with your real cases."
+          },
+          {
+            "title": "Training and go-live",
+            "body": "Each team learns the screens it will use. Then you start working on Odoo, with us close by in the first weeks."
+          },
+          {
+            "title": "Support after launch",
+            "body": "We stay with you for questions, fixes, new needs and Odoo version upgrades."
+          }
+        ],
+        "cta": "See how we work"
+      },
+      "presence": {
+        "title": "In Jordan and Saudi Arabia",
+        "body": "Two offices in Amman and one in Riyadh. We can meet you in person, and we set up Odoo for the tax and e-invoicing rules where you operate.",
+        "countries": [
+          {
+            "name": "Jordan",
+            "body": "Offices on Zahran Street and in Shafa Badran, Amman. Setup for Jordanian sales tax and JoFotara e-invoicing."
+          },
+          {
+            "name": "Saudi Arabia",
+            "body": "Office in Riyadh. Setup for Saudi VAT and ZATCA e-invoicing, including phase 2."
+          }
+        ]
+      },
+      "faqTeaser": {
+        "title": "Questions we hear often",
+        "items": [
+          {
+            "q": "How much does Odoo cost?",
+            "a": "It depends on the apps, the number of users, the edition you choose and how much customization you need. We give you a written estimate after studying your needs."
+          },
+          {
+            "q": "How long does it take?",
+            "a": "A small company on standard apps usually goes live within a few weeks. Bigger projects with manufacturing or heavy customization can take several months."
+          },
+          {
+            "q": "Can I keep my old data?",
+            "a": "Yes. We move customers, suppliers, products, opening balances and stock from Excel or your old system, and check the numbers with you."
+          },
+          {
+            "q": "Does Odoo work in Arabic?",
+            "a": "Yes. Odoo has a full Arabic interface, and each user can switch between Arabic and English."
+          }
+        ],
+        "cta": "All questions"
+      },
+      "finalCta": {
+        "title": "Let's talk about your business",
+        "body": "Tell us how your company works today. In a free consultation, we'll tell you whether Odoo fits, which apps you'd need, and what the next step looks like.",
+        "primary": "Book a free consultation",
+        "secondary": "WhatsApp us"
+      }
+    },
+    "why-odoo": {
+      "seo": {
+        "title": "Why Odoo for Your Company | AIODYX",
+        "description": "What Odoo is in plain words, the problems it solves, Community vs Enterprise, and when Odoo is not the right choice for you."
+      },
+      "intro": {
+        "title": "Why Odoo",
+        "body": "A plain explanation for business owners. No technical background needed."
+      },
+      "whatIs": {
+        "title": "What Odoo is",
+        "body": [
+          "Odoo is business software made by Odoo S.A., a company based in Belgium. Companies around the world use it to run sales, stock, purchasing, accounting, HR and more.",
+          "It's what people call an ERP system. That means one system where every department works on the same data. When sales issues an invoice, accounting sees it. When the warehouse ships an order, stock goes down. Nobody types the same thing twice.",
+          "Odoo comes as separate apps that fit together. You pick the ones you need and add more later."
+        ]
+      },
+      "problems": {
+        "title": "The problems it solves",
+        "items": [
+          {
+            "title": "Excel sheets everywhere",
+            "body": "Every department keeps its own file. Versions get mixed up, formulas break, and when someone leaves, their file leaves with them. In Odoo, everyone works on the same records, and you can see who changed what."
+          },
+          {
+            "title": "Programs that don't talk to each other",
+            "body": "The accounting program doesn't know what the warehouse shipped. The POS doesn't know what purchasing ordered. So someone copies numbers between them by hand, and mistakes creep in. In Odoo, one action updates every app that needs it."
+          },
+          {
+            "title": "No clear numbers",
+            "body": "Ask how much stock you have, who owes you money, or which product actually makes a profit, and the answer is 'give me a day'. Odoo shows these answers on screen, from live data."
+          },
+          {
+            "title": "Everything depends on a few people",
+            "body": "When only one person knows how invoicing works or where the price list is, work stops when they're off. In Odoo, the steps live in the system, so new staff learn faster."
+          }
+        ]
+      },
+      "benefits": {
+        "title": "What you get",
+        "items": [
+          {
+            "title": "Fewer manual steps",
+            "body": "A confirmed sale can create the delivery, the invoice and the stock update. Your team stops doing the same work twice."
+          },
+          {
+            "title": "Decisions on today's numbers",
+            "body": "Dashboards and reports show sales, cash, stock and overdue payments as they are now."
+          },
+          {
+            "title": "Control over who sees what",
+            "body": "Each user sees only their part of the business. You can require approval for purchases above a set amount."
+          },
+          {
+            "title": "Room to grow",
+            "body": "Add users, branches, companies or apps as you grow. You keep the same system and the same data."
+          },
+          {
+            "title": "Local rules covered",
+            "body": "Odoo has ready setups for Saudi and Jordanian accounting, with local taxes and e-invoicing."
+          }
+        ]
+      },
+      "editions": {
+        "title": "Community or Enterprise?",
+        "body": "Odoo comes in two editions. Both share the same base, and you can move from Community to Enterprise later.",
+        "community": {
+          "name": "Community",
+          "body": "The free, open-source edition. There's no license fee, but you still pay for setup, hosting and support.",
+          "points": [
+            "No per-user fee",
+            "Covers sales, CRM, purchasing, inventory, manufacturing, invoicing, POS, website, projects and basic HR",
+            "Runs on your own server or a cloud server you rent",
+            "Some apps are missing, like full accounting reports, payroll and Studio"
+          ]
+        },
+        "enterprise": {
+          "name": "Enterprise",
+          "body": "The paid edition. You pay a subscription per user, and you get more apps and more features inside each app.",
+          "points": [
+            "Full accounting with financial reports and bank reconciliation",
+            "Payroll, Studio, Barcode, Quality and other extra apps",
+            "Can run on Odoo's cloud, on Odoo.sh, or on your own server",
+            "Version upgrades included in the subscription"
+          ]
+        },
+        "note": "The right edition depends on the apps you need and how many people will use the system. We compare both for your case in the consultation."
+      },
+      "hosting": {
+        "title": "Cloud or your own server",
+        "items": [
+          {
+            "title": "Odoo Online",
+            "body": "Odoo hosts it for you. It's quick to start and there's no server to manage. Enterprise only, and it doesn't allow custom code, so it suits companies that use standard features."
+          },
+          {
+            "title": "Odoo.sh",
+            "body": "Odoo's cloud platform for companies that need custom development. Enterprise only."
+          },
+          {
+            "title": "Your own server",
+            "body": "In your office or on a cloud server you rent. Works with Community or Enterprise. You control everything, and someone has to look after the server."
+          }
+        ]
+      },
+      "notFit": {
+        "title": "When Odoo is not the right fit",
+        "body": "Odoo fits a lot of companies. Not all of them. We'd rather tell you now than after you've paid.",
+        "items": [
+          {
+            "title": "You only need simple invoicing",
+            "body": "If you're a small team with a few invoices a month and no stock, a simple accounting program may be enough."
+          },
+          {
+            "title": "Nobody on your side can own the project",
+            "body": "Odoo needs someone in your company who makes decisions and gets the team to use it. Without that person, the project stalls."
+          },
+          {
+            "title": "Every old habit must stay the same",
+            "body": "Odoo works best when you adjust some steps to its way of working. If every process has to stay exactly as it is, customization costs grow fast."
+          },
+          {
+            "title": "Your sector runs on specialized software",
+            "body": "Hospitals, banks and insurance companies usually rely on systems built for their field. Odoo can work next to that software, but it may not replace it."
+          }
+        ],
+        "closing": "If one of these sounds like you, tell us in the consultation. We'll say it straight, even if the answer is that you don't need Odoo."
+      },
+      "cta": {
+        "title": "Not sure yet?",
+        "body": "Book a free consultation. We'll look at how you work today and tell you if Odoo makes sense.",
+        "button": "Book a free consultation"
+      }
+    },
+    "apps": {
+      "seo": {
+        "title": "Odoo Apps: Accounting, Sales, Inventory and More | AIODYX",
+        "description": "See what each Odoo app does day to day: accounting, sales, inventory, purchase, manufacturing, HR, POS, website and projects."
+      },
+      "intro": {
+        "title": "Odoo apps",
+        "body": "Odoo is a set of apps that share the same data. Pick the ones you need now. Add others later, without moving to a new system."
+      },
+      "note": "Not sure which apps you need? That's what the free consultation is for.",
+      "cta": {
+        "title": "Find the right apps for your company",
+        "body": "Tell us how you work today, and we'll suggest where to start.",
+        "button": "Book a free consultation"
+      }
+    },
+    "industries": {
+      "seo": {
+        "title": "Odoo for Your Industry | AIODYX",
+        "description": "How Odoo fits retail, wholesale, factories, service firms, contractors and restaurants in Jordan and Saudi Arabia."
+      },
+      "intro": {
+        "title": "Odoo for your kind of business",
+        "body": "Same system, set up differently. Here's how Odoo fits six common types of business."
+      },
+      "cta": {
+        "title": "Don't see your sector?",
+        "body": "Tell us what your company does. We'll tell you honestly how well Odoo fits.",
+        "button": "Book a free consultation"
+      }
+    },
+    "services": {
+      "seo": {
+        "title": "Odoo Implementation and Support Services | AIODYX",
+        "description": "Odoo setup, customization, data migration, training, support and e-invoicing for ZATCA and JoFotara. AIODYX, Jordan and Saudi Arabia."
+      },
+      "intro": {
+        "title": "What we do for you",
+        "body": "Everything you need to go from Excel sheets to a working Odoo system, and to keep it working after."
+      },
+      "cta": {
+        "title": "Start with a conversation",
+        "body": "Tell us where you are today. We'll tell you which of these you actually need.",
+        "button": "Book a free consultation"
+      }
+    },
+    "how-we-work": {
+      "seo": {
+        "title": "How We Implement Odoo, Step by Step | AIODYX",
+        "description": "From the first call to support after go-live. See each step of an Odoo project with AIODYX and what we need from you along the way."
+      },
+      "intro": {
+        "title": "How we work",
+        "body": "An Odoo project goes well when both sides know what's next. Here are the steps, and what we need from you at each one."
+      },
+      "steps": [
+        {
+          "title": "Discovery call",
+          "body": "A free call or meeting. You tell us how your company works and what's getting in the way. We tell you honestly if Odoo fits.",
+          "fromYou": "Time to talk, and a rough list of what bothers you today."
+        },
+        {
+          "title": "Study and plan",
+          "body": "We sit with each department to see how work really flows. Then we write a plan with the apps, what each one covers, what needs customizing, the cost and the timeline.",
+          "fromYou": "Access to the people who do the work, and your current files and forms."
+        },
+        {
+          "title": "Setup",
+          "body": "We set up Odoo based on the plan: companies, branches, users, products, taxes, approvals and printed documents. You review each part as we go, not only at the end.",
+          "fromYou": "Feedback on each part, and decisions when there's more than one way to do something."
+        },
+        {
+          "title": "Data move",
+          "body": "We bring in your customers, suppliers, products, opening balances and stock from Excel or your old system. Then we check the numbers with you.",
+          "fromYou": "Your data files, and someone who can confirm the imported figures."
+        },
+        {
+          "title": "Training",
+          "body": "Each team learns its own screens, using your real data. We also train one or two key users who can help their colleagues later.",
+          "fromYou": "Time for your team to attend and practice."
+        },
+        {
+          "title": "Go-live",
+          "body": "You start working on Odoo on an agreed date. We stay close in the first weeks, because that's when most questions come up.",
+          "fromYou": "A clear start date, and a team ready to stop using the old files."
+        },
+        {
+          "title": "Ongoing support",
+          "body": "After launch, we handle questions, fixes, small changes, new apps and version upgrades as your business grows.",
+          "fromYou": "Tell us when something changes in your business."
+        }
+      ],
+      "note": "How long it takes depends on the number of apps, the amount of data and how much customization you need. A small company on standard apps usually needs a few weeks. Larger projects with manufacturing or heavy customization can take several months.",
+      "cta": {
+        "title": "Step one is a free call",
+        "body": "Tell us about your company. We'll take it from there.",
+        "button": "Book a free consultation"
+      }
+    },
+    "about": {
+      "seo": {
+        "title": "About AIODYX | Odoo Partner in Jordan and Saudi Arabia",
+        "description": "AIODYX is an Odoo partner with offices in Amman and Riyadh. We set up, customize and support Odoo for companies in Jordan and Saudi Arabia."
+      },
+      "intro": {
+        "title": "About AIODYX",
+        "body": "AIODYX is an Odoo partner serving companies in Jordan and Saudi Arabia. We set up Odoo, adapt it where needed, train your team and support you after go-live."
+      },
+      "whoWeServe": {
+        "title": "Who we work with",
+        "body": "Business owners and managers who want their company to run on one system instead of scattered files. Shops, distributors, factories, service firms, contractors and restaurants."
+      },
+      "principles": {
+        "title": "How we approach Odoo projects",
+        "items": [
+          {
+            "title": "Standard first",
+            "body": "Odoo already does a lot as it comes. We use what's there before building anything new, because custom work costs more to build and more to upgrade."
+          },
+          {
+            "title": "Straight answers",
+            "body": "If Odoo isn't right for you, or you don't need a certain app, we say so."
+          },
+          {
+            "title": "Your team has to use it",
+            "body": "A system nobody uses is money wasted. That's why training and the first weeks after go-live matter as much as the setup."
+          },
+          {
+            "title": "Local rules matter",
+            "body": "Tax, e-invoicing and the way business is done in Jordan and Saudi Arabia shape how we set things up."
+          }
+        ]
+      },
+      "presence": {
+        "title": "Where we are",
+        "body": "Two offices in Amman, on Zahran Street and in Shafa Badran, and an office in Riyadh."
+      },
+      "cta": {
+        "title": "Let's meet",
+        "body": "Book a free consultation by phone, WhatsApp or at one of our offices.",
+        "button": "Book a free consultation"
+      }
+    },
+    "faq": {
+      "seo": {
+        "title": "Odoo FAQ: Cost, Timeline, Arabic, ZATCA | AIODYX",
+        "description": "Straight answers about Odoo: cost, timeline, data migration, Arabic, mobile, hosting, licenses, e-invoicing and support after go-live."
+      },
+      "intro": {
+        "title": "Questions about Odoo",
+        "body": "Short, honest answers to what business owners ask before they start."
+      },
+      "items": [
+        {
+          "q": "What is Odoo?",
+          "a": "Odoo is business software that runs sales, stock, purchasing, accounting, HR and more in one system. It's made by Odoo S.A. in Belgium and comes as separate apps that share the same data. Companies start with the apps they need and add more later."
+        },
+        {
+          "q": "What does ERP mean?",
+          "a": "ERP stands for Enterprise Resource Planning. In plain words, it's one system for the whole company, so sales, the warehouse, accounting and HR work on the same data instead of separate files and programs. Odoo is an ERP system."
+        },
+        {
+          "q": "How much does an Odoo implementation cost?",
+          "a": "The cost of an Odoo project depends on the number of apps and users, whether you choose Community or Enterprise, how much customization you need, and how much data has to move. Enterprise also has a yearly or monthly subscription paid to Odoo, and hosting has its own cost. AIODYX gives you a written estimate after a free consultation and a study of your needs."
+        },
+        {
+          "q": "How long does it take to implement Odoo?",
+          "a": "It depends on the number of apps, the amount of data and how much customization is needed. A small company using standard Odoo apps usually goes live within a few weeks. Larger projects with manufacturing, many branches or heavy customization can take several months."
+        },
+        {
+          "q": "Can I keep my data from Excel or my old system?",
+          "a": "Yes. Customers, suppliers, products, opening balances, open invoices and stock quantities can be moved into Odoo from Excel or from most other systems. AIODYX cleans and checks the data with you before go-live. Older transaction history can be imported or kept in the old system, depending on how much you need it."
+        },
+        {
+          "q": "Does Odoo work in Arabic?",
+          "a": "Yes. Odoo has a full Arabic interface that reads right to left, and each user can choose Arabic or English. Invoices and other documents can be printed in the customer's language."
+        },
+        {
+          "q": "Can I use Odoo on my phone?",
+          "a": "Yes. Odoo works in any phone or tablet browser, and there are Odoo apps for iPhone and Android. Salespeople, managers and employees can check data, approve requests and log hours from their phones."
+        },
+        {
+          "q": "Should we host Odoo in the cloud or on our own server?",
+          "a": "Both work. Odoo Online is hosted by Odoo and is the simplest option, but it doesn't allow custom code. Odoo.sh is Odoo's cloud for companies that need custom development. Your own server gives you full control, but someone has to maintain it. AIODYX helps you choose based on your needs and budget."
+        },
+        {
+          "q": "How do Odoo user licenses work?",
+          "a": "Odoo Community is free and has no user fees. Odoo Enterprise is a subscription paid per user, and the price depends on the plan and the number of users. Customers and suppliers who only use the Odoo online portal don't need a paid user."
+        },
+        {
+          "q": "Which is better for us, Odoo Community or Enterprise?",
+          "a": "Odoo Community is free and covers sales, purchasing, inventory, invoicing, POS, manufacturing and projects. Odoo Enterprise adds full accounting, payroll, Studio and other apps, plus version upgrades. The right choice depends on the apps you need and your budget, and AIODYX compares both for your case."
+        },
+        {
+          "q": "Do we have to use all of Odoo's apps?",
+          "a": "No. You can start with one or two Odoo apps, like Sales and Accounting, and add Inventory, HR or a website later. New apps connect to the data you already have, so you don't start over."
+        },
+        {
+          "q": "Does Odoo support ZATCA e-invoicing in Saudi Arabia?",
+          "a": "Yes. Odoo's Saudi localization supports ZATCA e-invoicing, including phase 2, the integration phase with the Fatoora platform. AIODYX sets up the connection, runs the compliance checks with ZATCA, and tests your invoices before you switch it on."
+        },
+        {
+          "q": "Does Odoo work with JoFotara in Jordan?",
+          "a": "Yes. Odoo has a Jordan e-invoicing module that sends invoices to JoFotara, Jordan's national e-invoicing system. It needs a recent Odoo version. AIODYX sets it up with your JoFotara access details and tests it before you start issuing invoices through it."
+        },
+        {
+          "q": "What support do we get after go-live?",
+          "a": "AIODYX stays with you after go-live for questions, fixes, small changes and Odoo version upgrades. The first weeks after launch get closer attention, because that's when most questions come up. The support plan is agreed with you based on your size and needs."
+        },
+        {
+          "q": "Can Odoo be customized?",
+          "a": "Yes. Odoo can be changed with new fields, reports, printed layouts, workflows and connections to other systems. AIODYX uses standard Odoo features first and customizes only what you really need, because every custom change adds cost and work at upgrade time."
+        },
+        {
+          "q": "Will my team be able to use Odoo?",
+          "a": "Yes, with the right training. AIODYX trains each team on the Odoo screens it actually uses, with your own data, in Arabic or English. We also train key users in your company who can help colleagues after go-live."
+        },
+        {
+          "q": "Can Odoo handle more than one branch or company?",
+          "a": "Yes. Odoo can run several companies, branches and warehouses in one system, each with its own accounts if needed, and in more than one currency. Owners can look at each one separately or at all of them together."
+        },
+        {
+          "q": "Is our data safe in Odoo?",
+          "a": "On Odoo Online and Odoo.sh, Odoo hosts your data and takes care of backups. On your own server, backups and security are your responsibility or your partner's. In every setup, each Odoo user sees only what their access rights allow."
+        },
+        {
+          "q": "What happens in the free consultation?",
+          "a": "In the free consultation with AIODYX, you tell us how your company works today and what's slowing you down. We tell you whether Odoo fits, which apps you'd likely need, and what the next steps are. There's no commitment."
+        }
+      ],
+      "cta": {
+        "title": "Have a question that's not here?",
+        "body": "Ask us directly. A call or a WhatsApp message is enough.",
+        "button": "Book a free consultation"
+      }
+    },
+    "contact": {
+      "seo": {
+        "title": "Contact AIODYX | Odoo Partner in Amman and Riyadh",
+        "description": "Book a free Odoo consultation with AIODYX. Call our offices in Amman or Riyadh, or message us on WhatsApp."
+      },
+      "intro": {
+        "title": "Book a free consultation",
+        "body": "Tell us how your company works today. We'll tell you if Odoo fits and what the next step is."
+      },
+      "consultation": {
+        "title": "What happens in the consultation",
+        "points": [
+          "You tell us about your business and what's slowing you down",
+          "We ask how sales, stock, purchasing and accounting run today",
+          "We tell you if Odoo fits, and which apps you'd likely need",
+          "No cost and no commitment"
+        ]
+      },
+      "whatsapp": {
+        "title": "Message us on WhatsApp",
+        "body": "Send a message to our secretary in Jordan, and we'll set a time that suits you.",
+        "number": "+962 7 7599 9908",
+        "button": "WhatsApp us"
+      },
+      "offices": {
+        "title": "Call our offices",
+        "body": "Pick the office closest to you."
+      }
+    }
+  },
+  "apps": [
+    {
+      "slug": "accounting",
+      "name": "Accounting & Invoicing",
+      "seo": {
+        "title": "Odoo Accounting and Invoicing | AIODYX",
+        "description": "Invoices, bills, payments, tax and financial reports in Odoo, set up for Jordan and Saudi Arabia. See what changes for your finance team."
+      },
+      "promise": "Know where your money stands every day, not at month-end.",
+      "for": "Finance managers, accountants, and owners who want to see cash, receivables and profit without waiting for month-end.",
+      "features": [
+        "Issue customer invoices and record supplier bills.",
+        "Record payments and match them to invoices, so you always know who still owes you.",
+        "Import bank statements and reconcile them with your entries.",
+        "Send payment reminders to customers with overdue invoices.",
+        "Track costs by branch, project or department with cost centers.",
+        "Work in more than one currency. Odoo records exchange differences for you.",
+        "Get tax reports, profit and loss, balance sheet and aged receivables from live data."
+      ],
+      "outcome": "Month-end stops being a week of chasing numbers. Sales and purchases reach the books when they happen, so closing is mostly checking. Open the system any morning and you see your cash, what customers owe you, and what you owe suppliers.",
+      "connects": "Customer invoices come straight from confirmed sales and POS sessions. Supplier bills come from purchase orders. Stock movements can post their value to accounting, and payroll posts salary entries. Every other app ends up here.",
+      "faq": [
+        {
+          "q": "Does Odoo Accounting follow Saudi and Jordanian tax rules?",
+          "a": "Yes. Odoo has local setups for both countries, with a chart of accounts and taxes ready to use. We review them with your accountant and adjust them to your company."
+        },
+        {
+          "q": "Can our external accountant or auditor still work with us?",
+          "a": "Yes. They can get their own user in Odoo, or receive the reports they need exported to Excel or PDF."
+        },
+        {
+          "q": "Is full accounting available in the free Community edition?",
+          "a": "Community covers invoicing and payments. Full accounting, with financial reports, bank reconciliation tools and fixed assets, is part of Enterprise."
+        },
+        {
+          "q": "Can we start in the middle of the year?",
+          "a": "Yes. We bring in your opening balances and open invoices on the start date, so your books continue from where they were."
+        }
+      ]
+    },
+    {
+      "slug": "sales-crm",
+      "name": "Sales & CRM",
+      "seo": {
+        "title": "Odoo Sales and CRM | AIODYX",
+        "description": "Track every lead, send clear quotes and follow each deal until it's invoiced. See how Odoo Sales and CRM work for your sales team."
+      },
+      "promise": "Follow every deal from the first call to the paid invoice.",
+      "for": "Sales managers and sales teams who handle quotes, follow-ups and customer accounts, and owners who want to know what's coming in.",
+      "features": [
+        "See all open deals on one board, by stage, from new lead to won.",
+        "Capture leads from your website forms and emails without typing them in.",
+        "Schedule calls and follow-ups, so no customer waits because someone forgot.",
+        "Build quotes from your product list with the right prices and discounts for each customer.",
+        "Send quotes by email. Customers can accept and sign online.",
+        "Turn an accepted quote into an order, a delivery and an invoice.",
+        "See sales by salesperson, product or period, and why deals were lost."
+      ],
+      "outcome": "Customer history stops living in people's phones. When a salesperson is away, someone else opens the deal and sees every call, email and quote. Managers see the real pipeline instead of asking around.",
+      "connects": "A confirmed order tells the warehouse what to ship and tells accounting what to invoice. If stock is short, it can trigger a purchase or a manufacturing order. Website forms send new leads straight into CRM.",
+      "faq": [
+        {
+          "q": "Can each salesperson see only their own customers?",
+          "a": "Yes. You can set access so salespeople see their own deals, while managers see the whole team."
+        },
+        {
+          "q": "Can different customers get different prices?",
+          "a": "Yes. Odoo uses price lists, so wholesale customers, retail customers or a specific account can each get their own prices and discounts."
+        },
+        {
+          "q": "Can our sales team use it from their phones?",
+          "a": "Yes. Odoo works in the phone browser, and there are Odoo apps for iPhone and Android, so they can update a deal right after a meeting."
+        }
+      ]
+    },
+    {
+      "slug": "inventory",
+      "name": "Inventory & Warehouse",
+      "seo": {
+        "title": "Odoo Inventory and Warehouse | AIODYX",
+        "description": "Know what's in stock, where it is and what it's worth. Odoo Inventory for shops, distributors and factories in Jordan and Saudi Arabia."
+      },
+      "promise": "Know what's in stock and where, at any moment.",
+      "for": "Warehouse managers, storekeepers, and owners who are tired of counts that never match the system.",
+      "features": [
+        "See stock per warehouse and per location, updated with every receipt, sale and transfer.",
+        "Receive goods against purchase orders and check what arrived against what you ordered.",
+        "Pick, pack and ship orders in one step or several, depending on how your warehouse works.",
+        "Track batch numbers, serial numbers and expiry dates where you need them.",
+        "Set minimum stock levels, so Odoo prepares purchase orders when stock runs low.",
+        "Add shipping and customs to product cost, so your margins are real.",
+        "Run stock counts and fix differences, with a record of every adjustment."
+      ],
+      "outcome": "Stock in the system matches stock on the shelf, so sales can promise delivery dates they can keep. You stop over-ordering slow items and running out of fast ones. Stock value shows up in accounting without a separate calculation.",
+      "connects": "Sales orders create deliveries. Purchase orders create receipts. Manufacturing takes components out and puts finished goods in. The POS and the online store sell from the same stock, and each movement can update stock value in accounting.",
+      "faq": [
+        {
+          "q": "Can we manage more than one warehouse or branch?",
+          "a": "Yes. Odoo handles several warehouses and locations, and you move stock between them with transfers."
+        },
+        {
+          "q": "Does it work with barcode scanners?",
+          "a": "Yes. You can scan barcodes in many screens. The dedicated Barcode app, for receiving and picking with a scanner or phone, is part of Enterprise."
+        },
+        {
+          "q": "Can it handle products with expiry dates?",
+          "a": "Yes. Odoo tracks batches and expiry dates, and can alert you before products expire."
+        },
+        {
+          "q": "How do we get our current stock into Odoo?",
+          "a": "We import your product list and opening quantities from Excel or your old system. A full stock count before go-live makes sure the starting numbers are right."
+        }
+      ]
+    },
+    {
+      "slug": "purchase",
+      "name": "Purchase",
+      "seo": {
+        "title": "Odoo Purchase Management | AIODYX",
+        "description": "Request quotes, compare vendors, approve orders and check bills against what arrived. See how Odoo Purchase works day to day."
+      },
+      "promise": "Order on time, and pay only for what arrived.",
+      "for": "Purchasing officers, procurement managers, and owners who approve spending.",
+      "features": [
+        "Send requests for quotation to vendors and turn the best one into a purchase order.",
+        "Compare offers from several vendors for the same items.",
+        "Keep each vendor's prices and delivery times on the product.",
+        "Require a manager's approval for orders above an amount you choose.",
+        "Get purchase suggestions when stock drops below its minimum.",
+        "Follow late deliveries and remind vendors.",
+        "Check vendor bills against what you ordered and what actually arrived before you pay."
+      ],
+      "outcome": "Purchasing stops depending on memory and WhatsApp messages. Every order has a record, an approval and a status. Finance pays bills knowing the goods arrived.",
+      "connects": "Low stock in Inventory creates purchase suggestions. Received goods go into stock. Vendor bills go to Accounting, matched to the order. In Manufacturing, missing components can trigger a purchase.",
+      "faq": [
+        {
+          "q": "Can we set approval limits?",
+          "a": "Yes. You can require a manager's approval for purchase orders above a set amount."
+        },
+        {
+          "q": "Can we buy in foreign currencies?",
+          "a": "Yes. Purchase orders and vendor bills can be in any currency, and Accounting converts them using exchange rates."
+        },
+        {
+          "q": "Can we include customs and shipping in product cost?",
+          "a": "Yes. Odoo can add landed costs, like freight and customs, to the cost of the products in a shipment."
+        }
+      ]
+    },
+    {
+      "slug": "manufacturing",
+      "name": "Manufacturing",
+      "seo": {
+        "title": "Odoo Manufacturing (MRP) | AIODYX",
+        "description": "Plan production, track materials and know the real cost of every product. Odoo Manufacturing for factories in Jordan and Saudi Arabia."
+      },
+      "promise": "Plan production and know what each product really costs.",
+      "for": "Factory owners, production managers and planners who need to see what to make, what's missing and what it costs.",
+      "features": [
+        "Define a bill of materials for each product, meaning its components and quantities.",
+        "Create manufacturing orders from sales orders or from minimum stock levels.",
+        "Check that components are available before you start, and order what's missing.",
+        "Plan work across machines and production lines, with the time each step takes.",
+        "Record what was used, what was produced and what was scrapped.",
+        "Send part of the work to subcontractors and track the materials you sent them.",
+        "See the actual cost of each production run, including materials, labor and machine time."
+      ],
+      "outcome": "Production stops running on paper and phone calls. Planners know which orders can start today and which are waiting for materials. Owners see the real cost per unit, so prices come from numbers instead of estimates.",
+      "connects": "Sales orders can trigger production. Manufacturing pulls components from Inventory and adds finished products back. Missing components can trigger Purchase, and production costs flow into Accounting.",
+      "faq": [
+        {
+          "q": "Does Odoo work for small workshops, or only big factories?",
+          "a": "Both. A small workshop can start with simple bills of materials and manufacturing orders, then add work centers and planning later."
+        },
+        {
+          "q": "Can it handle quality checks?",
+          "a": "Yes, through the Quality app, which is part of Enterprise. You set checks at specific steps and record the results."
+        },
+        {
+          "q": "Can we trace batches from raw material to finished product?",
+          "a": "Yes. Odoo tracks lots and serial numbers through production, so you can see which batch of material went into which product."
+        }
+      ]
+    },
+    {
+      "slug": "hr-payroll",
+      "name": "HR, Payroll & Attendance",
+      "seo": {
+        "title": "Odoo HR, Payroll and Attendance | AIODYX",
+        "description": "Employee files, leave requests, attendance and payroll in one place. See how Odoo HR works for companies in Jordan and Saudi Arabia."
+      },
+      "promise": "Staff files, leave and salaries in one place, without the paperwork.",
+      "for": "HR managers, office managers, and owners who handle employee records, leave and monthly salaries.",
+      "features": [
+        "Keep each employee's file, contract and documents in one record.",
+        "Let employees request leave from their phone, and managers approve it.",
+        "See everyone's leave balance without a separate sheet.",
+        "Record attendance on a kiosk screen, from the browser or from the phone.",
+        "Calculate salaries with your allowances, deductions and overtime.",
+        "Let employees submit expenses with a photo of the receipt.",
+        "Post payroll and expenses to accounting without typing them again."
+      ],
+      "outcome": "HR stops chasing paper forms and leave balances. Employees get answers without asking HR. Payroll is based on real attendance and approved leave, and it reaches accounting on its own.",
+      "connects": "Approved leave and attendance feed into Payroll. Salaries and expense claims post to Accounting. Timesheets from Project show where staff time went.",
+      "faq": [
+        {
+          "q": "Is Payroll included in the free Community edition?",
+          "a": "No. Payroll is part of Odoo Enterprise. Employees, Time Off, Attendance and Expenses are available in both editions."
+        },
+        {
+          "q": "Can Odoo follow our local payroll rules?",
+          "a": "We set up your salary structure, allowances and deductions during implementation, including local items like social insurance. Then we compare the results with your current payroll before go-live."
+        },
+        {
+          "q": "Can it connect to our fingerprint devices?",
+          "a": "Often yes, depending on the device. It usually needs an extra connector. We check your device model during the study and tell you what's possible."
+        }
+      ]
+    },
+    {
+      "slug": "point-of-sale",
+      "name": "Point of Sale",
+      "seo": {
+        "title": "Odoo Point of Sale (POS) | AIODYX",
+        "description": "Sell in shops and restaurants with Odoo POS, with stock and accounting updated as you sell. Works on tablets and PCs."
+      },
+      "promise": "Sell fast at the counter, with stock updated after every sale.",
+      "for": "Shops, showrooms, cafés and restaurants, with one branch or many.",
+      "features": [
+        "Sell from a tablet, PC or touch screen, with barcode scanners and receipt printers.",
+        "Accept cash and card, and split one payment between them.",
+        "Run discounts, loyalty points, coupons and gift cards.",
+        "Open and close each cashier's session with a cash count, so differences show up the same day.",
+        "Look up customers and their purchase history at the counter.",
+        "Keep selling for a while if the internet drops. Sales sync when it's back.",
+        "See sales per branch, cashier and product as they happen."
+      ],
+      "outcome": "Every sale reduces stock in the system right away. Cash differences get caught at the end of each shift, not at the end of the month. Owners see each branch's sales from anywhere.",
+      "connects": "The POS sells from the same stock as the warehouse and the online store. Each closed session posts to Accounting. Loyalty programs and gift cards can work across your branches.",
+      "faq": [
+        {
+          "q": "What hardware do we need?",
+          "a": "A tablet or PC, plus a receipt printer, cash drawer and barcode scanner if you use them. We check your current devices during the study, since some may work as they are."
+        },
+        {
+          "q": "Does it work for restaurants?",
+          "a": "Yes. Odoo POS has a restaurant mode with table plans, split bills and orders sent to the kitchen."
+        },
+        {
+          "q": "Can we run many branches?",
+          "a": "Yes. Each branch gets its own POS and stock location, and you see all branches together in one system."
+        }
+      ]
+    },
+    {
+      "slug": "website-ecommerce",
+      "name": "Website & eCommerce",
+      "seo": {
+        "title": "Odoo Website and Online Store | AIODYX",
+        "description": "Build your website and online store on Odoo, with products, stock and orders in the same system as your shop and warehouse."
+      },
+      "promise": "An online store connected to your stock and your books.",
+      "for": "Shops, distributors and brands that want to sell online, and companies that need a website without a separate system.",
+      "features": [
+        "Build pages with a drag-and-drop editor, in Arabic and English.",
+        "Publish products from your catalog with photos, variants and prices.",
+        "Show real stock, so customers don't order what you don't have.",
+        "Take online payments through providers that work in your country.",
+        "Let customers log in to reorder, track orders and download invoices.",
+        "Show business customers their own prices when they log in.",
+        "Turn contact form messages into leads in CRM."
+      ],
+      "outcome": "Online orders land in the same place as phone and shop orders. The warehouse ships them like any other order. You don't keep a second product list or copy orders between systems.",
+      "connects": "Products, prices and stock come from Sales and Inventory. Online orders go to the warehouse for delivery and to Accounting for invoicing. Contact forms feed CRM.",
+      "faq": [
+        {
+          "q": "Can we use our own domain name?",
+          "a": "Yes. Your Odoo website can run on your own domain."
+        },
+        {
+          "q": "Which payment methods can customers use?",
+          "a": "Odoo works with several online payment providers. Which ones you can use depends on your country and your bank, so we check this with you during the study."
+        },
+        {
+          "q": "We already have a website. Do we have to replace it?",
+          "a": "No. You can keep your current website and use Odoo for the rest. Connecting an outside online store to Odoo is possible, but it needs extra development."
+        }
+      ]
+    },
+    {
+      "slug": "project-timesheets",
+      "name": "Project & Timesheets",
+      "seo": {
+        "title": "Odoo Project and Timesheets | AIODYX",
+        "description": "Plan tasks, track hours and bill clients for the time spent. See how Odoo Project helps service firms and contractors."
+      },
+      "promise": "See where your team's time goes, and bill for it.",
+      "for": "Consulting firms, agencies, contractors, and any team that runs projects for clients.",
+      "features": [
+        "Split each project into tasks with owners, deadlines and stages.",
+        "Log hours on each task from the browser or the phone.",
+        "Bill clients by hours worked, by fixed price or by milestone.",
+        "Let clients follow their project's tasks through a portal.",
+        "Compare hours and costs with what you planned and what you billed.",
+        "Set recurring tasks for routine work."
+      ],
+      "outcome": "You stop guessing which projects make money. Hours get logged where the work happens, so invoices match the work done. Managers see each person's workload before deadlines slip.",
+      "connects": "A sold service can create a project on its own. Timesheets feed invoices in Accounting. Purchases and expenses can be linked to a project, so you see its real cost.",
+      "faq": [
+        {
+          "q": "Can clients see their project?",
+          "a": "Yes. Clients can get portal access to see tasks and progress and leave comments, without access to the rest of your system."
+        },
+        {
+          "q": "Does it have Gantt charts?",
+          "a": "Yes, in Odoo Enterprise. Community shows projects as lists, boards and calendars."
+        },
+        {
+          "q": "Can we invoice clients from timesheets?",
+          "a": "Yes. Approved hours can go straight onto the client's invoice, at the rate you set for the service."
+        }
+      ]
+    }
+  ],
+  "industries": [
+    {
+      "slug": "retail",
+      "name": "Retail & shops",
+      "seo": {
+        "title": "Odoo for Retail and Shops | AIODYX",
+        "description": "One system for your shop counters, stock, suppliers and online store. See how Odoo works for retailers in Jordan and Saudi Arabia."
+      },
+      "promise": "Every branch and every shelf in one system.",
+      "pains": [
+        "Stock in the system never matches the shelf.",
+        "Each branch reports its sales differently, and late.",
+        "Cash differences show up weeks later, if at all.",
+        "You find out an item ran out when a customer asks for it.",
+        "Your online store and your shops keep separate stock."
+      ],
+      "apps": ["point-of-sale", "inventory", "purchase", "accounting", "website-ecommerce"],
+      "appsNote": "POS at the counter, Inventory for stock across branches, Purchase for reorders and Accounting for the books. Add the online store when you're ready.",
+      "day": [
+        "Morning. You open the dashboard and see yesterday's sales for every branch.",
+        "Cashiers open their sessions. Prices and offers are the same in every branch, without anyone sending a list.",
+        "A popular item drops below its minimum. Odoo prepares a purchase order for your approval.",
+        "A customer pays with loyalty points earned in another branch.",
+        "Evening. Each cashier closes with a cash count, and any difference shows up right away under that cashier's name."
+      ],
+      "faq": [
+        {
+          "q": "Can each branch have its own prices?",
+          "a": "Yes. Each branch's POS can use its own price list, or all branches can share one."
+        },
+        {
+          "q": "Can we move stock between branches?",
+          "a": "Yes. You create a transfer from one branch to another, and stock updates in both places once it's received."
+        },
+        {
+          "q": "Can we start with POS only?",
+          "a": "Yes. You can start with POS and Inventory, then add Purchase, Accounting or an online store later."
+        }
+      ]
+    },
+    {
+      "slug": "wholesale",
+      "name": "Wholesale & distribution",
+      "seo": {
+        "title": "Odoo for Wholesale and Distribution | AIODYX",
+        "description": "Price lists per customer, credit limits, warehouse picking and delivery in one system. Odoo for distributors in Jordan and Saudi Arabia."
+      },
+      "promise": "Handle large orders and many customers without losing track.",
+      "pains": [
+        "Every customer has different prices, and salespeople keep them in their heads.",
+        "Customers go over their credit, and nobody notices until it's late.",
+        "Orders get picked wrong or shipped late because the warehouse works from paper.",
+        "Collections depend on someone remembering to call.",
+        "You don't know your real margin after freight and customs."
+      ],
+      "apps": ["sales-crm", "inventory", "purchase", "accounting", "website-ecommerce"],
+      "appsNote": "Sales with price lists per customer, Inventory for picking and delivery, Purchase for suppliers and imports, and Accounting for credit and collections. An online portal lets regular customers reorder by themselves.",
+      "day": [
+        "A salesperson enters an order. Odoo applies that customer's prices and warns if the order goes over their credit limit.",
+        "The warehouse gets a picking list and ships the order. Stock updates as it leaves.",
+        "The invoice is created from what was actually delivered.",
+        "Finance sees which invoices are overdue and sends reminders from the system.",
+        "An import shipment arrives. Freight and customs get added to the product cost, so your margins stay accurate."
+      ],
+      "faq": [
+        {
+          "q": "Can we set a credit limit per customer?",
+          "a": "Yes. Odoo can warn your team when a new order takes a customer over their credit limit."
+        },
+        {
+          "q": "Can our sales reps take orders on the road?",
+          "a": "Yes. They can create quotes and orders from a phone or tablet, with the customer's prices already applied."
+        },
+        {
+          "q": "Can customers place orders online?",
+          "a": "Yes. With Odoo eCommerce, business customers log in, see their own prices and reorder without calling."
+        }
+      ]
+    },
+    {
+      "slug": "manufacturing",
+      "name": "Manufacturing & factories",
+      "seo": {
+        "title": "Odoo for Factories and Manufacturing | AIODYX",
+        "description": "Plan production, track raw materials and know the real cost per unit. See how Odoo works for factories in Jordan and Saudi Arabia."
+      },
+      "promise": "From raw material to finished product, with the cost of every step.",
+      "pains": [
+        "Production is planned on whiteboards and Excel.",
+        "You start a job, then find out a component is missing.",
+        "Nobody knows the real cost per unit, so pricing is a guess.",
+        "Raw material stock is always off.",
+        "Tracing a faulty batch back to its materials takes days."
+      ],
+      "apps": ["manufacturing", "inventory", "purchase", "sales-crm", "accounting"],
+      "appsNote": "Manufacturing for bills of materials and production orders, Inventory for raw materials and finished goods, Purchase for components, Sales for customer orders and Accounting for costing.",
+      "day": [
+        "The planner sees which orders are due and which ones have all their materials.",
+        "Missing components already have purchase orders, created from minimum stock rules.",
+        "Operators record what they used and what they produced on each order.",
+        "Finished goods go into stock, and sales can confirm delivery dates.",
+        "The manager compares today's actual production cost with the planned cost."
+      ],
+      "faq": [
+        {
+          "q": "Can Odoo handle make-to-order and make-to-stock?",
+          "a": "Yes. Production can start from a customer order or from minimum stock levels, and you can mix both."
+        },
+        {
+          "q": "Can we track machine time and maintenance?",
+          "a": "Machine time is tracked through work centers. Odoo also has a Maintenance app for planning and recording machine maintenance."
+        },
+        {
+          "q": "How long does a factory implementation take?",
+          "a": "It depends on how many products, steps and production lines you have. Manufacturing projects usually take longer than retail or sales projects, because bills of materials and costing need careful setup and testing."
+        }
+      ]
+    },
+    {
+      "slug": "services",
+      "name": "Services & consulting firms",
+      "seo": {
+        "title": "Odoo for Service and Consulting Firms | AIODYX",
+        "description": "Track client projects, log hours, bill accurately and see which clients are profitable. Odoo for service firms in Jordan and Saudi Arabia."
+      },
+      "promise": "Bill for the hours you actually work.",
+      "pains": [
+        "Hours get logged late or not at all, so invoices miss billable time.",
+        "You can't tell which clients or projects make money.",
+        "Proposals, contracts and invoices live in different places.",
+        "You don't see who's overloaded until a deadline slips."
+      ],
+      "apps": ["sales-crm", "project-timesheets", "accounting", "hr-payroll"],
+      "appsNote": "CRM and Sales for proposals, Project and Timesheets for the work itself, Accounting for billing, and HR for leave and expenses.",
+      "day": [
+        "A client approves a proposal online. Odoo creates the project and its tasks.",
+        "Consultants log hours on their tasks during the day.",
+        "The project manager sees hours used against hours sold.",
+        "At month-end, approved hours go onto the client's invoice.",
+        "Before your next pricing decision, you check profit by client and by project."
+      ],
+      "faq": [
+        {
+          "q": "Can we bill retainers or monthly fees?",
+          "a": "Yes. You can invoice fixed monthly fees. Odoo's Subscriptions app, part of Enterprise, can create those invoices on schedule."
+        },
+        {
+          "q": "Can different staff have different billing rates?",
+          "a": "Yes. You can set rates per service or per employee on each project."
+        },
+        {
+          "q": "Can we track expenses per client?",
+          "a": "Yes. Staff can log expenses against a project, and you can re-invoice them to the client."
+        }
+      ]
+    },
+    {
+      "slug": "construction",
+      "name": "Contracting & construction",
+      "seo": {
+        "title": "Odoo for Contracting and Construction | AIODYX",
+        "description": "Track costs per project, manage purchases and subcontractors, and bill by progress. How Odoo fits contractors in Jordan and Saudi Arabia."
+      },
+      "promise": "See the real cost of each project while it's still running.",
+      "pains": [
+        "You learn a project lost money after it's finished.",
+        "Materials bought for one site end up on another, and nobody records it.",
+        "Subcontractor bills arrive with no clear link to the work done.",
+        "Progress billing is done in Excel and checked by hand.",
+        "Site teams and the office work from different numbers."
+      ],
+      "apps": ["project-timesheets", "purchase", "inventory", "accounting", "hr-payroll"],
+      "appsNote": "Odoo has no ready construction app. We build the setup from Project, Purchase, Inventory and Accounting, with each project tracked as its own cost center. Bills of quantities, progress certificates and retention usually need customization, and we scope that with you.",
+      "day": [
+        "The site engineer requests materials for the project, and Purchase sends the order to the supplier.",
+        "Materials arrive on site and get recorded against that project.",
+        "Labor hours and subcontractor bills are charged to the same project.",
+        "The project manager compares actual cost with the budget.",
+        "At month-end, you issue a progress invoice based on the work done."
+      ],
+      "faq": [
+        {
+          "q": "Does Odoo have a construction module?",
+          "a": "Not as a ready app. Odoo covers contracting through Project, Purchase, Inventory and Accounting. Construction-specific parts, like bills of quantities or retention, are usually added through customization."
+        },
+        {
+          "q": "Can we track budget against actual cost?",
+          "a": "Yes. Each project gets its own cost center, so purchases, labor and subcontractor bills add up against it, and you can set a budget for it in Odoo Accounting."
+        },
+        {
+          "q": "Can we bill clients by progress?",
+          "a": "Yes. You can invoice by milestone or by a percentage of the contract. More detailed progress billing usually needs some customization."
+        }
+      ]
+    },
+    {
+      "slug": "restaurants",
+      "name": "Restaurants & cafés",
+      "seo": {
+        "title": "Odoo for Restaurants and Cafés | AIODYX",
+        "description": "Tables, kitchen orders, ingredients and branches in one system. See how Odoo POS works for restaurants and cafés in Jordan and Saudi Arabia."
+      },
+      "promise": "From the table to the kitchen to closing time, in one system.",
+      "pains": [
+        "Orders get lost between the waiter and the kitchen.",
+        "You don't know how much of each ingredient you used.",
+        "Food cost per dish is a rough guess.",
+        "Each branch closes its cash differently.",
+        "Buying from suppliers depends on someone checking the storeroom."
+      ],
+      "apps": ["point-of-sale", "inventory", "purchase", "accounting", "hr-payroll"],
+      "appsNote": "POS in restaurant mode for tables and kitchen orders, Inventory for ingredients, Purchase for suppliers, Accounting for the books, and HR for staff attendance.",
+      "day": [
+        "Waiters take orders at the table on a tablet. The kitchen gets them on a printer or a screen.",
+        "Guests split the bill and pay by cash or card.",
+        "As dishes sell, ingredient stock goes down based on each recipe.",
+        "Ingredients running low show up on the reorder list before the next delivery day.",
+        "At closing, each cashier counts the drawer, and you see sales per branch and per dish."
+      ],
+      "faq": [
+        {
+          "q": "Can the kitchen get orders on a screen?",
+          "a": "Yes. Orders can go to kitchen printers or to a kitchen display screen. Which option fits depends on your setup and your Odoo edition."
+        },
+        {
+          "q": "Can we track food cost per dish?",
+          "a": "Yes. You set a recipe for each dish with its ingredients. Odoo deducts the ingredients as dishes sell and shows the cost per dish."
+        },
+        {
+          "q": "Does it support QR menus and self-ordering?",
+          "a": "Odoo has a self-order feature where guests scan a QR code at the table to see the menu and order. We check with you whether it suits your service."
+        }
+      ]
+    }
+  ],
+  "services": [
+    {
+      "slug": "implementation",
+      "name": "Implementation",
+      "summary": "We set up Odoo around how your company works, app by app, and test it with your real cases before you go live.",
+      "points": [
+        "A study of how each department works today",
+        "A written plan with the apps, scope, cost and timeline",
+        "Setup of companies, branches, users and access rights",
+        "Your products, price lists, taxes and accounts configured",
+        "Testing with your own examples before go-live"
+      ]
+    },
+    {
+      "slug": "customization",
+      "name": "Customization & development",
+      "summary": "When standard Odoo doesn't cover something you really need, we build it. We'll also tell you when a standard feature already does the job.",
+      "points": [
+        "Custom fields, screens and reports",
+        "Printed documents in your layout, like invoices and quotes",
+        "New workflows and approvals",
+        "Connections to other systems your company uses",
+        "Custom code kept in separate modules, so upgrades stay manageable"
+      ]
+    },
+    {
+      "slug": "data-migration",
+      "name": "Data migration",
+      "summary": "We move your data from Excel or your old system into Odoo, clean it up on the way, and check it with you.",
+      "points": [
+        "Customers, suppliers and products",
+        "Opening balances and open invoices",
+        "Stock quantities per warehouse",
+        "Employee records",
+        "Older transaction history, when it's worth moving",
+        "A review of the imported data with your team before go-live"
+      ]
+    },
+    {
+      "slug": "training",
+      "name": "Training",
+      "summary": "Each team learns the screens it actually uses, with your own data, in Arabic or English.",
+      "points": [
+        "Training per department, not one long session for everyone",
+        "Practice on your own products and customers",
+        "Key users on your side who can help their colleagues",
+        "Extra sessions for new staff when you need them"
+      ]
+    },
+    {
+      "slug": "support",
+      "name": "Support & maintenance",
+      "summary": "After go-live, we stay with you for questions, fixes, small changes and Odoo version upgrades.",
+      "points": [
+        "Help for your team when they get stuck",
+        "Fixes when something doesn't work as expected",
+        "Small changes as your business changes",
+        "Odoo version upgrades",
+        "Server care and backups if you host Odoo yourself"
+      ]
+    },
+    {
+      "slug": "e-invoicing",
+      "name": "E-invoicing (ZATCA and JoFotara)",
+      "summary": "We set up Odoo so your invoices meet the e-invoicing rules in Saudi Arabia and Jordan.",
+      "points": [
+        "Saudi Arabia. Setup of Odoo's Saudi localization for ZATCA phase 2, the integration phase with the Fatoora platform.",
+        "Onboarding with ZATCA using your Fatoora portal code, and passing the compliance checks.",
+        "Standard tax invoices sent for clearance and simplified invoices reported, as ZATCA requires.",
+        "Jordan. Setup of Odoo's Jordan e-invoicing module, so your invoices go to JoFotara, the national e-invoicing system.",
+        "Testing with real invoices before you switch it on.",
+        "If you're on an older Odoo version, we tell you what upgrading involves."
+      ]
+    }
+  ],
+  "offices": [
+    {
+      "country": "Jordan",
+      "city": "Amman",
+      "label": "Zahran Street office",
+      "phone": "+962 6 222 7604"
+    },
+    {
+      "country": "Jordan",
+      "city": "Amman",
+      "label": "Shafa Badran office",
+      "phone": "+962 6 516 4330"
+    },
+    {
+      "country": "Jordan",
+      "city": "",
+      "label": "Secretary, mobile and WhatsApp",
+      "phone": "+962 7 7599 9908"
+    },
+    {
+      "country": "Saudi Arabia",
+      "city": "Riyadh",
+      "label": "Riyadh office",
+      "phone": "+966 56 344 7279"
+    }
+  ]
+}

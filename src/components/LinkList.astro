@@ -1,0 +1,8 @@
+---
+import Icon from './Icon.astro';
+// Tidy ruled list of links, 1 / 2 / 3 columns. No boxes, so uneven counts never leave a visible hole.
+const { items } = Astro.props as { items: { href: string; label: string }[] };
+---
+<ul class="linklist" role="list">
+  {items.map((i) => <li><a href={i.href}><span>{i.label}</span><Icon name="arrow" size={20} /></a></li>)}
+</ul>

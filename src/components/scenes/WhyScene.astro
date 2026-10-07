@@ -1,0 +1,151 @@
+---
+// Before / after: scattered tools on one side, one connected system on the other.
+export interface Props { lang: 'ar' | 'en' | string }
+const { lang } = Astro.props;
+const rtl = lang === 'ar';
+const t = rtl
+  ? { before: 'قبل', after: 'بعد', mods: ['مبيعات', 'مخزون', 'محاسبة', 'موظفين'], hub: 'Odoo' }
+  : { before: 'Before', after: 'After', mods: ['Sales', 'Stock', 'Accounts', 'People'], hub: 'Odoo' };
+// before block is on the reading-start side
+const bx = rtl ? 270 : 0;
+const ax = rtl ? 22 : 272;
+---
+<div class="scene" aria-hidden="true" dir={rtl ? 'rtl' : 'ltr'}>
+  <svg viewBox="0 0 520 400" class={rtl ? 'rtl' : ''}>
+    <rect class="bg" x="1" y="1" width="518" height="398" rx="20" />
+
+    <!-- BEFORE -->
+    <g transform={`translate(${bx},0)`}>
+      <rect x="24" y="24" width="64" height="26" rx="13" class="pill" />
+      <text x="56" y="42" text-anchor="middle" font-size="13" class="t-m t-b">{t.before}</text>
+
+      <!-- tangled lines -->
+      <g class="tangle">
+        <path class="ln mu" d="M70 120 C 150 60, 60 230, 170 150 S 90 300, 200 250" />
+        <path class="ln mu" d="M190 110 C 90 150, 210 220, 110 200 S 200 330, 80 300" />
+        <path class="ln mu" d="M60 330 C 140 240, 220 340, 150 190" />
+        <path class="ln mu" d="M210 330 C 120 300, 40 200, 130 120" />
+      </g>
+
+      <!-- excel sheet -->
+      <g class="piece p1"><g transform="rotate(-8 80 120)">
+        <rect class="ln fw" x="34" y="84" width="92" height="72" rx="6" />
+        <rect x="34" y="84" width="92" height="14" rx="6" class="gx" />
+        <path class="ln mu" d="M34 112 H126 M34 128 H126 M34 144 H126 M64 98 V156 M95 98 V156" />
+        <rect x="66" y="114" width="27" height="12" class="gx2" />
+      </g></g>
+
+      <!-- calculator -->
+      <g class="piece p2"><g transform="rotate(9 190 100)">
+        <rect class="ln fw" x="156" y="70" width="64" height="86" rx="9" />
+        <rect class="ln fs" x="164" y="78" width="48" height="16" rx="3" />
+        {[0, 1, 2].map((r) => [0, 1, 2].map((c) => <circle cx={172 + c * 16} cy={108 + r * 14} r="4" class="dot" />))}
+      </g></g>
+
+      <!-- paper invoices -->
+      <g class="piece p3"><g transform="rotate(6 70 250)">
+        <rect class="ln fw" x="44" y="214" width="76" height="92" rx="4" transform="rotate(-6 80 260)" />
+        <rect class="ln fw" x="52" y="208" width="76" height="92" rx="4" />
+        <path class="ln mu" d="M62 226 H100 M62 238 H116 M62 250 H116 M62 262 H92" />
+        <path class="ln amb" d="M62 282 H110" />
+      </g></g>
+
+      <!-- separate app windows -->
+      <g class="piece p4"><g transform="rotate(-5 180 270)">
+        <rect class="ln fw" x="140" y="236" width="92" height="64" rx="7" />
+        <path class="ln mu" d="M140 252 H232" />
+        <circle cx="150" cy="244" r="2" class="fm" /><circle cx="158" cy="244" r="2" class="dot" />
+        <rect x="150" y="262" width="30" height="26" rx="3" class="fs" />
+        <path class="ln pr" d="M190 266 H222 M190 276 H214 M190 286 H220" />
+      </g></g>
+      <g class="piece p5"><g transform="rotate(7 150 340)">
+        <rect class="ln fw" x="110" y="322" width="80" height="52" rx="7" />
+        <path class="ln mu" d="M110 336 H190" />
+        <path class="ln pr" d="M122 362 l12 -10 l10 6 l14 -12 l12 8" />
+      </g></g>
+
+      <!-- question marks -->
+      <text x="226" y="64" font-size="22" class="t-m q" text-anchor="middle">?</text>
+      <text x="26" y="196" font-size="18" class="t-m q" text-anchor="middle">?</text>
+    </g>
+
+    <!-- ARROW -->
+    <g transform={rtl ? 'translate(520,0) scale(-1,1)' : ''}>
+      <path class="ln pr draw" pathLength="1" style="--d:.9s" d="M240 200 H266 M258 192 L266 200 L258 208" />
+    </g>
+
+    <!-- AFTER -->
+    <g transform={`translate(${ax},0)`}>
+      <rect x="0" y="24" width="64" height="26" rx="13" class="pill on" />
+      <text x="32" y="42" text-anchor="middle" font-size="13" class="t-w t-b">{t.after}</text>
+
+      <g class="pop" style="--d:1.1s">
+        <rect class="shadow" x="0" y="80" width="224" height="294" rx="16" />
+        <rect class="ln fw" x="0" y="76" width="224" height="294" rx="16" />
+        <path class="ln mu" d="M0 102 H224" />
+        <circle cx="16" cy="89" r="3" class="fm" /><circle cx="26" cy="89" r="3" class="dot" /><circle cx="36" cy="89" r="3" class="dot" />
+      </g>
+
+      <g class="ln pr" fill="none">
+        {[[50, 160], [174, 160], [50, 318], [174, 318]].map(([x, y], i) => (
+          <path class="draw" pathLength="1" style={`--d:${1.6 + i * 0.2}s;animation-duration:.9s`} d={`M112 239 L${x} ${y}`} />
+        ))}
+      </g>
+
+      {[[50, 160, 0], [174, 160, 1], [50, 318, 2], [174, 318, 3]].map(([x, y, i]) => (
+        <g class="pop" style={`--d:${1.4 + (i as number) * 0.15}s`}>
+          <rect class="ln fs pr" x={(x as number) - 40} y={(y as number) - 38} width="80" height="76" rx="12" />
+          {i === 0 && <path class="ln pr" d={`M${x - 14} ${y - 6} l10 -10 l8 6 l14 -14`} />}
+          {i === 1 && <path class="ln pr" d={`M${x - 12} ${y - 14} l12 -7 l12 7 v12 l-12 7 l-12 -7 z M${x - 12} ${y - 14} l12 7 l12 -7 M${x} ${y - 7} v12`} />}
+          {i === 2 && <path class="ln pr" d={`M${x - 13} ${y - 18} h26 M${x - 13} ${y - 9} h26 M${x - 13} ${y} h16`} />}
+          {i === 3 && <g><circle class="ln pr" cx={x} cy={(y as number) - 14} r="6" /><path class="ln pr" d={`M${x - 13} ${y + 2} c0 -10 26 -10 26 0`} /></g>}
+          <text x={x} y={(y as number) + 28} font-size="12.5" text-anchor="middle" class="t-m">{t.mods[i as number]}</text>
+        </g>
+      ))}
+      <g class="pop" style="--d:1.3s">
+        <circle cx="112" cy="239" r="27" class="fp" />
+        <text x="112" y="244" font-size="14" text-anchor="middle" class="t-w t-b">{t.hub}</text>
+      </g>
+    </g>
+  </svg>
+</div>
+
+<style>
+  .scene { width: 100%; max-width: 540px; margin-inline: auto; font-family: var(--font); }
+  svg { display: block; width: 100%; height: auto; }
+  svg.rtl { direction: rtl; }
+  text { font-family: var(--font); fill: var(--ink); }
+  .t-m { fill: var(--muted); } .t-w { fill: #fff; } .t-b { font-weight: 600; }
+  .bg { fill: var(--tint); stroke: var(--line); stroke-width: 1.5; }
+  .ln { fill: none; stroke: var(--ink); stroke-width: 1.5; stroke-linecap: round; stroke-linejoin: round; }
+  .ln.pr { stroke: var(--primary); } .ln.mu { stroke: var(--line-2); } .ln.amb { stroke: #c98a2b; }
+  .ln.fw { fill: #fff; } .ln.fs { fill: var(--primary-soft); }
+  .fs { fill: var(--primary-soft); } .fp { fill: var(--primary); } .fm { fill: var(--mint); }
+  .dot { fill: var(--line-2); }
+  .gx { fill: var(--primary); } .gx2 { fill: var(--primary-soft); }
+  .shadow { fill: var(--ink); opacity: .06; }
+  .pill { fill: #fff; stroke: var(--line-2); stroke-width: 1.5; }
+  .pill.on { fill: var(--primary); stroke: var(--primary); }
+
+  .draw { stroke-dasharray: 1; stroke-dashoffset: 1; animation: draw 1s ease-out forwards; animation-delay: var(--d, 0s); }
+  .pop { opacity: 0; animation: pop .7s ease-out forwards; animation-delay: var(--d, 0s); }
+  .piece { transform-box: fill-box; transform-origin: center; animation: sway 6s ease-in-out infinite; }
+  .p2 { animation-delay: -1.5s; } .p3 { animation-delay: -3s; } .p4 { animation-delay: -4.5s; } .p5 { animation-delay: -2s; }
+  .tangle { animation: tidy 1.6s ease-in-out 1s forwards; }
+  .lbl { opacity: 0; animation: fade .5s ease-out 2.3s forwards; }
+  .q { animation: tidy .8s ease-out 1s forwards; }
+
+  @keyframes draw { to { stroke-dashoffset: 0; } }
+  @keyframes pop { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: none; } }
+  @keyframes fade { to { opacity: 1; } }
+  @keyframes sway { 0%, 100% { transform: translate(0, 0); } 50% { transform: translate(2px, -3px); } }
+  @keyframes tidy { to { opacity: .28; } }
+
+  @media (prefers-reduced-motion: reduce) {
+    * { animation: none !important; }
+    .draw { stroke-dashoffset: 0; }
+    .pop { opacity: 1; }
+    .tangle, .q { opacity: .28; }
+    .lbl { opacity: 1; }
+  }
+</style>

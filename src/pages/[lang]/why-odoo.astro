@@ -1,0 +1,134 @@
+---
+import Base from '../../layouts/Base.astro';
+import Icon from '../../components/Icon.astro';
+import AppIcon from '../../components/AppIcon.astro';
+import PageHead from '../../components/PageHead.astro';
+import SectionHead from '../../components/SectionHead.astro';
+import WhyScene from '../../components/scenes/WhyScene.astro';
+import DeskToggle from '../../components/DeskToggle.astro';
+import CtaBand from '../../components/CtaBand.astro';
+import { DATA, href, langPaths, type Lang } from '../../lib/site';
+
+export const getStaticPaths = langPaths;
+const { lang } = Astro.params as { lang: Lang };
+const d = DATA[lang];
+const p = d.pages['why-odoo'];
+const ed = p.editions;
+const bi = d.pages.home.whyOdoo.points[2]; // Arabic and English (existing home point)
+const ar = lang === 'ar';
+// UI chrome
+const T = ar
+  ? { desk: 'يوم عادي في شركتك', sale: 'بيع', ship: 'تسليم', inv: 'فاتورة', control: 'التحكم', on: 'عربي', en: 'EN', apps: ['accounting', 'sales-crm', 'inventory', 'hr-payroll'] }
+  : { desk: 'A day in your company', sale: 'Sale', ship: 'Delivery', inv: 'Invoice', control: 'Control', on: 'AR', en: 'EN', apps: ['accounting', 'sales-crm', 'inventory', 'hr-payroll'] };
+const qr = [...'1110111010101100101110111101001110111011010010111'];
+const b = p.benefits.items;
+const n = (i: number) => String(i + 1).padStart(2, '0');
+---
+<Base lang={lang} path="why-odoo/" title={p.seo.title} description={p.seo.description} crumbs={[{ name: d.site.nav.whyOdoo, href: href(lang, 'why-odoo/') }]}>
+  <PageHead title={p.intro.title} lead={p.intro.body}>
+    <WhyScene slot="visual" lang={lang} />
+  </PageHead>
+
+  <section class="sec" aria-labelledby="what">
+    <div class="wrap split">
+      <SectionHead id="what" side title={p.whatIs.title} />
+      <div class="whatis">
+        {p.whatIs.body.map((t, i) => <p class={i === 0 ? 'whatis__lead' : ''}><span class="num">{n(i)}</span>{t}</p>)}
+      </div>
+    </div>
+  </section>
+
+  <section class="sec sec--grey" aria-labelledby="desk">
+    <div class="wrap">
+      <SectionHead id="desk" title={T.desk} />
+      <DeskToggle lang={lang} beforeTitle={p.problems.title} before={p.problems.items} afterTitle={p.benefits.title} after={b.slice(0, 4)} />
+    </div>
+  </section>
+
+  <section class="sec" aria-labelledby="benefits">
+    <div class="wrap">
+      <SectionHead id="benefits" title={p.benefits.title} />
+      <ul class="wb6" role="list">
+        <li class="wc wc--w">
+          <div class="wc__t"><h3>{b[0].title}</h3><p>{b[0].body}</p></div>
+          <div class="wc__v wv-flow" aria-hidden="true">
+            <span><Icon name="check" size={14} />{T.sale}</span><i></i><span><Icon name="check" size={14} />{T.ship}</span><i></i><span><Icon name="check" size={14} />{T.inv}</span>
+          </div>
+        </li>
+        <li class="wc">
+          <div class="wc__v wv-num" aria-hidden="true"><b>84,250</b><svg viewBox="0 0 120 40"><path d="M0 32L20 26L40 29L60 18L80 20L100 8L120 4" /></svg></div>
+          <div class="wc__t"><h3>{b[1].title}</h3><p>{b[1].body}</p></div>
+        </li>
+        <li class="wc">
+          <div class="wc__v wv-roles" aria-hidden="true"><span><Icon name="user" size={16} /></span><span><Icon name="eye" size={16} /></span><span class="off"><Icon name="shield" size={16} /></span></div>
+          <div class="wc__t"><h3>{b[2].title}</h3><p>{b[2].body}</p></div>
+        </li>
+        <li class="wc">
+          <div class="wc__v wv-add" aria-hidden="true">{T.apps.map((a, i) => <span style={`--k:${i}`}><AppIcon name={a} size={34} /></span>)}<em>+</em></div>
+          <div class="wc__t"><h3>{b[3].title}</h3><p>{b[3].body}</p></div>
+        </li>
+        <li class="wc">
+          <div class="wc__v wv-bi" aria-hidden="true"><div class="card"><i></i><i></i><i></i></div><span class="pill"><b>{T.on}</b><b>{T.en}</b></span></div>
+          <div class="wc__t"><h3>{bi.title}</h3><p>{bi.body}</p></div>
+        </li>
+        <li class="wc wc--w wc--r">
+          <div class="wc__t"><h3>{b[4].title}</h3><p>{b[4].body}</p></div>
+          <div class="wc__v wv-qr" aria-hidden="true">
+            <div class="doc"><i></i><i></i><i></i></div>
+            <div class="qr"><svg viewBox="0 0 7 7" shape-rendering="crispEdges">{qr.map((c, k) => c === '1' && <rect x={k % 7} y={Math.floor(k / 7)} width="1" height="1" />)}</svg></div>
+            <span class="st"><Icon name="check" size={14} />ZATCA · JoFotara</span>
+          </div>
+        </li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="sec sec--grey" aria-labelledby="editions">
+    <div class="wrap">
+      <SectionHead id="editions" title={ed.title} lead={ed.body} />
+      <div class="ed">
+        {[ed.community, ed.enterprise].map((e, i) => (
+          <article class={`ed__card ${i === 1 ? 'ed__card--pro' : ''}`}>
+            <header><h3>{e.name}</h3><p>{e.body}</p></header>
+            <ul>
+              {e.points.map((t, k) => {
+                const miss = i === 0 && k === e.points.length - 1;
+                return <li class={miss ? 'miss' : ''}><span aria-hidden="true"><Icon name={miss ? 'minus' : 'check'} size={14} /></span>{t}</li>;
+              })}
+            </ul>
+          </article>
+        ))}
+      </div>
+      <p class="note">{ed.note}</p>
+    </div>
+  </section>
+
+  <section class="sec" aria-labelledby="hosting">
+    <div class="wrap">
+      <SectionHead id="hosting" title={p.hosting.title} />
+      <ol class="stairs" role="list">
+        {p.hosting.items.map((h, i) => (
+          <li class={`stair stair--${i + 1}`}>
+            <span class="stair__meter" aria-hidden="true"><i class="on"></i><i class={i >= 1 ? 'on' : ''}></i><i class={i >= 2 ? 'on' : ''}></i><small>{T.control}</small></span>
+            <h3>{h.title}</h3>
+            <p>{h.body}</p>
+          </li>
+        ))}
+      </ol>
+    </div>
+  </section>
+
+  <section class="sec sec--grey" aria-labelledby="notfit">
+    <div class="wrap split">
+      <SectionHead id="notfit" side title={p.notFit.title} lead={p.notFit.body} />
+      <div>
+        <ul class="honest" role="list">
+          {p.notFit.items.map((it) => <li><span aria-hidden="true"><Icon name="help" size={18} /></span><h3>{it.title}</h3><p>{it.body}</p></li>)}
+        </ul>
+        <p class="honest__close">{p.notFit.closing}</p>
+      </div>
+    </div>
+  </section>
+
+  <CtaBand lang={lang} title={p.cta.title} body={p.cta.body} button={p.cta.button} />
+</Base>

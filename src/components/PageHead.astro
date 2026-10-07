@@ -1,0 +1,17 @@
+---
+import { marked } from '../lib/site';
+// Inner-page hero: text on the start side; the "visual" slot (scene / mock) on the other. Without a visual
+// the text simply spans the container. Breadcrumbs are rendered by the layout directly above.
+const { title, lead, words } = Astro.props as { title: string; lead?: string; words?: string; motif?: number };
+const visual = Astro.slots.has('visual');
+---
+<section class={`phead ${visual ? '' : 'phead--solo'}`}>
+  <div class="wrap phead__grid">
+    <div class="phead__text">
+      <h1 set:html={marked(title, words)} />
+      {lead && <p class="lead">{lead}</p>}
+      <slot />
+    </div>
+    {visual && <div class="phead__visual"><slot name="visual" /></div>}
+  </div>
+</section>

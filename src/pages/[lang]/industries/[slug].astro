@@ -1,0 +1,66 @@
+---
+import Base from '../../../layouts/Base.astro';
+import Icon from '../../../components/Icon.astro';
+import IndustryScene from '../../../components/scenes/IndustryScene.astro';
+import PageHead from '../../../components/PageHead.astro';
+import SectionHead from '../../../components/SectionHead.astro';
+import AppTiles from '../../../components/AppTiles.astro';
+import Faq from '../../../components/Faq.astro';
+import CtaBand from '../../../components/CtaBand.astro';
+import { DATA, abs, href, tel, waUrl, pathsFor, slugs, type Lang } from '../../../lib/site';
+import { faqNode } from '../../../lib/schema';
+
+export const getStaticPaths = () => pathsFor(slugs.industries);
+const { lang, slug } = Astro.params as { lang: Lang; slug: string };
+const d = DATA[lang];
+const it = d.industries.find((a) => a.slug === slug)!;
+const url = abs(href(lang, `industries/${slug}/`));
+const apps = (it.apps as string[]).map((s) => d.apps.find((a) => a.slug === s)!);
+const cols = apps.length % 5 === 0 ? 5 : apps.length % 4 === 0 ? 4 : apps.length % 3 === 0 ? 3 : 4;
+const n = (i: number) => String(i + 1).padStart(2, '0');
+---
+<Base lang={lang} path={`industries/${slug}/`} title={it.seo.title} description={it.seo.description} waTopic={it.name}
+  crumbs={[{ name: d.site.nav.industries, href: href(lang, 'industries/') }, { name: it.name, href: href(lang, `industries/${slug}/`) }]}
+  extra={[faqNode(lang, url, it.faq)]}>
+  <PageHead title={it.name} lead={it.promise}>
+    <div class="btn-row">
+      <a class="btn btn--wa btn--lg" href={waUrl(lang, it.name)} rel="noopener"><Icon name="whatsapp" size={20} />{d.site.cta.whatsapp}</a>
+      <a class="btn btn--line btn--lg" href={tel(d.offices[2].phone)}><Icon name="phone" size={20} />{d.site.cta.call}</a>
+    </div>
+    <IndustryScene slot="visual" slug={slug} lang={lang} />
+  </PageHead>
+
+  <section class="sec" aria-labelledby="pains">
+    <div class="wrap">
+      <SectionHead id="pains" title={d.site.labels.industryPains} />
+      <ol class="numlist" role="list">
+        {it.pains.map((t, i) => <li><span class="num">{n(i)}</span><p>{t}</p></li>)}
+      </ol>
+    </div>
+  </section>
+
+  <section class="sec sec--grey" aria-labelledby="apps">
+    <div class="wrap">
+      <SectionHead id="apps" title={d.site.labels.industryApps} lead={it.appsNote} href={href(lang, 'apps/')} label={d.site.cta.allApps} />
+      <AppTiles lang={lang} apps={apps} cols={cols as 3 | 4 | 5} />
+    </div>
+  </section>
+
+  <section class="sec" aria-labelledby="day">
+    <div class="wrap split">
+      <SectionHead id="day" side title={d.site.labels.industryDay} />
+      <ol class="vtl" role="list">
+        {it.day.map((t, i) => <li><span class="vtl__dot" aria-hidden="true"></span><span class="num">{n(i)}</span><p>{t}</p></li>)}
+      </ol>
+    </div>
+  </section>
+
+  <section class="sec sec--grey" aria-labelledby="faq">
+    <div class="wrap split">
+      <SectionHead id="faq" side title={d.site.labels.faq} />
+      <Faq items={it.faq} />
+    </div>
+  </section>
+
+  <CtaBand lang={lang} title={d.pages.industries.cta.title} body={d.pages.industries.cta.body} button={d.pages.industries.cta.button} topic={it.name} />
+</Base>

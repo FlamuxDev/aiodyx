@@ -1,0 +1,34 @@
+---
+import AppIcon from './AppIcon.astro';
+import AppMock from './mocks/AppMock.astro';
+import Icon from './Icon.astro';
+import { href, type Lang } from '../lib/site';
+// Bento grid: accounting (tall), CRM and inventory get a real AppMock preview in a cropped window; the six others are
+// compact cells that reveal their promise line on hover / focus.
+const { lang, apps } = Astro.props as { lang: Lang; apps: { slug: string; name: string; promise: string }[] };
+const big = ['accounting', 'sales-crm', 'inventory'];
+const lead = big.map((s) => apps.find((a) => a.slug === s)!).filter(Boolean);
+const rest = apps.filter((a) => !big.includes(a.slug));
+---
+<ul class="bento" role="list">
+  {lead.map((a) => (
+    <li class={`bx bx--lg bx--${a.slug}`}>
+      <a href={href(lang, `apps/${a.slug}/`)}>
+        <span class="bx__top"><AppIcon name={a.slug} size={44} /><h3>{a.name}</h3><Icon name="arrow" size={20} /></span>
+        <p>{a.promise}</p>
+        <div class="bx__win sc__win" aria-hidden="true">
+          <div class="sc__bar"><i></i><i></i><i></i></div>
+          <div class="sc__stage"><div class="sc__mock"><AppMock slug={a.slug} lang={lang} /></div></div>
+        </div>
+      </a>
+    </li>
+  ))}
+  {rest.map((a) => (
+    <li class="bx bx--sm">
+      <a href={href(lang, `apps/${a.slug}/`)}>
+        <AppIcon name={a.slug} size={40} /><span class="bx__n">{a.name}</span>
+        <span class="bx__reveal">{a.promise}</span>
+      </a>
+    </li>
+  ))}
+</ul>

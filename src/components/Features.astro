@@ -1,0 +1,13 @@
+---
+// Ruled feature grid: heavy rule above each item, large accent number, no card boxes.
+const { items, cols = 3 } = Astro.props as { items: { title: string; body: string }[]; cols?: 2 | 3 };
+---
+<div class={`feats feats--${cols}`}>
+  {items.map((it, i) => (
+    <article class="feat">
+      <span class="feat__n">{String(i + 1).padStart(2, '0')}</span>
+      <h3>{it.title}</h3>
+      <p>{it.body}</p>
+    </article>
+  ))}
+</div>

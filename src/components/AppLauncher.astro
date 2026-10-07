@@ -1,0 +1,28 @@
+---
+import AppIcon from './AppIcon.astro';
+import AppMock from './mocks/AppMock.astro';
+import { type Lang } from '../lib/site';
+// Hero visual for the apps index: a browser frame whose screen is an Odoo-style launcher. Tiles assemble in
+// with a stagger, then accounting opens into a mini window. CSS only; reduced motion shows the final state.
+const { lang, apps } = Astro.props as { lang: Lang; apps: { slug: string; name: string }[] };
+const order = ['accounting', 'sales-crm', 'inventory', 'purchase', 'manufacturing', 'hr-payroll', 'point-of-sale', 'website-ecommerce', 'project-timesheets'];
+const list = order.map((s) => apps.find((a) => a.slug === s)!).filter(Boolean);
+const short = (n: string) => n.split(/\s+و|\s*[&,]\s*/)[0];
+---
+<div class="lnch" aria-hidden="true">
+  <div class="lnch__frame">
+    <div class="lnch__bar"><i></i><i></i><i></i><span></span></div>
+    <div class="lnch__screen">
+      <ul class="lnch__grid">
+        {list.map((a, i) => (
+          <li class={i === 0 ? 'is-first' : ''} style={`--i:${i}`}><AppIcon name={a.slug} size={46} /><span>{short(a.name)}</span></li>
+        ))}
+      </ul>
+      <div class="lnch__scrim"></div>
+      <div class="lnch__win">
+        <div class="lnch__wbar"><i></i><i></i><i></i></div>
+        <div class="lnch__wbody"><div class="lnch__mock"><AppMock slug="accounting" lang={lang} /></div></div>
+      </div>
+    </div>
+  </div>
+</div>

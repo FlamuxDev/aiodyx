@@ -1,0 +1,76 @@
+---
+// A short WhatsApp-style conversation: customer message, typing indicator, AIODYX reply.
+export interface Props { lang: 'ar' | 'en' | string }
+const { lang } = Astro.props;
+const rtl = lang === 'ar';
+const t = rtl
+  ? { name: 'AIODYX', status: 'متصل الآن', me: 'هلا، أبغى أعرف عن Odoo', them: 'هلا فيك! متى يناسبك نكلمك؟', time1: '10:24', time2: '10:25', chip: 'نرد خلال دقائق' }
+  : { name: 'AIODYX', status: 'Online now', me: "Hi, I'd like to know about Odoo", them: 'Hi there! When is a good time to call you?', time1: '10:24', time2: '10:25', chip: 'We reply within minutes' };
+---
+<div class="scene" aria-hidden="true" dir={rtl ? 'rtl' : 'ltr'}>
+  <div class="stage">
+    <div class="glow"></div>
+    <div class="phone">
+      <div class="top">
+        <div class="avatar">A</div>
+        <div class="who"><strong>{t.name}</strong><span><i></i>{t.status}</span></div>
+      </div>
+      <div class="body">
+        <div class="msg me" style="--d:.5s">
+          <p>{t.me}</p>
+          <span class="meta"><bdi>{t.time1}</bdi><svg viewBox="0 0 18 10" width="16" height="9"><path d="M1 5 l3 3 l6 -7 M7 8 l1 1 l7 -8" /></svg></span>
+        </div>
+        <div class="slot">
+          <div class="typing"><i></i><i></i><i></i></div>
+          <div class="msg them" style="--d:3.1s">
+            <p>{t.them}</p>
+            <span class="meta"><bdi>{t.time2}</bdi></span>
+          </div>
+        </div>
+      </div>
+      <div class="composer"><span></span><b></b></div>
+    </div>
+    <div class="chip"><svg viewBox="0 0 16 16" width="14" height="14"><circle cx="8" cy="8" r="6.5" /><path d="M8 4.5 V8 L10.5 9.5" /></svg>{t.chip}</div>
+  </div>
+</div>
+
+<style>
+  .scene { width: 100%; max-width: 520px; margin-inline: auto; font-family: var(--font); }
+  .stage { position: relative; display: grid; place-items: center; padding: 22px 0 22px; }
+  .glow { position: absolute; inset: 6% 8%; border-radius: 28px; background: var(--tint); border: 1.5px solid var(--line); }
+  .phone { position: relative; width: min(300px, 78%); background: #fff; border: 1.5px solid var(--ink); border-radius: 30px; padding: 10px 10px 12px; box-shadow: 0 18px 30px -18px rgba(21, 32, 29, .35); }
+  .top { display: flex; align-items: center; gap: 10px; padding: 8px 8px 12px; border-bottom: 1.5px solid var(--line); }
+  .avatar { width: 34px; height: 34px; border-radius: 50%; background: var(--primary); color: #fff; display: grid; place-items: center; font-weight: 700; font-size: 15px; flex: none; }
+  .who { display: flex; flex-direction: column; line-height: 1.3; }
+  .who strong { font-size: 14.5px; font-weight: 600; color: var(--ink); }
+  .who span { font-size: 12px; color: var(--muted); display: flex; align-items: center; gap: 5px; }
+  .who i { width: 7px; height: 7px; border-radius: 50%; background: var(--mint); display: inline-block; }
+  .body { background: var(--grey); border-radius: 18px; margin-top: 10px; padding: 16px 10px; min-height: 175px; display: flex; flex-direction: column; gap: 10px; }
+  .msg { max-width: 82%; padding: 9px 12px 6px; border-radius: 16px; font-size: 14.5px; line-height: 1.55; color: var(--ink); opacity: 0; animation: rise .6s ease-out forwards; animation-delay: var(--d, 0s); }
+  .msg p { margin: 0; }
+  .meta { display: flex; justify-content: flex-end; align-items: center; gap: 4px; font-size: 10.5px; color: var(--muted); margin-top: 2px; }
+  .meta svg { fill: none; stroke: var(--primary); stroke-width: 1.3; stroke-linecap: round; stroke-linejoin: round; }
+  .me { align-self: flex-end; background: var(--primary-soft); border: 1.5px solid #c9e3dc; border-end-end-radius: 4px; }
+  .them { align-self: flex-start; background: #fff; border: 1.5px solid var(--line); border-end-start-radius: 4px; }
+  .slot { display: grid; align-self: flex-start; width: 100%; }
+  .slot > * { grid-area: 1 / 1; }
+  .typing { align-self: start; justify-self: start; display: inline-flex; gap: 5px; padding: 13px 14px; background: #fff; border: 1.5px solid var(--line); border-radius: 16px; border-end-start-radius: 4px; opacity: 0; animation: typing 1.7s ease-out 1.3s forwards; }
+  .typing i { width: 6px; height: 6px; border-radius: 50%; background: var(--muted); opacity: .5; animation: dot 1s ease-in-out infinite; }
+  .typing i:nth-child(2) { animation-delay: .15s; } .typing i:nth-child(3) { animation-delay: .3s; }
+  .composer { display: flex; align-items: center; gap: 8px; margin-top: 10px; padding: 0 4px; }
+  .composer span { flex: 1; height: 28px; border-radius: 14px; border: 1.5px solid var(--line); }
+  .composer b { width: 28px; height: 28px; border-radius: 50%; background: var(--primary); }
+  .chip { position: relative; margin-top: 14px; justify-self: center; display: inline-flex; align-items: center; gap: 7px; background: #fff; border: 1.5px solid var(--line-2); border-radius: 999px; padding: 8px 14px; font-size: 13px; font-weight: 600; color: var(--ink); box-shadow: 0 8px 16px -10px rgba(21, 32, 29, .35); opacity: 0; animation: rise .7s ease-out 3.8s forwards, bob 7s ease-in-out 4.5s infinite; }
+  .chip svg { fill: none; stroke: var(--primary); stroke-width: 1.5; stroke-linecap: round; }
+
+  @keyframes rise { from { opacity: 0; transform: translateY(10px) scale(.97); } to { opacity: 1; transform: none; } }
+  @keyframes typing { 0% { opacity: 0; } 15% { opacity: 1; } 85% { opacity: 1; } 100% { opacity: 0; } }
+  @keyframes dot { 0%, 100% { transform: translateY(0); opacity: .4; } 50% { transform: translateY(-3px); opacity: 1; } }
+  @keyframes bob { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-4px); } }
+
+  @media (prefers-reduced-motion: reduce) {
+    * { animation: none !important; }
+    .msg, .chip { opacity: 1; }
+    .typing { display: none; }
+  }
+</style>

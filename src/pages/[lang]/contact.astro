@@ -1,0 +1,50 @@
+---
+import Base from '../../layouts/Base.astro';
+import Icon from '../../components/Icon.astro';
+import ChatScene from '../../components/scenes/ChatScene.astro';
+import PageHead from '../../components/PageHead.astro';
+import SectionHead from '../../components/SectionHead.astro';
+import Offices from '../../components/Offices.astro';
+import { DATA, href, tel, waUrl, langPaths, type Lang } from '../../lib/site';
+
+export const getStaticPaths = langPaths;
+const { lang } = Astro.params as { lang: Lang };
+const d = DATA[lang];
+const p = d.pages.contact;
+---
+<Base lang={lang} path="contact/" title={p.seo.title} description={p.seo.description} type="ContactPage" crumbs={[{ name: d.site.nav.contact, href: href(lang, 'contact/') }]}>
+  <PageHead title={p.intro.title} lead={p.intro.body}>
+    <ChatScene slot="visual" lang={lang} />
+  </PageHead>
+
+  <section class="sec">
+    <div class="wrap actions">
+      <article class="action">
+        <h2 class="h-md">{p.whatsapp.title}</h2>
+        <p>{p.whatsapp.body}</p>
+        <a class="btn btn--wa btn--lg" href={waUrl(lang)} rel="noopener"><Icon name="whatsapp" size={22} />{p.whatsapp.button}</a>
+      </article>
+      <article class="action">
+        <h2 class="h-md">{d.site.cta.call}</h2>
+        <p class="wa-number"><a class="tel" dir="ltr" href={tel(d.offices[2].phone)}>{p.whatsapp.number}</a></p>
+        <a class="btn btn--line btn--lg" href={tel(d.offices[2].phone)}><Icon name="phone" size={22} />{d.site.cta.call}</a>
+      </article>
+    </div>
+  </section>
+
+  <section class="sec sec--grey" aria-labelledby="consult">
+    <div class="wrap split">
+      <SectionHead id="consult" side title={p.consultation.title} />
+      <ul class="checks checks--lg" role="list">
+        {p.consultation.points.map((t) => <li><Icon name="check" size={18} /><span>{t}</span></li>)}
+      </ul>
+    </div>
+  </section>
+
+  <section class="sec" aria-labelledby="offices">
+    <div class="wrap">
+      <SectionHead id="offices" title={p.offices.title} lead={p.offices.body} />
+      <Offices lang={lang} />
+    </div>
+  </section>
+</Base>

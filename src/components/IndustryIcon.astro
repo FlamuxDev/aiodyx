@@ -1,0 +1,13 @@
+---
+// Distinct line-art per industry (not the app icon style). Decorative.
+const { slug, size = 48 } = Astro.props as { slug: string; size?: number };
+const G: Record<string, string> = {
+  retail: '<path d="M6 16h36l-3 11H9z"/><path d="M12 27v15h24V27"/><path d="M20 42V32h8v10"/><path d="M6 16l3-8h30l3 8"/>',
+  wholesale: '<rect x="5" y="27" width="17" height="14"/><rect x="26" y="27" width="17" height="14"/><rect x="15.5" y="11" width="17" height="14"/><path d="M3 44h42M15.5 17h17"/>',
+  manufacturing: '<path d="M5 42V23l11 6v-6l11 6V13h9v29z"/><path d="M3 42h42M13 36h4M24 36h4M34 36h4M32 7v6"/>',
+  services: '<rect x="5" y="15" width="38" height="25" rx="2"/><path d="M17 15v-5h14v5M5 27h38M21 27v4h6v-4"/>',
+  construction: '<path d="M10 43V7h6l24 8M16 7l-6 14M16 15h24"/><path d="M36 15v10"/><rect x="31" y="25" width="10" height="7"/><path d="M5 43h18"/>',
+  restaurants: '<path d="M7 31a17 17 0 0134 0z"/><path d="M3 35.500h42M24 10v4"/><path d="M12 41h24"/>',
+};
+---
+<svg width={size} height={size} viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" set:html={G[slug] ?? G.services} />

@@ -1,0 +1,66 @@
+---
+import Icon from './Icon.astro';
+import AppIcon from './AppIcon.astro';
+import { type Lang } from '../lib/site';
+// Before / after a day in your company: one desk scene that flips from scattered files to one clean Odoo dashboard.
+const { lang, beforeTitle, before, afterTitle, after } = Astro.props as {
+  lang: Lang; beforeTitle: string; before: { title: string; body: string }[]; afterTitle: string; after: { title: string; body: string }[];
+};
+const ar = lang === 'ar';
+const T = ar ? { b: 'قبل', a: 'بعد', x: 'مبيعات', y: 'مخزون' } : { b: 'Before', a: 'After', x: 'Sales', y: 'Stock' };
+---
+<div class="desk" data-desk data-state="before">
+  <div class="desk__bar" role="group" aria-label="Before / After">
+    <button type="button" class="desk__btn" data-s="before" aria-pressed="true">{T.b}</button>
+    <button type="button" class="desk__btn" data-s="after" aria-pressed="false">{T.a}</button>
+  </div>
+  <div class="desk__stage" aria-hidden="true">
+    <div class="desk__layer desk__before">
+      <div class="dk-sheet dk-sheet--a"><div class="h"><i></i><i></i><i></i><i></i></div>{[0,1,2,3,4].map(() => <div class="r"><i></i><i></i><i></i><i></i></div>)}</div>
+      <div class="dk-sheet dk-sheet--b"><div class="h"><i></i><i></i><i></i></div>{[0,1,2,3].map(() => <div class="r"><i></i><i></i><i></i></div>)}<em class="bad"></em></div>
+      <div class="dk-note"><i></i><i></i><i></i><u></u></div>
+      <div class="dk-chat"><span class="o"></span><span class="i"></span><span class="i s"></span></div>
+      <div class="dk-calc"><b></b>{[0,1,2,3,4,5,6,7,8].map(() => <i></i>)}</div>
+      <span class="dk-q dk-q--1">?</span><span class="dk-q dk-q--2">!</span><span class="dk-q dk-q--3">?</span>
+      <svg class="dk-tangle" viewBox="0 0 400 300" preserveAspectRatio="none"><path d="M60 80C140 40 160 170 240 120S330 200 360 90M80 220C150 250 200 190 280 230" /></svg>
+    </div>
+    <div class="desk__layer desk__after">
+      <div class="dk-win">
+        <div class="dk-win__bar"><i></i><i></i><i></i></div>
+        <div class="dk-win__body">
+          <div class="dk-side"><AppIcon name="accounting" size={30} /><AppIcon name="sales-crm" size={30} /><AppIcon name="inventory" size={30} /><AppIcon name="hr-payroll" size={30} /></div>
+          <div class="dk-main">
+            <div class="dk-kpis"><div><small>{T.x}</small><b>84,250</b></div><div><small>{T.y}</small><b>1,482</b></div><div><small>✓</small><b>126</b></div></div>
+            <div class="dk-chart">{[38, 52, 44, 66, 58, 78, 92].map((h, i) => <i class={i === 6 ? 'on' : ''} style={`--h:${h}%`}></i>)}</div>
+            <div class="dk-rows"><span><b></b><s></s></span><span><b></b><s></s></span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="desk__cap" aria-live="polite">
+    <div class="desk__panel" data-for="before">
+      <h3>{beforeTitle}</h3>
+      <ul>{before.map((b) => <li><span class="x"><Icon name="close" size={14} /></span><div><strong>{b.title}</strong><p>{b.body}</p></div></li>)}</ul>
+    </div>
+    <div class="desk__panel" data-for="after">
+      <h3>{afterTitle}</h3>
+      <ul>{after.map((b) => <li><span class="ok"><Icon name="check" size={14} /></span><div><strong>{b.title}</strong><p>{b.body}</p></div></li>)}</ul>
+    </div>
+  </div>
+</div>
+<script>
+  const root = document.querySelector<HTMLElement>('[data-desk]');
+  if (root) {
+    root.classList.add('is-js');
+    const btns = [...root.querySelectorAll<HTMLButtonElement>('.desk__btn')];
+    const panels = [...root.querySelectorAll<HTMLElement>('.desk__panel')];
+    const set = (s: string) => {
+      root.dataset.state = s;
+      btns.forEach((b) => b.setAttribute('aria-pressed', String(b.dataset.s === s)));
+      panels.forEach((p) => (p.hidden = p.dataset.for !== s));
+    };
+    btns.forEach((b) => b.addEventListener('click', () => set(b.dataset.s!)));
+    set(location.hash === '#after' ? 'after' : 'before');
+  }
+</script>

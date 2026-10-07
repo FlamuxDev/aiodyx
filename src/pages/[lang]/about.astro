@@ -1,0 +1,47 @@
+---
+import Base from '../../layouts/Base.astro';
+import MapScene from '../../components/scenes/MapScene.astro';
+import PageHead from '../../components/PageHead.astro';
+import SectionHead from '../../components/SectionHead.astro';
+import Icon from '../../components/Icon.astro';
+import Offices from '../../components/Offices.astro';
+import CtaBand from '../../components/CtaBand.astro';
+import { DATA, href, langPaths, type Lang } from '../../lib/site';
+
+export const getStaticPaths = langPaths;
+const { lang } = Astro.params as { lang: Lang };
+const d = DATA[lang];
+const p = d.pages.about;
+---
+<Base lang={lang} path="about/" title={p.seo.title} description={p.seo.description} type="AboutPage" crumbs={[{ name: d.site.nav.about, href: href(lang, 'about/') }]}>
+  <PageHead title={p.intro.title} lead={p.intro.body}>
+    <MapScene slot="visual" lang={lang} />
+  </PageHead>
+
+  <section class="sec" aria-labelledby="who">
+    <div class="wrap split">
+      <SectionHead id="who" side title={p.whoWeServe.title} />
+      <div class="prose"><p class="prose__lead">{p.whoWeServe.body}</p></div>
+    </div>
+  </section>
+
+  <section class="sec sec--grey" aria-labelledby="principles">
+    <div class="wrap">
+      <SectionHead id="principles" title={p.principles.title} />
+      <ul class="vals" role="list">
+        {p.principles.items.map((it, i) => (
+          <li class="val"><span class="val__ico" aria-hidden="true"><Icon name={['shield', 'chat', 'target', 'clock'][i % 4]} size={26} /></span><h3>{it.title}</h3><p>{it.body}</p></li>
+        ))}
+      </ul>
+    </div>
+  </section>
+
+  <section class="sec" aria-labelledby="where">
+    <div class="wrap">
+      <SectionHead id="where" title={p.presence.title} lead={p.presence.body} />
+      <Offices lang={lang} />
+    </div>
+  </section>
+
+  <CtaBand lang={lang} title={p.cta.title} body={p.cta.body} button={p.cta.button} />
+</Base>

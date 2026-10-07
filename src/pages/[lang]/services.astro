@@ -1,0 +1,26 @@
+---
+import Base from '../../layouts/Base.astro';
+import ServiceTabs from '../../components/ServiceTabs.astro';
+import ServicesScene from '../../components/scenes/ServicesScene.astro';
+import PageHead from '../../components/PageHead.astro';
+import CtaBand from '../../components/CtaBand.astro';
+import { DATA, abs, href, langPaths, type Lang } from '../../lib/site';
+import { serviceNode } from '../../lib/schema';
+
+export const getStaticPaths = langPaths;
+const { lang } = Astro.params as { lang: Lang };
+const d = DATA[lang];
+const p = d.pages.services;
+const url = abs(href(lang, 'services/'));
+---
+<Base lang={lang} path="services/" title={p.seo.title} description={p.seo.description} crumbs={[{ name: d.site.nav.services, href: href(lang, 'services/') }]}
+  extra={d.services.map((s) => serviceNode({ id: `${url}#${s.slug}`, name: s.name, description: s.summary, url: `${url}#${s.slug}`, lang }))}>
+  <PageHead title={p.intro.title} lead={p.intro.body}>
+    <ServicesScene slot="visual" lang={lang} />
+  </PageHead>
+
+  <section class="sec" aria-label={d.site.nav.services}>
+    <div class="wrap"><ServiceTabs lang={lang} services={d.services} /></div>
+  </section>
+  <CtaBand lang={lang} title={p.cta.title} body={p.cta.body} button={p.cta.button} />
+</Base>

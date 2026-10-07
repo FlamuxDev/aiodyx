@@ -1,0 +1,17 @@
+---
+import Base from '../../layouts/Base.astro';
+import { DATA, UI, href, langPaths, type Lang } from '../../lib/site';
+
+export const getStaticPaths = langPaths;
+const { lang } = Astro.params as { lang: Lang };
+const d = DATA[lang];
+const nf = UI[lang].notFound;
+---
+<Base lang={lang} path="404/" title={`${nf.title} | AIODYX`} description={nf.body} noindex>
+  <section class="notfound">
+    <p class="notfound__n" aria-hidden="true">404</p>
+    <h1>{nf.title}</h1>
+    <p class="lead">{nf.body}</p>
+    <a class="btn btn--primary btn--lg" href={href(lang)}>{d.site.nav.home}</a>
+  </section>
+</Base>

@@ -1,0 +1,135 @@
+---
+// Stylised Jordan + Saudi Arabia map with pins for Amman (2 offices) and Riyadh (1 office).
+export interface Props { lang: 'ar' | 'en' | string }
+const { lang } = Astro.props;
+const rtl = lang === 'ar';
+const t = rtl
+  ? { amman: 'عمّان', ammanSub: 'مكتبان', riyadh: 'الرياض', riyadhSub: 'مكتب', ksa: 'السعودية', red: 'البحر الأحمر', gulf: 'الخليج العربي' }
+  : { amman: 'Amman', ammanSub: '2 offices', riyadh: 'Riyadh', riyadhSub: '1 office', ksa: 'Saudi Arabia', red: 'Red Sea', gulf: 'Arabian Gulf' };
+
+const px = (lon: number) => 40 + (lon - 34) * 18.4;
+const py = (lat: number) => 64 + (33.6 - lat) * 19.4;
+const poly = (pts: [number, number][]) =>
+  pts.map(([lo, la], i) => `${i ? 'L' : 'M'}${px(lo).toFixed(1)} ${py(la).toFixed(1)}`).join(' ') + ' Z';
+
+const ksa: [number, number][] = [
+  [34.95, 29.4], [36.1, 29.2], [36.7, 29.85], [37.5, 30.4], [38.0, 30.5], [38.8, 31.0], [39.2, 32.1],
+  [40.0, 31.9], [42.0, 31.1], [43.5, 30.0], [44.7, 29.2], [46.5, 29.1], [47.6, 28.9], [48.4, 28.5],
+  [48.8, 27.8], [49.5, 27.2], [50.1, 26.4], [50.0, 25.6], [50.8, 24.8], [51.6, 24.3], [52.5, 23.0],
+  [55.2, 22.7], [55.7, 22.0], [55.0, 20.0], [52.0, 19.0], [49.0, 18.0], [47.0, 17.4], [44.5, 17.4],
+  [43.4, 17.3], [42.7, 16.5], [42.0, 17.5], [41.0, 19.5], [39.7, 21.2], [39.0, 22.8], [38.0, 24.1],
+  [37.0, 25.3], [36.4, 26.3], [35.6, 27.6], [35.0, 28.0],
+];
+const jor: [number, number][] = [
+  [34.95, 29.5], [35.05, 30.3], [35.4, 31.3], [35.55, 32.0], [35.55, 32.5], [35.85, 32.7], [36.4, 32.4],
+  [37.0, 32.35], [38.0, 33.0], [38.8, 33.35], [39.2, 32.1], [38.8, 31.0], [38.0, 30.5], [37.5, 30.4],
+  [36.7, 29.85], [36.1, 29.2],
+];
+const ksaD = poly(ksa);
+const jorD = poly(jor);
+
+const amm = [px(35.93), py(31.95)];
+const ryd = [px(46.7), py(24.7)];
+const arc = `M${amm[0] + 10} ${amm[1] + 8} Q${(amm[0] + ryd[0]) / 2 + 20} ${(amm[1] + ryd[1]) / 2 - 36} ${ryd[0] - 8} ${ryd[1] - 10}`;
+const pin = 'M0 0 C-7 -10 -9 -17 -9 -21 a9 9 0 1 1 18 0 c0 4 -2 11 -9 21z';
+---
+<div class="scene" aria-hidden="true" dir={rtl ? 'rtl' : 'ltr'}>
+  <svg viewBox="0 0 480 420" class={rtl ? 'rtl' : ''}>
+    <defs>
+      <pattern id="mp-dots" width="9" height="9" patternUnits="userSpaceOnUse">
+        <circle cx="4.5" cy="4.5" r="1.5" fill="#3fb59a" fill-opacity=".55" />
+      </pattern>
+      <clipPath id="mp-ksa"><path d={ksaD} /></clipPath>
+    </defs>
+    <rect class="bg" x="1" y="1" width="478" height="418" rx="20" />
+
+    <!-- water hints -->
+    <text x={px(35.6)} y={py(24.3)} font-size="12" class="t-m water" text-anchor="middle" transform={`rotate(-48 ${px(35.6)} ${py(24.3)})`}>{t.red}</text>
+    <text x={px(51.9)} y={py(27.4)} font-size="11.5" class="t-m water" text-anchor="middle" transform={`rotate(62 ${px(51.9)} ${py(27.4)})`}>{t.gulf}</text>
+
+    <!-- Saudi Arabia: dotted body + contour -->
+    <g class="fadein" style="--d:.1s">
+      <path d={ksaD} class="ksa-fill" />
+      <g clip-path="url(#mp-ksa)"><rect x="0" y="0" width="480" height="420" fill="url(#mp-dots)" /></g>
+    </g>
+    <path d={ksaD} class="contour draw" pathLength="1" style="--d:.2s;animation-duration:1.6s" />
+    <text x={px(42.6)} y={py(22.2)} font-size="13" class="t-m cname" text-anchor="middle">{t.ksa}</text>
+
+    <!-- Jordan -->
+    <g class="fadein" style="--d:.7s">
+      <path d={jorD} class="jor-fill" />
+    </g>
+    <path d={jorD} class="jor-line draw" pathLength="1" style="--d:.8s;animation-duration:1.2s" />
+
+    <!-- link between offices -->
+    <path d={arc} class="link draw" pathLength="1" style="--d:1.6s;animation-duration:1.2s" />
+
+    <!-- Amman -->
+    <g class="pinset" style="--d:1.2s">
+      {[[-8, 0], [8, 5]].map(([dx, dy]) => (
+        <g transform={`translate(${amm[0] + dx},${amm[1] + dy})`}>
+          <circle r="5" class="pulse" /><g class="pinbody"><path d={pin} class="pinp" /><circle cy="-21" r="3.4" fill="#fff" /></g>
+        </g>
+      ))}
+      <g transform={`translate(${amm[0] + 62},${amm[1] - 36})`}>
+        <path d="M-40 34 L0 12" class="ln mu" />
+        <rect x="0" y="-14" width="116" height="42" rx="12" class="chip-s" />
+        <rect x="0" y="-14" width="116" height="42" rx="12" class="chip" />
+        <text x={rtl ? 104 : 12} y="3" font-size="14" class="t-b" text-anchor="start">{t.amman}</text>
+        <text x={rtl ? 104 : 12} y="20" font-size="12" class="t-m" text-anchor="start">{t.ammanSub}</text>
+      </g>
+    </g>
+
+    <!-- Riyadh -->
+    <g class="pinset" style="--d:1.5s">
+      <g transform={`translate(${ryd[0]},${ryd[1]})`}>
+        <circle r="5" class="pulse p2" /><g class="pinbody"><path d={pin} class="pinp" /><circle cy="-21" r="3.4" fill="#fff" /></g>
+      </g>
+      <g transform={`translate(${ryd[0] + 22},${ryd[1] - 4})`}>
+        <rect x="0" y="-4" width="116" height="42" rx="12" class="chip-s" />
+        <rect x="0" y="-8" width="116" height="42" rx="12" class="chip" />
+        <text x={rtl ? 104 : 12} y="9" font-size="14" class="t-b" text-anchor="start">{t.riyadh}</text>
+        <text x={rtl ? 104 : 12} y="26" font-size="12" class="t-m" text-anchor="start">{t.riyadhSub}</text>
+      </g>
+    </g>
+  </svg>
+</div>
+
+<style>
+  .scene { width: 100%; max-width: 520px; margin-inline: auto; font-family: var(--font); }
+  svg { display: block; width: 100%; height: auto; }
+  svg.rtl { direction: rtl; }
+  text { font-family: var(--font); fill: var(--ink); }
+  .t-m { fill: var(--muted); } .t-b { font-weight: 600; }
+  .water { opacity: .75; letter-spacing: .04em; }
+  .cname { letter-spacing: .08em; paint-order: stroke; stroke: #fff; stroke-width: 4px; stroke-linejoin: round; }
+  .water { paint-order: stroke; stroke: var(--tint); stroke-width: 3px; }
+  .bg { fill: var(--tint); stroke: var(--line); stroke-width: 1.5; }
+  .ksa-fill { fill: #fff; fill-opacity: .7; }
+  .contour { fill: none; stroke: var(--mint); stroke-width: 1.5; stroke-linejoin: round; }
+  .jor-fill { fill: var(--primary-soft); }
+  .jor-line { fill: none; stroke: var(--primary); stroke-width: 2; stroke-linejoin: round; }
+  .link { fill: none; stroke: var(--primary); stroke-width: 1.5; stroke-linecap: round; }
+  .ln { fill: none; stroke-width: 1.5; stroke-linecap: round; } .ln.mu { stroke: var(--line-2); }
+  .pinp { fill: var(--primary); }
+  .chip { fill: #fff; stroke: var(--line-2); stroke-width: 1.5; }
+  .chip-s { fill: var(--ink); opacity: .06; transform: translateY(4px); }
+  .pulse { fill: var(--primary); opacity: .25; transform-box: fill-box; transform-origin: center; animation: pulse 2.8s ease-out 2s infinite; }
+  .p2 { animation-delay: 2.6s; }
+
+  .draw { stroke-dasharray: 1; stroke-dashoffset: 1; animation: draw 1s ease-out forwards; animation-delay: var(--d, 0s); }
+  .fadein { opacity: 0; animation: fade .9s ease-out forwards; animation-delay: var(--d, 0s); }
+  .pinset { opacity: 0; animation: drop .7s ease-out forwards; animation-delay: var(--d, 0s); }
+
+  @keyframes draw { to { stroke-dashoffset: 0; } }
+  @keyframes fade { to { opacity: 1; } }
+  @keyframes drop { from { opacity: 0; transform: translateY(-8px); } to { opacity: 1; transform: none; } }
+  @keyframes pulse { 0% { transform: scale(1); opacity: .35; } 100% { transform: scale(5); opacity: 0; } }
+
+  @media (prefers-reduced-motion: reduce) {
+    * { animation: none !important; }
+    .draw { stroke-dashoffset: 0; }
+    .fadein, .pinset { opacity: 1; }
+    .pulse { opacity: 0; }
+  }
+</style>

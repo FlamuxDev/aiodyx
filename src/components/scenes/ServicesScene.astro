@@ -1,0 +1,102 @@
+---
+// Blueprint-style toolkit: six services as connected nodes around the Odoo core.
+export interface Props { lang: 'ar' | 'en' | string }
+const { lang } = Astro.props;
+const rtl = lang === 'ar';
+const labels = rtl
+  ? ['التطبيق', 'التخصيص', 'نقل البيانات', 'التدريب', 'الدعم', 'الفوترة الإلكترونية']
+  : ['Implementation', 'Customization', 'Data migration', 'Training', 'Support', 'E-invoicing'];
+const icons = [
+  'M12 3 L21 8 L12 13 L3 8 Z M3 12 L12 17 L21 12 M3 16 L12 21 L21 16',
+  'M4 7 H20 M4 17 H20 M9 4 V10 M15 14 V20',
+  'M4 8 H16 M12 4 L16 8 L12 12 M20 16 H8 M12 12 L8 16 L12 20',
+  'M2 9 L12 4 L22 9 L12 14 Z M6 11.5 V16 C6 18.5 18 18.5 18 16 V11.5 M22 9 V15',
+  'M4 14 V12 a8 8 0 0 1 16 0 V14 M4 14 h3 v5 H4z M20 14 h-3 v5 h3z M17 19 c0 2 -2 3 -5 3',
+  'M6 3 H14 L19 8 V21 H6 Z M14 3 V8 H19 M9 14 l2.5 2.5 L16 12',
+];
+// clockwise from the top; mirrored order for RTL so reading flows right to left
+const base: [number, number][] = [[240, 70], [388, 135], [388, 265], [240, 330], [92, 265], [92, 135]];
+const nodes = base.map(([x, y]) => [x, y] as [number, number]);
+const order = rtl ? [0, 5, 4, 3, 2, 1] : [0, 1, 2, 3, 4, 5];
+const hub = [240, 200];
+const lab = (i: number): [number, number] => {
+  const [x, y] = nodes[i];
+  return i === 0 ? [x, y - 44] : [x, y + 50];
+};
+---
+<div class="scene" aria-hidden="true" dir={rtl ? 'rtl' : 'ltr'}>
+  <svg viewBox="0 0 480 400" class={rtl ? 'rtl' : ''}>
+    <defs>
+      <pattern id="sv-grid" width="24" height="24" patternUnits="userSpaceOnUse">
+        <path d="M24 0 H0 V24" fill="none" stroke="#0e6b5c" stroke-opacity=".10" stroke-width="1" />
+      </pattern>
+      <pattern id="sv-grid2" width="120" height="120" patternUnits="userSpaceOnUse">
+        <path d="M120 0 H0 V120" fill="none" stroke="#0e6b5c" stroke-opacity=".16" stroke-width="1" />
+      </pattern>
+    </defs>
+    <rect class="bg" x="1" y="1" width="478" height="398" rx="20" />
+    <rect x="1" y="1" width="478" height="398" rx="20" fill="url(#sv-grid)" />
+    <rect x="1" y="1" width="478" height="398" rx="20" fill="url(#sv-grid2)" />
+
+    <!-- corner marks -->
+    <g class="ln mu">
+      <path d="M22 44 V22 H44 M436 22 H458 V44 M22 356 V378 H44 M436 378 H458 V356" />
+    </g>
+
+    <!-- ring + spokes -->
+    <polygon class="ln mu ring draw" pathLength="1" style="--d:.2s;animation-duration:1.4s" points={nodes.map((n) => n.join(',')).join(' ')} />
+    <g class="ln pr spokes">
+      {nodes.map(([x, y], i) => (
+        <path class="draw" pathLength="1" style={`--d:${0.5 + order.indexOf(i) * 0.12}s`} d={`M${hub[0]} ${hub[1]} L${x} ${y}`} />
+      ))}
+    </g>
+
+    <!-- hub -->
+    <g class="pop" style="--d:.3s">
+      <circle cx={hub[0]} cy={hub[1]} r="50" class="hubhalo" />
+      <circle cx={hub[0]} cy={hub[1]} r="38" class="hub" />
+      <circle cx={hub[0]} cy={hub[1]} r="44" class="ln pr" style="stroke-dasharray:2 5" />
+      <text x={hub[0]} y={hub[1] + 6} font-size="18" text-anchor="middle" class="t-w t-b">Odoo</text>
+    </g>
+
+    <!-- nodes -->
+    {nodes.map(([x, y], i) => (
+      <g class="pop" style={`--d:${0.9 + order.indexOf(i) * 0.12}s`}>
+        <rect x={x - 29} y={y - 29} width="58" height="58" rx="14" class="ln nodebox" />
+        <g transform={`translate(${x - 12},${y - 12})`}><path d={icons[i]} class="ln pr" /></g>
+        <rect x={lab(i)[0] - (labels[i].length * (rtl ? 4.6 : 4.2) + 12)} y={lab(i)[1] - 12} width={(labels[i].length * (rtl ? 4.6 : 4.2) + 12) * 2} height="24" rx="12" class="labbg" />
+        <text x={lab(i)[0]} y={lab(i)[1] + 5} font-size="13.5" text-anchor="middle" class="t-b">{labels[i]}</text>
+      </g>
+    ))}
+  </svg>
+</div>
+
+<style>
+  .scene { width: 100%; max-width: 520px; margin-inline: auto; font-family: var(--font); }
+  svg { display: block; width: 100%; height: auto; }
+  svg.rtl { direction: rtl; }
+  text { font-family: var(--font); fill: var(--ink); }
+  .t-w { fill: #fff; } .t-b { font-weight: 600; }
+  .bg { fill: var(--tint); stroke: var(--line); stroke-width: 1.5; }
+  .ln { fill: none; stroke: var(--ink); stroke-width: 1.5; stroke-linecap: round; stroke-linejoin: round; }
+  .ln.mu { stroke: var(--line-2); } .ln.pr { stroke: var(--primary); }
+  .ring { stroke-dasharray: 5 6; }
+  .ring.draw { stroke-dasharray: 1; }
+  .nodebox { fill: #fff; stroke: var(--primary); }
+  .labbg { fill: var(--tint); fill-opacity: .92; }
+  .hub { fill: var(--primary); }
+  .hubhalo { fill: var(--primary); opacity: .1; transform-box: fill-box; transform-origin: center; animation: breathe 5s ease-in-out 2s infinite; }
+
+  .draw { stroke-dasharray: 1; stroke-dashoffset: 1; animation: draw 1s ease-out forwards; animation-delay: var(--d, 0s); }
+  .pop { opacity: 0; animation: pop .7s ease-out forwards; animation-delay: var(--d, 0s); }
+
+  @keyframes draw { to { stroke-dashoffset: 0; } }
+  @keyframes pop { from { opacity: 0; transform: translateY(6px); } to { opacity: 1; transform: none; } }
+  @keyframes breathe { 0%, 100% { transform: scale(1); } 50% { transform: scale(1.12); } }
+
+  @media (prefers-reduced-motion: reduce) {
+    * { animation: none !important; }
+    .draw { stroke-dashoffset: 0; }
+    .pop { opacity: 1; }
+  }
+</style>

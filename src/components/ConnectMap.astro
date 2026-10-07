@@ -1,0 +1,72 @@
+---
+import AppIcon from './AppIcon.astro';
+import { DATA, href, type Lang } from '../lib/site';
+// Interactive "how they connect": nine app nodes around an Odoo hub. Hover / focus / tap a node to highlight its links
+// and read its `connects` text. Nodes are real buttons; the caption is an aria-live region. Without JS all captions show.
+const { lang } = Astro.props as { lang: Lang };
+const d = DATA[lang];
+const order = ['sales-crm', 'point-of-sale', 'website-ecommerce', 'inventory', 'purchase', 'manufacturing', 'accounting', 'hr-payroll', 'project-timesheets'];
+const apps = order.map((s) => d.apps.find((a) => a.slug === s)!);
+const edges: [string, string][] = [
+  ['accounting', 'sales-crm'], ['accounting', 'point-of-sale'], ['accounting', 'purchase'], ['accounting', 'inventory'],
+  ['accounting', 'hr-payroll'], ['accounting', 'manufacturing'], ['accounting', 'website-ecommerce'], ['accounting', 'project-timesheets'],
+  ['sales-crm', 'inventory'], ['sales-crm', 'website-ecommerce'], ['sales-crm', 'project-timesheets'],
+  ['inventory', 'purchase'], ['inventory', 'point-of-sale'], ['inventory', 'website-ecommerce'], ['inventory', 'manufacturing'],
+];
+const R = 37;
+const pos: Record<string, [number, number]> = {};
+apps.forEach((a, i) => { const t = (i * 360) / apps.length * (Math.PI / 180); pos[a.slug] = [50 + R * Math.sin(t), 50 - R * Math.cos(t)]; });
+const path = ([a, b]: [string, string]) => {
+  const [x1, y1] = pos[a], [x2, y2] = pos[b];
+  const cx = (x1 + x2) / 2 * 0.5 + 25, cy = (y1 + y2) / 2 * 0.5 + 25;
+  return `M${x1.toFixed(1)} ${y1.toFixed(1)} Q${cx.toFixed(1)} ${cy.toFixed(1)} ${x2.toFixed(1)} ${y2.toFixed(1)}`;
+};
+const adj: Record<string, string[]> = {};
+apps.forEach((a) => (adj[a.slug] = []));
+edges.forEach(([a, b]) => { adj[a].push(b); adj[b].push(a); });
+const short = (n: string) => n.split(/\s+و|\s*[&,]\s*/)[0];
+---
+<div class="cm" data-cm data-adj={JSON.stringify(adj)}>
+  <div class="cm__stage">
+    <svg class="cm__lines" viewBox="0 0 100 100" aria-hidden="true">
+      {edges.map((e) => <path class="cm__ln" data-a={e[0]} data-b={e[1]} d={path(e)} />)}
+    </svg>
+    <div class="cm__hub" aria-hidden="true">Odoo</div>
+    {apps.map((a) => (
+      <button type="button" class="cm__node" data-slug={a.slug} style={`--x:${pos[a.slug][0].toFixed(1)}%;--y:${pos[a.slug][1].toFixed(1)}%`} aria-controls="cm-cap">
+        <AppIcon name={a.slug} size={44} /><span>{short(a.name)}</span>
+      </button>
+    ))}
+  </div>
+  <div class="cm__cap" id="cm-cap" aria-live="polite">
+    {apps.map((a) => (
+      <div class="cm__item" data-for={a.slug}>
+        <h3><AppIcon name={a.slug} size={40} />{a.name}</h3>
+        <p>{a.connects}</p>
+        <a class="textlink" href={href(lang, `apps/${a.slug}/`)}>{d.site.cta.learnMore}</a>
+      </div>
+    ))}
+  </div>
+</div>
+<script>
+  const root = document.querySelector<HTMLElement>('[data-cm]');
+  if (root) {
+    root.classList.add('is-js');
+    const adj = JSON.parse(root.dataset.adj || '{}') as Record<string, string[]>;
+    const nodes = [...root.querySelectorAll<HTMLButtonElement>('.cm__node')];
+    const lines = [...root.querySelectorAll<SVGPathElement>('.cm__ln')];
+    const items = [...root.querySelectorAll<HTMLElement>('.cm__item')];
+    const set = (slug: string) => {
+      nodes.forEach((n) => {
+        const s = n.dataset.slug!;
+        n.classList.toggle('is-active', s === slug);
+        n.classList.toggle('is-rel', (adj[slug] || []).includes(s));
+        n.setAttribute('aria-pressed', String(s === slug));
+      });
+      lines.forEach((l) => l.classList.toggle('on', l.dataset.a === slug || l.dataset.b === slug));
+      items.forEach((i) => (i.hidden = i.dataset.for !== slug));
+    };
+    nodes.forEach((n) => ['mouseenter', 'focus', 'click'].forEach((ev) => n.addEventListener(ev, () => set(n.dataset.slug!))));
+    set('accounting');
+  }
+</script>

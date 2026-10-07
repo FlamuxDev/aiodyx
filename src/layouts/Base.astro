@@ -1,0 +1,162 @@
+---
+import '@fontsource/ibm-plex-sans/latin-400.css';
+import '@fontsource/ibm-plex-sans/latin-500.css';
+import '@fontsource/ibm-plex-sans/latin-600.css';
+import '@fontsource/ibm-plex-sans/latin-700.css';
+import '@fontsource/ibm-plex-sans-arabic/arabic-400.css';
+import '@fontsource/ibm-plex-sans-arabic/arabic-500.css';
+import '@fontsource/ibm-plex-sans-arabic/arabic-600.css';
+import '@fontsource/ibm-plex-sans-arabic/arabic-700.css';
+import '../styles/tokens.css';
+import '../styles/site.css';
+import Logo from '../components/Logo.astro';
+import Icon from '../components/Icon.astro';
+import { DATA, META, UI, LANGS, SITE, abs, asset, href, waUrl, tel, type Lang } from '../lib/site';
+import { pageGraph, ldJson, type Crumb } from '../lib/schema';
+
+interface Props {
+  lang: Lang;
+  path?: string; // path after /{lang}/, e.g. "apps/accounting/" ("" = home)
+  title: string;
+  description: string;
+  crumbs?: Crumb[]; // visible breadcrumbs + BreadcrumbList (inner pages)
+  type?: string; // schema.org WebPage subtype
+  extra?: object[]; // extra JSON-LD nodes (Service, FAQPage ...)
+  waTopic?: string;
+  noindex?: boolean;
+}
+const { lang, path = '', title, description, crumbs = [], type, extra, waTopic, noindex } = Astro.props;
+const d = DATA[lang];
+const m = META[lang];
+const ui = UI[lang];
+const url = abs(href(lang, path));
+const ogImage = abs(asset('/og.png'));
+
+const nav = [
+  ['whyOdoo', 'why-odoo/'], ['apps', 'apps/'], ['industries', 'industries/'],
+  ['services', 'services/'], ['howWeWork', 'how-we-work/'], ['faq', 'faq/'],
+] as const;
+const current = (p: string) => (path === p || path.startsWith(p) ? 'page' : undefined);
+const fullCrumbs: Crumb[] = crumbs.length ? [{ name: d.site.nav.home, href: href(lang) }, ...crumbs] : [];
+const year = new Date().getFullYear();
+const ld = ldJson(pageGraph({ lang, url, title, description, crumbs: fullCrumbs, type, extra }));
+---
+<!doctype html>
+<html lang={lang} dir={m.dir}>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    <link rel="canonical" href={url} />
+    {LANGS.map((l) => <link rel="alternate" hreflang={l} href={abs(href(l, path))} />)}
+    <link rel="alternate" hreflang="x-default" href={abs(href('ar', path))} />
+    {noindex && <meta name="robots" content="noindex" />}
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content={d.site.name} />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:url" content={url} />
+    <meta property="og:locale" content={m.locale} />
+    <meta property="og:locale:alternate" content={META[m.other].locale} />
+    <meta property="og:image" content={ogImage} />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:image:alt" content={d.site.name} />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={ogImage} />
+    <meta name="theme-color" content="#ffffff" />
+    <link rel="icon" href={asset('/favicon.svg')} type="image/svg+xml" />
+    <link rel="sitemap" href={asset('/sitemap-index.xml')} />
+    <script type="application/ld+json" set:html={ld} />
+  </head>
+  <body>
+    <a class="skip" href="#main">{ui.skip}</a>
+    <header class="nav">
+      <div class="nav__in">
+        <a class="nav__logo" href={href(lang)}><Logo /></a>
+        <nav class="nav__links" aria-label={ui.mainNav}>
+          {nav.map(([k, p]) => <a href={href(lang, p)} aria-current={current(p)}>{d.site.nav[k]}</a>)}
+        </nav>
+        <div class="nav__end">
+          <a class="lang" href={href(m.other, path)} hreflang={m.other} lang={m.other}>{m.switchLabel}</a>
+          <a class="btn btn--wa nav__cta" href={waUrl(lang, waTopic)} rel="noopener"><Icon name="whatsapp" size={20} />{d.site.cta.whatsapp}</a>
+          <details class="menu">
+            <summary class="icon-btn" aria-label={ui.menu}><Icon name="menu" class="menu__open" /><Icon name="close" class="menu__close" /></summary>
+            <div class="menu__panel">
+              <nav aria-label={ui.mobileNav}>
+                {nav.map(([k, p]) => <a href={href(lang, p)} aria-current={current(p)}>{d.site.nav[k]}</a>)}
+                <a href={href(lang, 'about/')} aria-current={current('about/')}>{d.site.nav.about}</a>
+                <a href={href(lang, 'contact/')} aria-current={current('contact/')}>{d.site.nav.contact}</a>
+              </nav>
+              <a class="btn btn--wa btn--lg" href={waUrl(lang, waTopic)} rel="noopener"><Icon name="whatsapp" size={22} />{d.site.cta.whatsapp}</a>
+              <a class="btn btn--primary btn--lg" href={href(lang, 'contact/')}>{d.site.cta.primary}</a>
+            </div>
+          </details>
+        </div>
+      </div>
+    </header>
+    {fullCrumbs.length > 0 && (
+        <nav class="crumbs" aria-label={ui.crumbs}>
+          <ol>
+          {fullCrumbs.map((c, i) => (
+              <li>{i < fullCrumbs.length - 1 ? <a href={c.href}>{c.name}</a> : <span aria-current="page">{c.name}</span>}</li>
+            ))}
+          </ol>
+        </nav>
+    )}
+
+    <div class="dock">
+      <a class="btn btn--wa" href={waUrl(lang, waTopic)} rel="noopener"><Icon name="whatsapp" size={22} />{d.site.cta.whatsapp}</a>
+      <a class="btn btn--primary" href={tel(d.offices[2].phone)}><Icon name="phone" size={22} />{d.site.cta.call}</a>
+    </div>
+
+    <main id="main">
+      <slot />
+    </main>
+
+    <footer class="foot">
+      <div class="wrap">
+        <div class="foot__grid">
+          <div class="foot__brand">
+            <Logo class="foot__logo" />
+            <p>{d.site.footer.about}</p>
+            <p class="foot__links">
+              <a class="tel" dir="ltr" href={tel(d.offices[2].phone)}>{d.offices[2].phone}</a>
+              <a href={waUrl(lang)} rel="noopener">{d.site.cta.whatsapp}</a>
+            </p>
+          </div>
+          <div class="foot__offices">
+            <p class="foot__title">{d.site.footer.officesTitle}</p>
+            <ul>
+              {d.offices.map((o) => (
+                <li><span class="foot__label">{o.label}</span><a class="tel" dir="ltr" href={tel(o.phone)}>{o.phone}</a></li>
+              ))}
+            </ul>
+          </div>
+          <div class="foot__pages">
+            <p class="foot__title">{d.site.footer.pagesTitle}</p>
+            <ul>
+              <li><a href={href(lang)}>{d.site.nav.home}</a></li>
+              {nav.map(([k, p]) => <li><a href={href(lang, p)}>{d.site.nav[k]}</a></li>)}
+              <li><a href={href(lang, 'about/')}>{d.site.nav.about}</a></li>
+              <li><a href={href(lang, 'contact/')}>{d.site.nav.contact}</a></li>
+            </ul>
+          </div>
+          <div class="foot__apps">
+            <p class="foot__title">{d.site.footer.appsTitle}</p>
+            <ul>
+              {d.apps.map((a) => <li><a href={href(lang, `apps/${a.slug}/`)}>{a.name}</a></li>)}
+            </ul>
+          </div>
+        </div>
+      </div>
+      <div class="foot__bar">
+        <p class="wrap">© {year} AIODYX. {d.site.footer.rights} {d.site.footer.trademark}</p>
+      </div>
+    </footer>
+  <script>import '../scripts/motion';</script>
+  </body>
+</html>

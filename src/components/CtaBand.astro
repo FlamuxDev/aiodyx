@@ -1,0 +1,43 @@
+---
+import Icon from './Icon.astro';
+import { DATA, UI, waUrl, tel, type Lang } from '../lib/site';
+// Closing call to action. Default: quiet tinted panel. `chat`: split panel with a small chat-bubble motif.
+const { lang, title, body, button, topic, secondary, primaryHref, chat = false } = Astro.props as {
+  lang: Lang; title: string; body?: string; button: string; topic?: string; primaryHref?: string; chat?: boolean;
+  secondary?: { label: string; href: string };
+};
+const d = DATA[lang];
+const wa = !primaryHref;
+const msg = UI[lang].wa(topic);
+---
+<section class="cta-sec" aria-labelledby="cta-title">
+  <div class="wrap">
+    <div class={`cta ${chat ? 'cta--chat' : ''}`}>
+      <div class="cta__text">
+        <h2 id="cta-title">{title}</h2>
+        {body && <p>{body}</p>}
+        {chat && (
+          <div class="cta__btns cta__btns--row">
+            <a class="btn btn--wa btn--lg" href={primaryHref ?? waUrl(lang, topic)} rel="noopener">{wa && <Icon name="whatsapp" size={20} />}{button}</a>
+            <a class="btn btn--line btn--lg" href={tel(d.offices[2].phone)}><Icon name="phone" size={20} /><span>{d.site.cta.call}</span></a>
+          </div>
+        )}
+      </div>
+      {chat ? (
+        <div class="chat" aria-hidden="true">
+          <div class="chat__bar"><span class="chat__av"><Icon name="whatsapp" size={16} /></span><b>AIODYX</b></div>
+          <p class="bub bub--out">{msg}</p>
+          <div class="bub bub--in"><i></i><i></i></div>
+          <div class="bub bub--in bub--typing"><span></span><span></span><span></span></div>
+        </div>
+      ) : (
+        <div class="cta__btns">
+          <a class="btn btn--wa" href={primaryHref ?? waUrl(lang, topic)} rel="noopener">{wa && <Icon name="whatsapp" size={20} />}{button}</a>
+          {secondary
+            ? <a class="btn btn--line" href={secondary.href}>{secondary.label}</a>
+            : <a class="btn btn--line" href={tel(d.offices[2].phone)}><Icon name="phone" size={20} /><span>{d.site.cta.call}</span></a>}
+        </div>
+      )}
+    </div>
+  </div>
+</section>

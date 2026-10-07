@@ -1,0 +1,67 @@
+---
+import Base from '../../../layouts/Base.astro';
+import PageHead from '../../../components/PageHead.astro';
+import SectionHead from '../../../components/SectionHead.astro';
+import AppLauncher from '../../../components/AppLauncher.astro';
+import AppShowcase from '../../../components/AppShowcase.astro';
+import ConnectMap from '../../../components/ConnectMap.astro';
+import CtaBand from '../../../components/CtaBand.astro';
+import { DATA, href, langPaths, type Lang } from '../../../lib/site';
+
+export const getStaticPaths = langPaths;
+const { lang } = Astro.params as { lang: Lang };
+const d = DATA[lang];
+const p = d.pages.apps;
+// UI chrome: three groups of apps.
+const T = {
+  ar: [
+    { id: 'sell', title: 'البيع والعملاء', lead: 'من أول عميل لين الكاشير والمتجر.', apps: ['sales-crm', 'point-of-sale', 'website-ecommerce'] },
+    { id: 'operate', title: 'التشغيل والمخزون', lead: 'البضاعة توصل، والشغل يمشي.', apps: ['inventory', 'purchase', 'manufacturing'] },
+    { id: 'manage', title: 'الإدارة والمالية', lead: 'الأرقام والموظفين والمشاريع في مكان واحد.', apps: ['accounting', 'hr-payroll', 'project-timesheets'] },
+  ],
+  en: [
+    { id: 'sell', title: 'Sell and serve', lead: 'From the first lead to the till and the web shop.', apps: ['sales-crm', 'point-of-sale', 'website-ecommerce'] },
+    { id: 'operate', title: 'Operate and stock', lead: 'Goods keep moving and work stays on schedule.', apps: ['inventory', 'purchase', 'manufacturing'] },
+    { id: 'manage', title: 'Manage and finance', lead: 'Numbers, people and projects in one place.', apps: ['accounting', 'hr-payroll', 'project-timesheets'] },
+  ],
+}[lang];
+const groups = T.map((g) => ({ ...g, list: g.apps.map((s) => d.apps.find((a) => a.slug === s)!) }));
+const n = (i: number) => String(i + 1).padStart(2, '0');
+---
+<Base lang={lang} path="apps/" title={p.seo.title} description={p.seo.description} crumbs={[{ name: d.site.nav.apps, href: href(lang, 'apps/') }]}>
+  <PageHead title={p.intro.title} lead={p.intro.body}>
+    <AppLauncher slot="visual" lang={lang} apps={d.apps} />
+  </PageHead>
+
+  <nav class="cattabs" aria-label={d.site.nav.apps}>
+    <ol class="wrap cattabs__list">
+      {groups.map((g, i) => <li><a href={`#${g.id}`}><span class="num">{n(i)}</span><span>{g.title}</span></a></li>)}
+    </ol>
+  </nav>
+
+  {groups.map((g, i) => (
+    <section class={`sec ${i === 1 ? 'sec--grey' : ''}`} id={g.id} aria-labelledby={`h-${g.id}`}>
+      <div class="wrap">
+        <SectionHead id={`h-${g.id}`} eyebrow={n(i)} title={g.title} lead={g.lead} />
+        <ul class={`sgrid sgrid--${i === 2 ? 'c' : 'ab'}`} role="list">
+          {i === 2
+            ? [
+                <AppShowcase lang={lang} app={g.list[1]} />,
+                <AppShowcase lang={lang} app={g.list[2]} />,
+                <AppShowcase lang={lang} app={g.list[0]} wide flip />,
+              ]
+            : g.list.map((a, k) => <AppShowcase lang={lang} app={a} wide={k === 0} flip={i === 1 && k === 0} />)}
+        </ul>
+      </div>
+    </section>
+  ))}
+
+  <section class="sec sec--grey" aria-labelledby="conn">
+    <div class="wrap">
+      <SectionHead id="conn" title={d.site.labels.appConnects} />
+      <ConnectMap lang={lang} />
+    </div>
+  </section>
+
+  <CtaBand lang={lang} title={p.cta.title} body={p.cta.body} button={p.cta.button} />
+</Base>
