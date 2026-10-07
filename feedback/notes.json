@@ -1,1 +1,25 @@
-[]
+[
+  {
+    "id": "7cf0eaef-de4a-4f6e-8d5e-7675b6e0f36c",
+    "createdAt": "2026-10-07T06:14:00.678Z",
+    "updatedAt": "2026-10-07T06:14:00.678Z",
+    "status": "open",
+    "page": "/en/",
+    "lang": "en",
+    "kind": "element",
+    "anchor": {
+      "exact": "WhatsApp us",
+      "prefix": "",
+      "suffix": "",
+      "selector": "#main > section:nth-of-type(1) > div > div:nth-of-type(1) > div > a:nth-of-type(1)",
+      "section": "Run your whole company from one system",
+      "element": "a \"WhatsApp us\""
+    },
+    "note": "Button label should be clearer.",
+    "name": "Sam",
+    "viewport": "1280x900",
+    "ua": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/153.0.0.0 Safari/537.36",
+    "replies": [],
+    "tokenHash": "fdb3182ab7b9dbb9ff01bceb20f386fe99b6cf337870ebbbe9fe9326f9f430fe"
+  }
+]
