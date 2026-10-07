@@ -214,5 +214,28 @@
     "ua": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/153.0.0.0 Safari/537.36",
     "replies": [],
     "tokenHash": "53c80f0b3676ffc3cdb51bf1cff6dc88a6ae61531d7a488f4e1226bc5c84bf85"
+  },
+  {
+    "id": "a84eb624-dfd1-4fd3-8e3f-a9e8345e3b40",
+    "createdAt": "2026-10-07T06:12:46.294Z",
+    "updatedAt": "2026-10-07T06:12:46.294Z",
+    "status": "open",
+    "page": "/en/",
+    "lang": "en",
+    "kind": "element",
+    "anchor": {
+      "exact": "WhatsApp us",
+      "prefix": "",
+      "suffix": "",
+      "selector": "#main > section:nth-of-type(1) > div > div:nth-of-type(1) > div > a:nth-of-type(1)",
+      "section": "Run your whole company from one system",
+      "element": "a \"WhatsApp us\""
+    },
+    "note": "Button label should be clearer.",
+    "name": "Sam",
+    "viewport": "1280x900",
+    "ua": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/153.0.0.0 Safari/537.36",
+    "replies": [],
+    "tokenHash": "347e141b5985f396e5db89f20eede6b5c5972f3bacb649eaaeff824faed0b48a"
   }
 ]
