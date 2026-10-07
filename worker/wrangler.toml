@@ -1,0 +1,9 @@
+name = "aiodyx-feedback"
+main = "feedback.js"
+compatibility_date = "2026-10-01"
+
+[vars]
+REPO = "FlamuxDev/aiodyx"
+BRANCH = "feedback"
+FILE = "feedback/notes.json"
+ALLOWED_ORIGINS = "https://flamuxdev.github.io,http://localhost:4321"

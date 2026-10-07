@@ -28,6 +28,7 @@ jobs:
         env:
           SITE_URL: https://${{ github.repository_owner }}.github.io
           BASE_PATH: /${{ github.event.repository.name }}
+          PUBLIC_FEEDBACK_URL: ${{ vars.FEEDBACK_URL }}
       - uses: actions/upload-pages-artifact@v3
         with:
           path: dist

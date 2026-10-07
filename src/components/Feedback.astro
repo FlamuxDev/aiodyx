@@ -1,0 +1,197 @@
+---
+// Floating review tool: visitors toggle review mode, select any text and leave a detailed note.
+// Notes are POSTed to the feedback worker (worker/feedback.js), which appends them to a JSON file in the repo.
+import type { Lang } from '../lib/site';
+
+interface Props { lang: Lang }
+const { lang } = Astro.props;
+const endpoint = import.meta.env.PUBLIC_FEEDBACK_URL;
+const T = lang === 'ar'
+  ? {
+      fab: 'ملاحظات', exit: 'إنهاء المراجعة', hint: 'حدّد أي كلمة أو جملة في الصفحة لإضافة ملاحظة عليها.', general: 'ملاحظة عامة على الصفحة',
+      add: 'أضف ملاحظة', title: 'ملاحظة جديدة', quote: 'النص المحدد', generalQuote: 'ملاحظة على الصفحة كاملة',
+      note: 'الملاحظة', notePh: 'اكتب ملاحظتك بالتفصيل: ما المطلوب تعديله، والصياغة المقترحة إن وجدت.', name: 'اسمك',
+      send: 'إرسال', cancel: 'إلغاء', sending: 'جارٍ الإرسال…', sent: 'تم حفظ الملاحظة، شكرًا لك.', failed: 'تعذّر حفظ الملاحظة. حاول مرة أخرى.',
+    }
+  : {
+      fab: 'Notes', exit: 'Exit review', hint: 'Select any word or sentence on the page to add a note.', general: 'General note on this page',
+      add: 'Add note', title: 'New note', quote: 'Selected text', generalQuote: 'Note on the whole page',
+      note: 'Note', notePh: 'Describe in detail what should change, and suggested wording if any.', name: 'Your name',
+      send: 'Send', cancel: 'Cancel', sending: 'Sending…', sent: 'Note saved. Thank you.', failed: 'Could not save the note. Please try again.',
+    };
+---
+{endpoint && (
+  <div class="fb" data-endpoint={endpoint} data-lang={lang} data-sending={T.sending} data-sent={T.sent} data-failed={T.failed} data-general={T.generalQuote}>
+    <div class="fb__bar" hidden>
+      <p>{T.hint}</p>
+      <button type="button" class="fb__general">{T.general}</button>
+    </div>
+    <button type="button" class="fb__fab" aria-pressed="false" data-on={T.exit} data-off={T.fab}>
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z" /><path d="M8 9h8M8 13h5" /></svg>
+      <span>{T.fab}</span>
+    </button>
+    <button type="button" class="fb__chip" hidden>{T.add}</button>
+    <dialog class="fb__dialog" aria-labelledby="fb-title">
+      <form method="dialog" class="fb__form">
+        <h2 id="fb-title">{T.title}</h2>
+        <p class="fb__label">{T.quote}</p>
+        <blockquote class="fb__quote"></blockquote>
+        <label>{T.note}<textarea name="note" rows="6" required maxlength="5000" placeholder={T.notePh}></textarea></label>
+        <label>{T.name}<input name="name" maxlength="80" autocomplete="name" /></label>
+        <input class="fb__hp" name="website" tabindex="-1" autocomplete="off" aria-hidden="true" />
+        <p class="fb__status" role="status"></p>
+        <div class="fb__actions">
+          <button type="submit" class="btn btn--primary" value="send">{T.send}</button>
+          <button type="button" class="btn btn--ghost fb__cancel">{T.cancel}</button>
+        </div>
+      </form>
+    </dialog>
+  </div>
+)}
+
+<style is:global>
+  .fb__fab { position: fixed; z-index: 70; inset-inline-start: 16px; inset-block-end: calc(78px + env(safe-area-inset-bottom)); display: inline-flex; align-items: center; gap: 8px; min-block-size: 44px; padding: 0 16px; border: 1px solid var(--line-2); border-radius: 999px; background: #fff; color: var(--primary); font: 600 .95rem var(--font); cursor: pointer; box-shadow: 0 4px 14px rgb(21 32 29 / .12); }
+  .fb__fab:hover { border-color: var(--primary); }
+  .fb__fab[aria-pressed="true"] { background: var(--primary); border-color: var(--primary); color: #fff; }
+  .fb__bar { position: fixed; z-index: 69; inset-inline-start: 16px; inset-block-end: calc(132px + env(safe-area-inset-bottom)); display: grid; justify-items: start; gap: 10px; max-inline-size: min(320px, calc(100vw - 32px)); padding: 14px 16px; border-radius: var(--r); background: var(--primary); color: #fff; font-size: .95rem; box-shadow: 0 6px 18px rgb(21 32 29 / .18); }
+  .fb__bar[hidden] { display: none; }
+  .fb__bar p { margin: 0; }
+  .fb__general { padding: 6px 14px; border: 1px solid rgb(255 255 255 / .6); border-radius: var(--r-sm); background: transparent; color: #fff; font: 500 .9rem var(--font); cursor: pointer; }
+  .fb__chip { position: absolute; z-index: 71; padding: 6px 12px; border: 0; border-radius: var(--r-sm); background: var(--ink); color: #fff; font: 600 .9rem var(--font); cursor: pointer; box-shadow: 0 4px 12px rgb(21 32 29 / .2); }
+  .fb__chip[hidden] { display: none; }
+  .fb-on ::selection { background: #c9ebe1; }
+  .fb__dialog { box-sizing: border-box; overflow-x: hidden; inline-size: min(560px, calc(100vw - 32px)); padding: 0; border: 1px solid var(--line); border-radius: var(--r); color: var(--ink); }
+  .fb__dialog::backdrop { background: rgb(21 32 29 / .45); }
+  .fb__form { display: grid; gap: 14px; padding: 24px; }
+  .fb__form h2 { margin: 0; font-size: 1.2rem; }
+  .fb__label { margin: 0 0 -8px; color: var(--muted); font-size: .9rem; }
+  .fb__quote { margin: 0; max-block-size: 120px; overflow: auto; padding: 10px 14px; border-inline-start: 3px solid var(--primary); background: var(--primary-soft); border-radius: var(--r-sm); font-size: .95rem; }
+  .fb__form label { display: grid; gap: 6px; font-weight: 500; font-size: .95rem; }
+  .fb__form textarea, .fb__form input { box-sizing: border-box; inline-size: 100%; padding: 10px 12px; border: 1px solid var(--line-2); border-radius: var(--r-sm); font: 400 1rem var(--font); color: var(--ink); background: #fff; resize: vertical; }
+  .fb__form textarea:focus, .fb__form input:focus { outline: 2px solid var(--primary); outline-offset: 1px; }
+  .fb__form .fb__hp { position: absolute; inset-inline-start: 0; inline-size: 1px; padding: 0; border: 0; block-size: 1px; opacity: 0; pointer-events: none; }
+  .fb__status { margin: 0; min-block-size: 1.2em; color: var(--muted); font-size: .9rem; }
+  .fb__actions { display: flex; gap: 10px; }
+  @media (min-width: 960px) { .fb__fab { inset-block-end: 24px; } .fb__bar { inset-block-end: 78px; } }
+</style>
+
+<script>
+  const root = document.querySelector<HTMLElement>('.fb');
+  if (root) {
+    const KEY = 'fb-review';
+    const fab = root.querySelector<HTMLButtonElement>('.fb__fab')!;
+    const label = fab.querySelector('span')!;
+    const bar = root.querySelector<HTMLElement>('.fb__bar')!;
+    const chip = root.querySelector<HTMLButtonElement>('.fb__chip')!;
+    const dialog = root.querySelector<HTMLDialogElement>('.fb__dialog')!;
+    const form = dialog.querySelector<HTMLFormElement>('form')!;
+    const quoteEl = dialog.querySelector<HTMLElement>('.fb__quote')!;
+    const status = dialog.querySelector<HTMLElement>('.fb__status')!;
+    const submit = form.querySelector<HTMLButtonElement>('[type=submit]')!;
+    const { endpoint, lang } = root.dataset;
+    let current: { quote: string; context: string; section: string; selector: string } | null = null;
+
+    const store = (k: string, v?: string) => {
+      try { if (v === undefined) return sessionStorage.getItem(k); sessionStorage.setItem(k, v); } catch {}
+      return null;
+    };
+    const setMode = (on: boolean) => {
+      fab.setAttribute('aria-pressed', String(on));
+      label.textContent = on ? fab.dataset.on! : fab.dataset.off!;
+      bar.hidden = !on;
+      document.documentElement.classList.toggle('fb-on', on);
+      store(KEY, on ? '1' : '0');
+      if (!on) chip.hidden = true;
+    };
+    const isOn = () => fab.getAttribute('aria-pressed') === 'true';
+
+    const cssPath = (el: Element) => {
+      const parts: string[] = [];
+      for (let n: Element | null = el; n && n !== document.body && parts.length < 6; n = n.parentElement) {
+        if (n.id) { parts.unshift(`#${n.id}`); break; }
+        const sib = n.parentElement ? [...n.parentElement.children].filter((c) => c.tagName === n!.tagName) : [];
+        parts.unshift(n.tagName.toLowerCase() + (sib.length > 1 ? `:nth-of-type(${sib.indexOf(n) + 1})` : ''));
+      }
+      return parts.join(' > ');
+    };
+    const describe = (range: Range) => {
+      const node = range.commonAncestorContainer;
+      const el = (node.nodeType === 1 ? node : node.parentElement) as Element;
+      const block = el.closest('p, li, h1, h2, h3, h4, td, blockquote, figcaption, a, button, dd, dt, div') || el;
+      const sec = el.closest('section, header, footer, nav, [id]');
+      const heading = sec?.querySelector('h1, h2, h3')?.textContent?.trim();
+      return {
+        quote: range.toString().trim(),
+        context: (block.textContent || '').replace(/\s+/g, ' ').trim(),
+        section: [sec?.id && `#${sec.id}`, heading].filter(Boolean).join(' · '),
+        selector: cssPath(block),
+      };
+    };
+    const open = (info: typeof current) => {
+      current = info;
+      quoteEl.textContent = info?.quote || root.dataset.general!;
+      status.textContent = '';
+      submit.disabled = false;
+      chip.hidden = true;
+      dialog.showModal();
+      field('note').focus();
+    };
+
+    fab.addEventListener('click', () => setMode(!isOn()));
+    root.querySelector('.fb__general')!.addEventListener('click', () => open(null));
+    dialog.querySelector('.fb__cancel')!.addEventListener('click', () => dialog.close());
+
+    const onSelect = () => {
+      if (!isOn() || dialog.open) return;
+      const sel = getSelection();
+      if (!sel || sel.isCollapsed || !sel.toString().trim() || root.contains(sel.anchorNode)) { chip.hidden = true; return; }
+      const r = sel.getRangeAt(0).getBoundingClientRect();
+      chip.hidden = false;
+      chip.style.top = `${r.bottom + scrollY + 8}px`;
+      chip.style.left = `${Math.max(8, Math.min(r.left + scrollX + r.width / 2 - chip.offsetWidth / 2, innerWidth - chip.offsetWidth - 8))}px`;
+    };
+    document.addEventListener('mouseup', () => setTimeout(onSelect));
+    document.addEventListener('touchend', () => setTimeout(onSelect, 300));
+    document.addEventListener('keyup', (e) => e.shiftKey && onSelect());
+    // Keep the selection when pressing the chip, then open the form for it.
+    chip.addEventListener('mousedown', (e) => e.preventDefault());
+    chip.addEventListener('click', () => {
+      const sel = getSelection();
+      if (sel && !sel.isCollapsed) open(describe(sel.getRangeAt(0)));
+    });
+
+    const field = (n: string) => form.querySelector<HTMLInputElement | HTMLTextAreaElement>(`[name=${n}]`)!;
+    try { field('name').value = localStorage.getItem('fb-name') || ''; } catch {}
+
+    form.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const note = field('note').value.trim();
+      if (!note) return;
+      const name = field('name').value.trim();
+      try { localStorage.setItem('fb-name', name); } catch {}
+      submit.disabled = true;
+      status.textContent = root.dataset.sending!;
+      try {
+        const res = await fetch(endpoint!, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            page: location.pathname, lang, note, name, website: field('website').value,
+            quote: current?.quote || '', context: current?.context || '', section: current?.section || '', selector: current?.selector || '',
+            viewport: `${innerWidth}x${innerHeight}`,
+          }),
+        });
+        if (!res.ok) throw new Error(String(res.status));
+        status.textContent = root.dataset.sent!;
+        field('note').value = '';
+        getSelection()?.removeAllRanges();
+        setTimeout(() => dialog.open && dialog.close(), 1200);
+      } catch {
+        status.textContent = root.dataset.failed!;
+        submit.disabled = false;
+      }
+    });
+
+    setMode(store(KEY) === '1');
+  }
+</script>

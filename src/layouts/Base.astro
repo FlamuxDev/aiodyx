@@ -11,6 +11,7 @@ import '../styles/tokens.css';
 import '../styles/site.css';
 import Logo from '../components/Logo.astro';
 import Icon from '../components/Icon.astro';
+import Feedback from '../components/Feedback.astro';
 import { DATA, META, UI, LANGS, SITE, abs, asset, href, waUrl, tel, type Lang } from '../lib/site';
 import { pageGraph, ldJson, type Crumb } from '../lib/schema';
 
@@ -157,6 +158,7 @@ const ld = ldJson(pageGraph({ lang, url, title, description, crumbs: fullCrumbs,
         <p class="wrap">© {year} AIODYX. {d.site.footer.rights} {d.site.footer.trademark}</p>
       </div>
     </footer>
+    <Feedback lang={lang} />
   <script>import '../scripts/motion';</script>
   </body>
 </html>
