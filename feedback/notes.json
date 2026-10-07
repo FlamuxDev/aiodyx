@@ -21,5 +21,29 @@
     "ua": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/153.0.0.0 Safari/537.36",
     "replies": [],
     "tokenHash": "e88180c0d2382f193793dedc6f0b15c0628740d728ae6686fb155f4489bdc0c6"
+  },
+  {
+    "id": "2b445f03-5336-4955-badb-198b50f88a3d",
+    "createdAt": "2026-10-07T06:16:39.873Z",
+    "updatedAt": "2026-10-07T06:16:39.873Z",
+    "status": "open",
+    "page": "/en/",
+    "lang": "",
+    "kind": "element",
+    "anchor": {
+      "exact": "logo",
+      "prefix": "",
+      "suffix": "",
+      "selector": "header > img",
+      "section": "Header",
+      "element": "img \"logo\""
+    },
+    "note": "Logo too small",
+    "name": "Lina",
+    "viewport": "",
+    "ua": "curl/8.22.0",
+    "replies": [],
+    "tokenHash": "dc439a7f3f7e57e89f27caf59fde0239a3ce73150cca6feedec7ab3a8cf71c54",
+    "shot": "feedback/shots/2b445f03-5336-4955-badb-198b50f88a3d.webp"
   }
 ]
