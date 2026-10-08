@@ -26,8 +26,8 @@
   {
     "id": "5ffb6511-bdeb-4aef-93fa-67615468653a",
     "createdAt": "2026-10-07T21:21:35.061Z",
-    "updatedAt": "2026-10-07T21:21:35.061Z",
-    "status": "open",
+    "updatedAt": "2026-10-08T08:01:45.253Z",
+    "status": "resolved",
     "page": "/aiodyx/ar/",
     "lang": "ar",
     "kind": "element",
@@ -66,8 +66,8 @@
     "name": "مهند",
     "viewport": "1440x765",
     "ua": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/154.0.0.0 Safari/537.36",
+    "shot": "feedback/shots/9aa966c9-7024-4313-9264-0740d08ba209.webp",
     "replies": [],
-    "tokenHash": "dc61628c0cb5609d11633dcc414162ab0e712088f25590f492278f98da092b40",
-    "shot": "feedback/shots/9aa966c9-7024-4313-9264-0740d08ba209.webp"
+    "tokenHash": "dc61628c0cb5609d11633dcc414162ab0e712088f25590f492278f98da092b40"
   }
 ]
