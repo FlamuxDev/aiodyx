@@ -2,12 +2,12 @@
 import Base from '../../layouts/Base.astro';
 import Icon from '../../components/Icon.astro';
 import SectionHead from '../../components/SectionHead.astro';
-import OdooShot from '../../components/OdooShot.astro';
 import ShotTabs from '../../components/ShotTabs.astro';
 import IndustryTabs from '../../components/IndustryTabs.astro';
 import ChaosOrder from '../../components/ChaosOrder.astro';
 import Faq from '../../components/Faq.astro';
 import Offices from '../../components/Offices.astro';
+import IntWall from '../../components/IntWall.astro';
 import CtaBand from '../../components/CtaBand.astro';
 import { DATA, abs, href, tel, waUrl, heroTitle, langPaths, type Lang } from '../../lib/site';
 import { faqNode } from '../../lib/schema';
@@ -26,33 +26,55 @@ const faqs = p.faqTeaser.items.slice(0, 3);
 const fq = d.pages.faq.cta;
 const ar = lang === 'ar';
 const T = ar
-  ? { cost: 'التكلفة', time: 'المدة', plan: 'خطة', hi: 'مرحبًا، نرغب في تنظيم شركتنا', re: 'حسنًا، متى نتحدث؟' }
-  : { cost: 'Cost', time: 'Timeline', plan: 'Plan', hi: 'Hi, we want to get organised', re: 'Great, when can we talk?' };
+  ? { inv: 'فاتورة INV-0148', paid: 'مدفوعة', stock: 'تنبيه مخزون', stockSub: 'المتبقي 58 قطعة', deal: 'صفقة جديدة', dealSub: '45,000 ر.س',
+      trust: ['3 مكاتب', 'الأردن والسعودية', 'عربي وإنجليزي', 'جاهز لـ ZATCA وJoFotara'],
+      cost: 'التكلفة', time: 'المدة', plan: 'خطة', hi: 'مرحبًا، نرغب في تنظيم شركتنا', re: 'حسنًا، متى نتحدث؟' }
+  : { inv: 'Invoice INV-0148', paid: 'Paid', stock: 'Stock alert', stockSub: '58 pieces left', deal: 'New deal', dealSub: 'SAR 45,000',
+      trust: ['3 offices', 'Jordan and Saudi Arabia', 'Arabic and English', 'ZATCA and JoFotara ready'],
+      cost: 'Cost', time: 'Timeline', plan: 'Plan', hi: 'Hi, we want to get organised', re: 'Great, when can we talk?' };
+const trustIcons = ['target', 'globe', 'chat', 'receipt'];
 const o = d.odoo;
 const n = (i: number) => String(i + 1).padStart(2, '0');
+// Static isometric stack: shown until (or instead of) the WebGL scene. Slab colours are theme tokens (--iso-0..4).
+const iso = (cy: number) => {
+  const a = 120, b = 69, t = 20;
+  const top = `${200},${cy - b} ${200 + a},${cy} ${200},${cy + b} ${200 - a},${cy}`;
+  const l = `${200 - a},${cy} ${200},${cy + b} ${200},${cy + b + t} ${200 - a},${cy + t}`;
+  const r = `${200 + a},${cy} ${200},${cy + b} ${200},${cy + b + t} ${200 + a},${cy + t}`;
+  return { top, l, r };
+};
+const stack = [0, 1, 2, 3, 4].map((i) => iso(300 - i * 34));
 ---
 <Base lang={lang} path="" title={p.seo.title} description={p.seo.description} extra={[faqNode(lang, abs(href(lang)), faqs)]}>
-  <!-- 1. Hero: promise + CTAs, then the real accounting screen framed in a tinted stage -->
-  <section class="hero hero--shot">
-    <div class="wrap">
+  <!-- 1. Hero: promise + 3D anchor with three floating UI cards -->
+  <section class="hero">
+    <div class="wrap hero__grid">
       <div class="hero__text">
         <p class="kicker">{p.hero.eyebrow}</p>
         <h1 set:html={heroTitle(lang)} />
         <p class="hero__sub">{p.hero.body}</p>
         <div class="hero__btns">
-          <a class="btn btn--wa btn--lg" href={wa} rel="noopener"><Icon name="whatsapp" size={20} />{d.site.cta.primary}</a>
-          <a class="btn btn--line btn--lg" href={call}><Icon name="phone" size={20} />{d.site.cta.call}</a>
+          <a class="btn btn--wa" href={wa} rel="noopener"><Icon name="whatsapp" size={20} />{d.site.cta.primary}</a>
+          <a class="btn btn--line" href={call}><Icon name="phone" size={20} />{d.site.cta.call}</a>
         </div>
       </div>
-      <div class="hero__stage">
-        <OdooShot shot="accounting" lang={lang} alt={o.shots.accounting.alt} crop={{ x: 0, y: 0, w: 1800, h: 900 }} bleed eager
-          points={[{ x: 825, y: 505, side: 'r' }, { x: 850, y: 745, side: 'r' }]} labels={o.heroCallouts} />
+      <div class="hero__vis">
+        <div class="hero3d" data-hero3d aria-hidden="true">
+          <svg class="hero3d__fb" viewBox="0 0 400 400" focusable="false">
+            {stack.map((s, i) => (
+              <g style={`--s: var(--iso-${i})`}><polygon class="iso-l" points={s.l} /><polygon class="iso-r" points={s.r} /><polygon class="iso-t" points={s.top} /></g>
+            ))}
+          </svg>
+        </div>
+        <div class="fc fc--a" aria-hidden="true"><span class="fc__i fc__i--ok"><Icon name="check" size={16} /></span><div><b>{T.inv}</b><small>{T.paid}</small></div></div>
+        <div class="fc fc--b" aria-hidden="true"><span class="fc__i fc__i--warn"><Icon name="gauge" size={16} /></span><div><b>{T.stock}</b><small>{T.stockSub}</small></div></div>
+        <div class="fc fc--c" aria-hidden="true"><span class="fc__i"><Icon name="grow" size={16} /></span><div><b>{T.deal}</b><small>{T.dealSub}</small></div></div>
       </div>
     </div>
   </section>
-  <div class="stats">
-    <ul class="wrap stats__list" role="list">
-      {o.stats.map((s) => <li><span class="stats__v">{s.v}</span><span class="stats__l">{s.l}</span></li>)}
+  <div class="trust">
+    <ul class="wrap trust__list" role="list">
+      {T.trust.map((t, i) => <li><Icon name={trustIcons[i]} size={18} />{t}</li>)}
     </ul>
   </div>
 
@@ -62,6 +84,14 @@ const n = (i: number) => String(i + 1).padStart(2, '0');
       <SectionHead id="see" eyebrow={o.showcase.eyebrow} title={o.showcase.title} lead={o.showcase.lead} href={href(lang, 'apps/')} label={d.site.cta.allApps} />
       <ShotTabs lang={lang} />
       <p class="sc-note">{o.showcase.note}</p>
+    </div>
+  </section>
+
+  <!-- 2b. Integrations: government, banks, payments, shipping, stores -->
+  <section class="sec int-home" aria-labelledby="int">
+    <div class="wrap">
+      <SectionHead id="int" eyebrow={d.site.nav.integrations} title={d.integrations.intro.title} lead={d.integrations.intro.body} href={href(lang, 'integrations/')} label={d.integrations.labels.viewAll} />
+      <IntWall lang={lang} />
     </div>
   </section>
 
@@ -144,3 +174,12 @@ const n = (i: number) => String(i + 1).padStart(2, '0');
   </section>
   <CtaBand lang={lang} chat title={p.finalCta.title} body={p.finalCta.body} button={d.site.cta.whatsapp} />
 </Base>
+
+<script>
+  const stage = document.querySelector<HTMLElement>('[data-hero3d]');
+  if (stage) {
+    const go = () => import('../../scripts/hero3d').then((m) => m.init(stage)).catch(() => {});
+    const idle = (window as any).requestIdleCallback as undefined | ((f: () => void, o?: object) => void);
+    window.addEventListener('load', () => (idle ? idle(go, { timeout: 2500 }) : setTimeout(go, 600)), { once: true });
+  }
+</script>

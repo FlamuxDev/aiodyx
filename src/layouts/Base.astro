@@ -10,6 +10,7 @@ import '@fontsource/ibm-plex-sans-arabic/arabic-700.css';
 import '../styles/tokens.css';
 import '../styles/site.css';
 import '../styles/odoo.css';
+import '../styles/integrations.css';
 import Logo from '../components/Logo.astro';
 import Icon from '../components/Icon.astro';
 import Feedback from '../components/Feedback.astro';
@@ -37,7 +38,7 @@ const url = abs(href(lang, path));
 const ogImage = abs(asset('/og.png'));
 
 const nav = [
-  ['whyOdoo', 'why-odoo/'], ['apps', 'apps/'], ['industries', 'industries/'],
+  ['whyOdoo', 'why-odoo/'], ['apps', 'apps/'], ['industries', 'industries/'], ['integrations', 'integrations/'],
   ['services', 'services/'], ['howWeWork', 'how-we-work/'], ['faq', 'faq/'],
 ] as const;
 const current = (p: string) => (path === p || path.startsWith(p) ? 'page' : undefined);

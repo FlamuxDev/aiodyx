@@ -1,0 +1,32 @@
+---
+import Icon from './Icon.astro';
+import { DATA, type Lang } from '../lib/site';
+// Odoo alone vs Odoo with AIODYX. Real table; every symbol has a text equivalent for screen readers.
+const { lang } = Astro.props as { lang: Lang };
+const I = DATA[lang].integrations;
+const c = I.compare;
+const L = I.labels;
+const cell = (v: string) => v;
+---
+<div class="int-cmp">
+  <table>
+    <caption class="int-sr">{c.caption}</caption>
+    <thead>
+      <tr><th scope="col">{c.feature}</th><th scope="col">{c.alone}</th><th scope="col" class="int-cmp__us">{c.with}</th></tr>
+    </thead>
+    <tbody>
+      {c.rows.map((r) => (
+        <tr>
+          <th scope="row">{r.label}</th>
+          {[r.alone, r.with].map((v, i) => (
+            <td class={`int-cmp__v int-cmp__v--${cell(v)} ${i ? 'int-cmp__us' : ''}`}>
+              {v === 'yes' && <><Icon name="check" size={20} /><span class="int-sr">{L.yes}</span></>}
+              {v === 'no' && <><span aria-hidden="true">—</span><span class="int-sr">{L.no}</span></>}
+              {v === 'needs' && <span>{L.needs}</span>}
+            </td>
+          ))}
+        </tr>
+      ))}
+    </tbody>
+  </table>
+</div>

@@ -3,7 +3,8 @@
     "labels": {
       "detail": "Inside the system",
       "legend": "Notes on the image",
-      "chrome": "System window"
+      "chrome": "System window",
+      "more": "More screens from this area"
     },
     "stats": [
       {
@@ -23,15 +24,11 @@
         "l": "languages: Arabic and English"
       }
     ],
-    "heroCallouts": [
-      "Ready for e-invoicing",
-      "15% VAT"
-    ],
     "showcase": {
       "eyebrow": "Inside the system",
-      "title": "This is your system, in Arabic",
-      "lead": "Real screens from Odoo 19. Pick an area to see how it works.",
-      "note": "Screenshots are from Odoo 19 with a demo Saudi company. Names and figures are fictional.",
+      "title": "See your system at work",
+      "lead": "Real Odoo 19 screens, in Arabic or English, whichever your team prefers. Pick an area to see how it works.",
+      "note": "Screenshots are from Odoo 19 with two demo companies, in Saudi Arabia and Jordan. Names and figures are fictional.",
       "details": "App details",
       "tabs": "System areas"
     },
@@ -41,139 +38,219 @@
       "body": "Sales, orders and revenue sit on one dashboard and update as each transaction is recorded. No more collecting figures from scattered files."
     },
     "shots": {
-      "accounting": {
+      "accounting-invoice": {
+        "label": "Invoices",
+        "alt": "A posted customer invoice in Odoo 19 in English: three product lines, 15% VAT and the green PAID ribbon.",
+        "caption": "A customer invoice paid in full: lines, 15% VAT and a total of 43,307.85 SAR."
+      },
+      "accounting-dashboard": {
         "label": "Accounting",
-        "alt": "A customer invoice in Odoo 19 in Arabic: product lines, 15% VAT, the total and the e-invoicing status.",
-        "caption": "A customer invoice in Arabic: lines, tax and total, with the e-invoicing status."
+        "alt": "The invoicing dashboard in Odoo 19: Sales, Purchases, Bank and Cash cards with ageing bars.",
+        "caption": "Sales, purchases and bank on one board: 7 unpaid invoices worth 152,294.30 SAR, 3 of them late."
       },
-      "crm-sales": {
-        "label": "Sales",
-        "alt": "The deal pipeline in Odoo 19: opportunity cards spread across sales stages with each stage's value.",
-        "caption": "Every opportunity in its stage, with each stage's value on top."
-      },
-      "hr": {
-        "label": "Employees",
-        "alt": "Employee cards in Odoo 19 in Arabic, each with a photo, job title and phone number.",
-        "caption": "Employee records by department; attendance and payroll start from here."
-      },
-      "business-intelligence": {
-        "label": "Dashboards",
-        "alt": "The Odoo 19 dashboard: revenue and orders, a monthly sales curve, and the top quotations and sales orders.",
-        "caption": "Sales, orders and revenue on one screen, with today's numbers."
-      },
-      "point-of-sale": {
-        "label": "Point of sale",
-        "alt": "The Odoo 19 point of sale screen: product grid, current order, numpad and pay button.",
-        "caption": "A fast cashier screen: items, quantity and payment."
-      },
-      "ecommerce": {
-        "label": "Online shop",
-        "alt": "An online shop page in Arabic: products, categories, filters and prices.",
-        "caption": "A shop in Arabic, with products and prices from the same system."
-      },
-      "inventory-purchase": {
-        "label": "Inventory",
-        "alt": "The Odoo 19 inventory overview: receipts, delivery orders and manufacturing with count charts.",
-        "caption": "Receipts, deliveries and manufacturing, and what is late, at a glance."
-      },
-      "projects": {
-        "label": "Projects",
-        "alt": "A project task board in Odoo 19: stage columns and task cards with deadlines and hours.",
-        "caption": "Tasks in columns, each with its deadline and hours."
-      },
-      "manufacturing": {
-        "label": "Manufacturing",
-        "alt": "The Odoo 19 manufacturing orders list with statuses and component availability.",
-        "caption": "Manufacturing orders with their status and component availability."
-      },
-      "sales": {
+      "sales-quotes": {
         "label": "Quotations",
-        "alt": "The Odoo 19 list of quotations and sales orders with statuses and totals.",
-        "caption": "Quotations and sales orders with their statuses and totals."
+        "alt": "The quotations and sales orders list in Odoo 19: 32 records in mixed states, each with its salesperson.",
+        "caption": "32 quotations and orders in their states, each with the salesperson responsible."
+      },
+      "sales-order": {
+        "label": "Sales order",
+        "alt": "A confirmed sales order in Odoo 19 with Delivery and Invoices buttons, order lines and totals.",
+        "caption": "A confirmed order: three lines, all delivered and invoiced, for 17,169.50 SAR including 15% VAT."
+      },
+      "crm-pipeline": {
+        "label": "CRM",
+        "alt": "The pipeline in Odoo 19: 19 opportunities across New, Qualified, Proposition and Won, with each stage's value.",
+        "caption": "19 opportunities in their stages, each stage's value on top: from 292k SAR in New to 651k in Proposition."
+      },
+      "inventory-overview": {
+        "label": "Inventory",
+        "alt": "Product cards in Odoo 19: 30 products with images, prices and on-hand quantities.",
+        "caption": "30 goods with live on-hand quantities, and some items running low."
+      },
+      "inventory-product": {
+        "label": "Product form",
+        "alt": "A product form in Odoo 19 with forecast, sold, purchased and reorder-rule buttons, plus price and cost.",
+        "caption": "On hand 58, forecast 48, sold 122, purchased 40, and a reorder rule from 20 to 70."
+      },
+      "purchase-order": {
+        "label": "Purchase order",
+        "alt": "A confirmed purchase order in Odoo 19 with one vendor bill and one receipt.",
+        "caption": "A purchase order received and billed in full: 30,199.00 SAR including 3,939.00 SAR VAT."
+      },
+      "manufacturing-orders": {
+        "label": "Manufacturing",
+        "alt": "The manufacturing orders list in Odoo 19: 10 orders for workstation desks and meeting tables in Done, Confirmed and Draft states.",
+        "caption": "10 manufacturing orders: 5 done, 3 confirmed and 2 draft."
+      },
+      "hr-employees": {
+        "label": "Employees",
+        "alt": "Employee cards in Odoo 19: 16 people in 7 departments with the department panel on the side.",
+        "caption": "16 employees in 7 departments, with an online status dot beside each name."
+      },
+      "time-off": {
+        "label": "Time off",
+        "alt": "The company time-off calendar for October 2026 in Odoo 19, with approved and pending requests in a colour per employee.",
+        "caption": "The company time-off calendar: approved leave and requests awaiting approval, a colour per employee."
+      },
+      "attendance": {
+        "label": "Attendance",
+        "alt": "The attendance list in Odoo 19: check-in, check-out and worked hours, with people currently in shown in green.",
+        "caption": "168 attendance records with check-in and check-out, and who is at work now shown in green."
+      },
+      "expenses": {
+        "label": "Expenses",
+        "alt": "The expenses list in Odoo 19: 13 expenses in Draft, Submitted, Approved, Posted and Refused states, with the summary strip on top.",
+        "caption": "13 expenses by status: 277.00 SAR to submit, 595.00 SAR waiting approval and 5,755.00 SAR waiting reimbursement."
+      },
+      "pos-register": {
+        "label": "Point of sale",
+        "alt": "The point-of-sale register in Odoo 19: category tabs, product tiles and the order in progress with numpad and Payment button.",
+        "caption": "A fast till: an order in progress totalling 11,217.10 SAR, of which 1,463.10 SAR is VAT, with Payment ready."
+      },
+      "ecommerce-shop": {
+        "label": "Web shop",
+        "alt": "The online shop page: product grid, categories, price filter and the company phone number in the header.",
+        "caption": "A web shop with prices from 320 to 3,600 SAR and Furniture, IT Equipment and Office Devices categories."
+      },
+      "projects-tasks": {
+        "label": "Projects",
+        "alt": "A project task board for a showroom fit-out in Riyadh: Backlog, In Progress, Review and Done columns with tags and priorities.",
+        "caption": "12 tasks across four stages, each with its tags, priority and assignee."
+      },
+      "fleet": {
+        "label": "Fleet",
+        "alt": "The vehicles board in Odoo 19: six vehicles with their drivers, contracts and stages.",
+        "caption": "6 vehicles with drivers and contracts: one to order and five registered (fictional brands)."
+      },
+      "marketing": {
+        "label": "Email marketing",
+        "alt": "The mailings list in Odoo 19 with delivered, opened, clicked and replied rates.",
+        "caption": "7 mailings: 6 sent (42 recipients each) and one draft, with open and click rates."
+      },
+      "dashboards-sales": {
+        "label": "Dashboards",
+        "alt": "The Sales dashboard in Odoo 19: quotation, order, revenue and average-order tiles, a monthly sales chart, top quotations and top orders.",
+        "caption": "6 quotations, 15 orders, 330k SAR revenue and a 21,975 SAR average order, with the monthly sales curve."
+      },
+      "einvoice-zatca": {
+        "label": "Saudi tax invoice",
+        "alt": "A printed tax invoice in English from Odoo 19 with seller and buyer VAT numbers, VAT columns and a QR code.",
+        "caption": "The printed invoice with seller and buyer VAT numbers and an attached QR code: 43,307.85 SAR, of which 5,648.85 SAR is VAT."
+      },
+      "einvoice-jofotara": {
+        "label": "Jordanian invoice",
+        "alt": "A customer invoice for Al Ofoq Jordan in Jordanian dinar in Odoo 19, showing the JoFotara state field on the Other Info tab.",
+        "caption": "The JoFotara submission state sits on the invoice itself (a demo state in this setup). Total 6,444.960 JOD including 16% tax."
       }
     },
-    "detail": {
-      "accounting": {
-        "alt": "A close-up of the invoice lines, tax and total in Odoo 19.",
-        "lead": "Tax is calculated on every line, and the total and amount due are clear.",
+    "views": {
+      "home-hero": {
         "callouts": [
-          "15% VAT",
-          "VAT total",
+          "Paid in full",
+          "15% VAT"
+        ]
+      },
+      "invoice-totals": {
+        "alt": "A close-up of the invoice lines and totals in Odoo 19.",
+        "lead": "Tax is worked out on every line, and the total and amount due are clear.",
+        "callouts": [
+          "15% tax on every line",
+          "Total VAT",
           "Amount due"
         ]
       },
-      "sales-crm": {
-        "alt": "A close-up of two columns of the deal pipeline in Odoo 19.",
-        "lead": "Each deal is a card in its stage, with the stage's value and progress above.",
+      "order-lines": {
+        "alt": "A close-up of the sales order: stages, Delivery and Invoices buttons, lines and totals.",
+        "lead": "From the sales order you go straight to its delivery and invoices.",
         "callouts": [
-          "Stage progress",
-          "Deal priority",
-          "Overdue activity"
+          "Sales order stage",
+          "Delivery and invoices",
+          "Delivered and invoiced per line",
+          "Total with VAT"
         ]
       },
-      "inventory": {
-        "alt": "A close-up of the delivery orders card in the inventory overview.",
-        "lead": "Delivery orders with their counts, and what is late stands out.",
+      "product-form": {
+        "alt": "A close-up of the product form: stock, sales and purchase buttons, price and cost.",
+        "lead": "On hand, forecast, sold and purchased sit in buttons on the product form itself.",
         "callouts": [
-          "Ready to deliver",
-          "Late orders",
-          "Orders per status"
+          "58 on hand, 48 forecast",
+          "Sales price 740.00 SAR",
+          "Cost 410.00 SAR"
         ]
       },
-      "purchase": {
-        "alt": "A close-up of order statuses and totals in the price list.",
-        "lead": "Orders with their statuses and totals in one table.",
+      "purchase-lines": {
+        "alt": "A close-up of the purchase order: stage, vendor bill, receipt and order lines.",
+        "lead": "What was ordered, received and billed, per item, on one line.",
         "callouts": [
-          "Order status",
-          "Total",
-          "Next activity"
+          "Confirmed purchase order",
+          "Vendor bill and receipt",
+          "Received and billed per line",
+          "Total with VAT"
         ]
       },
-      "manufacturing": {
-        "alt": "A close-up of manufacturing order status and component availability.",
-        "lead": "Each manufacturing order with its status, and whether components are available.",
+      "mo-states": {
+        "alt": "A close-up of manufacturing order states and component availability.",
+        "lead": "The state of each manufacturing order, and whether its components are available.",
         "callouts": [
-          "Order status",
-          "Component availability",
-          "Draft before confirmation"
+          "Done",
+          "Components available",
+          "Draft until confirmed"
         ]
       },
-      "hr-payroll": {
-        "alt": "A close-up of four employee cards in Odoo 19.",
-        "lead": "Every employee gets a card: title, phone and tags.",
+      "time-off-cal": {
+        "alt": "A close-up of the time-off calendar: leave bars and the side panel with employee colours.",
+        "lead": "Who is away and when, on one calendar, with what awaits approval.",
         "callouts": [
-          "Employee photo",
-          "Phone number",
-          "Tags"
+          "Approved leave",
+          "Request awaiting approval",
+          "A colour per employee"
         ]
       },
-      "point-of-sale": {
-        "alt": "A close-up of the order, total and product categories on the cashier screen.",
-        "lead": "The order lines and total sit beside the product grid.",
+      "pos-order": {
+        "alt": "A close-up of the order in progress, its total and the product categories.",
+        "lead": "Order lines and the total beside the product categories.",
         "callouts": [
           "Order lines",
-          "Total",
+          "Total with VAT",
           "Product categories"
         ]
       },
-      "website-ecommerce": {
-        "alt": "A close-up of the top of the shop page: title, search and a product price.",
-        "lead": "The shop page in Arabic, with its categories, search and prices.",
+      "shop-filters": {
+        "alt": "A close-up of the top of the shop page: price filter, categories and products.",
+        "lead": "Categories, the price filter and product prices, all from the same system.",
         "callouts": [
-          "Shop page",
-          "Search and sort",
-          "Price in riyals"
+          "Price filter",
+          "Product categories",
+          "Product with image and price"
         ]
       },
-      "project-timesheets": {
-        "alt": "A close-up of two columns of the project task board.",
-        "lead": "Tasks in columns, each with its deadline and hours.",
+      "tasks-board": {
+        "alt": "A close-up of two columns of the task board: tasks, tags and priorities.",
+        "lead": "Each task is a card in its stage, with its tags and priority.",
         "callouts": [
-          "Stage progress",
+          "Stage and its task count",
           "Task tags",
-          "Task hours"
+          "Priority"
+        ]
+      },
+      "zatca-invoice": {
+        "callouts": [
+          "Seller VAT number",
+          "Tax invoice title",
+          "QR code on the invoice"
+        ]
+      },
+      "jofotara-state": {
+        "callouts": [
+          "JoFotara state (demo)",
+          "Al Ofoq Jordan"
         ]
       }
+    },
+    "extras": {
+      "title": "Also available",
+      "lead": "Fleet and email marketing are further Odoo apps that can be added to your system."
     }
   },
   "site": {
@@ -181,6 +258,7 @@
     "tagline": "Odoo for companies in Jordan and Saudi Arabia",
     "nav": {
       "home": "Home",
+      "integrations": "Integrations",
       "whyOdoo": "Why Odoo",
       "apps": "Apps",
       "industries": "Industries",
@@ -1099,7 +1177,13 @@
         "You find out an item ran out when a customer asks for it.",
         "Your online store and your shops keep separate stock."
       ],
-      "apps": ["point-of-sale", "inventory", "purchase", "accounting", "website-ecommerce"],
+      "apps": [
+        "point-of-sale",
+        "inventory",
+        "purchase",
+        "accounting",
+        "website-ecommerce"
+      ],
       "appsNote": "POS at the counter, Inventory for stock across branches, Purchase for reorders and Accounting for the books. Add the online store when you're ready.",
       "day": [
         "Morning. You open the dashboard and see yesterday's sales for every branch.",
@@ -1138,7 +1222,13 @@
         "Collections depend on someone remembering to call.",
         "You don't know your real margin after freight and customs."
       ],
-      "apps": ["sales-crm", "inventory", "purchase", "accounting", "website-ecommerce"],
+      "apps": [
+        "sales-crm",
+        "inventory",
+        "purchase",
+        "accounting",
+        "website-ecommerce"
+      ],
       "appsNote": "Sales with price lists per customer, Inventory for picking and delivery, Purchase for suppliers and imports, and Accounting for credit and collections. An online portal lets regular customers reorder by themselves.",
       "day": [
         "A salesperson enters an order. Odoo applies that customer's prices and warns if the order goes over their credit limit.",
@@ -1177,7 +1267,13 @@
         "Raw material stock is always off.",
         "Tracing a faulty batch back to its materials takes days."
       ],
-      "apps": ["manufacturing", "inventory", "purchase", "sales-crm", "accounting"],
+      "apps": [
+        "manufacturing",
+        "inventory",
+        "purchase",
+        "sales-crm",
+        "accounting"
+      ],
       "appsNote": "Manufacturing for bills of materials and production orders, Inventory for raw materials and finished goods, Purchase for components, Sales for customer orders and Accounting for costing.",
       "day": [
         "The planner sees which orders are due and which ones have all their materials.",
@@ -1215,7 +1311,12 @@
         "Proposals, contracts and invoices live in different places.",
         "You don't see who's overloaded until a deadline slips."
       ],
-      "apps": ["sales-crm", "project-timesheets", "accounting", "hr-payroll"],
+      "apps": [
+        "sales-crm",
+        "project-timesheets",
+        "accounting",
+        "hr-payroll"
+      ],
       "appsNote": "CRM and Sales for proposals, Project and Timesheets for the work itself, Accounting for billing, and HR for leave and expenses.",
       "day": [
         "A client approves a proposal online. Odoo creates the project and its tasks.",
@@ -1254,7 +1355,13 @@
         "Progress billing is done in Excel and checked by hand.",
         "Site teams and the office work from different numbers."
       ],
-      "apps": ["project-timesheets", "purchase", "inventory", "accounting", "hr-payroll"],
+      "apps": [
+        "project-timesheets",
+        "purchase",
+        "inventory",
+        "accounting",
+        "hr-payroll"
+      ],
       "appsNote": "Odoo has no ready construction app. We build the setup from Project, Purchase, Inventory and Accounting, with each project tracked as its own cost center. Bills of quantities, progress certificates and retention usually need customization, and we scope that with you.",
       "day": [
         "The site engineer requests materials for the project, and Purchase sends the order to the supplier.",
@@ -1293,7 +1400,13 @@
         "Each branch closes its cash differently.",
         "Buying from suppliers depends on someone checking the storeroom."
       ],
-      "apps": ["point-of-sale", "inventory", "purchase", "accounting", "hr-payroll"],
+      "apps": [
+        "point-of-sale",
+        "inventory",
+        "purchase",
+        "accounting",
+        "hr-payroll"
+      ],
       "appsNote": "POS in restaurant mode for tables and kitchen orders, Inventory for ingredients, Purchase for suppliers, Accounting for the books, and HR for staff attendance.",
       "day": [
         "Waiters take orders at the table on a tablet. The kitchen gets them on a printer or a screen.",
@@ -1418,5 +1531,450 @@
       "label": "Riyadh office",
       "phone": "+966 56 344 7279"
     }
-  ]
+  ],
+  "integrations": {
+    "seo": {
+      "title": "Government, Bank and Platform Integrations for Odoo in Jordan and Saudi Arabia | AIODYX",
+      "description": "FATOORA, Qiwa, Mudad and GOSI in Saudi Arabia, JoFotara and Social Security in Jordan, plus banks, payment gateways, shipping, online stores, WhatsApp and biometric devices, all connected to your Odoo."
+    },
+    "intro": {
+      "title": "Your system talks to every platform you deal with",
+      "body": "Invoices, contracts, payroll, shipments and payments each leave your system for the right platform, with no file uploads or retyping."
+    },
+    "hero": {
+      "center": "Your system",
+      "centerSub": "Odoo with AIODYX",
+      "label": "Diagram showing your system connected to government platforms, banks, payment gateways and shipping carriers"
+    },
+    "labels": {
+      "usedBy": "Used by",
+      "details": "Integration details",
+      "ask": "Ask about this integration",
+      "yes": "Included",
+      "no": "Not included",
+      "needs": "Needs setup",
+      "viewAll": "See all integrations",
+      "groups": "Integration groups"
+    },
+    "shot": {
+      "title": "E-invoicing from inside the system",
+      "body": "The Saudi tax invoice with VAT numbers and a QR code, and the Jordanian invoice with its JoFotara state, both on real Odoo screens."
+    },
+    "compare": {
+      "title": "Odoo on its own, or Odoo with AIODYX",
+      "lead": "Odoo is an excellent base. The difference is local integration, implementation and support.",
+      "caption": "Comparison of Odoo on its own and Odoo with AIODYX",
+      "feature": "Capability",
+      "alone": "Odoo alone",
+      "rows": [
+        {
+          "label": "ZATCA and JoFotara e-invoicing",
+          "alone": "needs",
+          "with": "yes"
+        },
+        {
+          "label": "Contract sync with Qiwa",
+          "alone": "no",
+          "with": "yes"
+        },
+        {
+          "label": "Wage-protection file to Mudad",
+          "alone": "no",
+          "with": "yes"
+        },
+        {
+          "label": "Full Saudi and Jordanian payroll rules",
+          "alone": "needs",
+          "with": "yes"
+        },
+        {
+          "label": "Local bank file formats",
+          "alone": "needs",
+          "with": "yes"
+        },
+        {
+          "label": "Biometric device integration",
+          "alone": "no",
+          "with": "yes"
+        },
+        {
+          "label": "Customised to how you work",
+          "alone": "no",
+          "with": "yes"
+        },
+        {
+          "label": "Training and support in Arabic",
+          "alone": "no",
+          "with": "yes"
+        }
+      ],
+      "with": "Odoo with AIODYX"
+    },
+    "groups": [
+      {
+        "id": "sa",
+        "title": "Saudi Arabia",
+        "sub": "ZATCA, Ministry of HR, GOSI",
+        "items": [
+          {
+            "id": "zatca",
+            "logos": [
+              "zatca"
+            ],
+            "title": "FATOORA · ZATCA",
+            "sub": "E-invoicing · Phase 2 (integration)",
+            "line": "Every tax invoice is signed and sent to FATOORA from inside the system, with QR code and clearance status.",
+            "points": [
+              "Onboard the e-invoicing unit and obtain its certificate",
+              "Sign every invoice and generate the QR code",
+              "Send B2B invoices for clearance and B2C for reporting",
+              "Show each invoice's status and errors in the system"
+            ],
+            "apps": [
+              "finance",
+              "pos"
+            ]
+          },
+          {
+            "id": "qiwa",
+            "logos": [
+              "qiwa"
+            ],
+            "title": "Qiwa · Ministry of HR",
+            "sub": "Employment contracts & establishment data",
+            "line": "Employee and contract data in the system stays aligned with Qiwa, with expiry alerts and Saudization tracking.",
+            "points": [
+              "Match employee and contract records",
+              "Alerts for expiring contracts and iqamas",
+              "Track Saudization ratio from the system",
+              "Change log per employee"
+            ],
+            "apps": [
+              "hr"
+            ]
+          },
+          {
+            "id": "mudad",
+            "logos": [
+              "mudad"
+            ],
+            "title": "Mudad · Wage Protection",
+            "sub": "WPS payroll file submission",
+            "line": "The approved payroll produces the wage-protection file in the required format, submitted without manual uploads.",
+            "points": [
+              "Approve payroll inside the system",
+              "Generate the WPS file",
+              "Submit to Mudad",
+              "Reconcile payments with the bank"
+            ],
+            "apps": [
+              "payroll"
+            ]
+          },
+          {
+            "id": "gosi",
+            "logos": [
+              "gosi"
+            ],
+            "title": "GOSI",
+            "sub": "Employee contributions",
+            "line": "Contributions are calculated within payroll and posted as journal entries with a monthly report.",
+            "points": [
+              "Calculate contributions in payroll",
+              "Monthly contribution report",
+              "Update wages when they change",
+              "Automatic journal entries"
+            ],
+            "apps": [
+              "hr",
+              "payroll"
+            ]
+          }
+        ]
+      },
+      {
+        "id": "jo",
+        "title": "Jordan",
+        "sub": "Income & Sales Tax, Social Security",
+        "items": [
+          {
+            "id": "jofotara",
+            "logos": [
+              "jofotara"
+            ],
+            "title": "JoFotara · National E-invoicing",
+            "sub": "Income & Sales Tax Department",
+            "line": "Each invoice is sent to JoFotara when issued and printed with its QR code, including credit and debit notes.",
+            "points": [
+              "Connect the system to your JoFotara account",
+              "Send every invoice as it is issued",
+              "Receive the QR code and print it on the invoice",
+              "Credit and debit notes linked to the original"
+            ],
+            "apps": [
+              "finance",
+              "pos"
+            ]
+          },
+          {
+            "id": "ssc",
+            "logos": [
+              "ssc"
+            ],
+            "title": "Social Security Corporation",
+            "sub": "Employee contributions in Jordan",
+            "line": "Social security contributions are calculated in payroll with a monthly statement and automatic entries.",
+            "points": [
+              "Calculate contributions in payroll",
+              "Monthly contribution statement",
+              "Automatic journal entries",
+              "Alerts when wages change"
+            ],
+            "apps": [
+              "hr",
+              "payroll"
+            ]
+          }
+        ]
+      },
+      {
+        "id": "more",
+        "title": "Banks, payments, shipping & stores",
+        "sub": "In both countries",
+        "items": [
+          {
+            "id": "banks",
+            "logos": [],
+            "title": "Banks",
+            "sub": "Jordan & Saudi Arabia",
+            "line": "Statement import and matching, plus salary transfer files in each bank's format.",
+            "points": [
+              "Import bank statements",
+              "Auto-match with invoices",
+              "Salary transfer file",
+              "Daily cash reports"
+            ],
+            "apps": [
+              "finance",
+              "payroll",
+              "expenses"
+            ]
+          },
+          {
+            "id": "payments",
+            "logos": [
+              "hyperpay",
+              "tap",
+              "moyasar"
+            ],
+            "title": "Payment gateways",
+            "sub": "HyperPay · Tap · Moyasar",
+            "line": "Payment links on invoices and quotes, with payments recorded automatically.",
+            "points": [
+              "Payment link on the invoice",
+              "mada, Visa and Apple Pay",
+              "Payment recorded automatically",
+              "Settlement reconciliation"
+            ],
+            "apps": [
+              "finance",
+              "crm",
+              "pos",
+              "ecommerce"
+            ]
+          },
+          {
+            "id": "shipping",
+            "logos": [
+              "aramex",
+              "smsa"
+            ],
+            "title": "Shipping carriers",
+            "sub": "Aramex · SMSA",
+            "line": "Waybills are created from delivery orders with live tracking.",
+            "points": [
+              "Create the waybill from the delivery order",
+              "Print the label",
+              "Track the shipment",
+              "Cash-on-delivery reconciliation"
+            ],
+            "apps": [
+              "inventory",
+              "ecommerce"
+            ]
+          },
+          {
+            "id": "stores",
+            "logos": [
+              "salla",
+              "zid",
+              "shopify"
+            ],
+            "title": "E-commerce stores",
+            "sub": "Salla · Zid · Shopify",
+            "line": "Orders flow into the system and stock and prices sync back to the store.",
+            "points": [
+              "Pull orders automatically",
+              "Sync stock and prices",
+              "E-invoice every order",
+              "Reconcile store payouts"
+            ],
+            "apps": [
+              "crm",
+              "inventory",
+              "ecommerce"
+            ]
+          },
+          {
+            "id": "whatsapp",
+            "logos": [
+              "whatsapp"
+            ],
+            "title": "WhatsApp Business",
+            "sub": "WhatsApp Business API",
+            "line": "Quotes, invoices, reminders and order status reach customers on WhatsApp.",
+            "points": [
+              "Approved message templates",
+              "Send from any document",
+              "Replies arrive as tickets or notes",
+              "Automatic reminders"
+            ],
+            "apps": [
+              "crm",
+              "projects",
+              "helpdesk",
+              "ai",
+              "ecommerce",
+              "docs",
+              "marketing"
+            ]
+          },
+          {
+            "id": "biometric",
+            "logos": [],
+            "title": "Biometric devices",
+            "sub": "ZKTeco and others",
+            "line": "Punches are pulled from devices across branches and flow straight into payroll.",
+            "points": [
+              "Pull punches automatically",
+              "Compute lateness and overtime",
+              "Feed payroll directly",
+              "Many branches, one system"
+            ],
+            "apps": [
+              "payroll"
+            ]
+          }
+        ]
+      }
+    ],
+    "homeRows": [
+      {
+        "label": "Saudi Arabia",
+        "logos": [
+          "zatca",
+          "qiwa",
+          "mudad",
+          "gosi"
+        ]
+      },
+      {
+        "label": "Jordan",
+        "logos": [
+          "jofotara",
+          "ssc"
+        ]
+      },
+      {
+        "label": "Payments, shipping & stores",
+        "logos": [
+          "hyperpay",
+          "tap",
+          "moyasar",
+          "aramex",
+          "smsa",
+          "salla",
+          "zid",
+          "shopify",
+          "whatsapp"
+        ]
+      }
+    ],
+    "cta": {
+      "title": "Ready to build your system?",
+      "body": "A free 30-minute consultation where we learn how you work and tell you plainly what you need.",
+      "button": "Book a free consultation"
+    },
+    "apps": {
+      "finance": {
+        "name": "Accounting & Finance",
+        "slug": "accounting"
+      },
+      "pos": {
+        "name": "Point of Sale",
+        "slug": "point-of-sale"
+      },
+      "hr": {
+        "name": "Human Resources",
+        "slug": "hr-payroll"
+      },
+      "payroll": {
+        "name": "Attendance & Payroll",
+        "slug": "hr-payroll"
+      },
+      "expenses": {
+        "name": "Expenses & Petty Cash",
+        "slug": null
+      },
+      "inventory": {
+        "name": "Inventory & Purchase",
+        "slug": "inventory"
+      },
+      "crm": {
+        "name": "CRM & Sales",
+        "slug": "sales-crm"
+      },
+      "ecommerce": {
+        "name": "eCommerce",
+        "slug": "website-ecommerce"
+      },
+      "projects": {
+        "name": "Projects & Tasks",
+        "slug": "project-timesheets"
+      },
+      "helpdesk": {
+        "name": "Helpdesk",
+        "slug": null
+      },
+      "ai": {
+        "name": "AI Automation",
+        "slug": null
+      },
+      "docs": {
+        "name": "Documents & Sign",
+        "slug": null
+      },
+      "marketing": {
+        "name": "Marketing",
+        "slug": null
+      }
+    },
+    "logos": {
+      "zatca": "ZATCA",
+      "qiwa": "Qiwa",
+      "mudad": "Mudad",
+      "gosi": "GOSI",
+      "jofotara": "JoFotara",
+      "ssc": "Social Security Corporation",
+      "hyperpay": "HyperPay",
+      "tap": "Tap",
+      "moyasar": "Moyasar",
+      "aramex": "Aramex",
+      "smsa": "SMSA Express",
+      "salla": "Salla",
+      "zid": "Zid",
+      "shopify": "Shopify",
+      "whatsapp": "WhatsApp Business"
+    }
+  }
 }

@@ -1,0 +1,17 @@
+---
+import IntLogo from './IntLogo.astro';
+import { DATA, type Lang } from '../lib/site';
+// Home strip: one labelled row per group, logos on light plates.
+const { lang } = Astro.props as { lang: Lang };
+const I = DATA[lang].integrations;
+---
+<ul class="int-wall" role="list">
+  {I.homeRows.map((r) => (
+    <li class="int-wall__row">
+      <p class="int-wall__label">{r.label}</p>
+      <ul class="int-wall__logos" role="list">
+        {r.logos.map((l) => <li class="int-plate"><IntLogo id={l} k={1.1} alt={I.logos[l as keyof typeof I.logos]} /></li>)}
+      </ul>
+    </li>
+  ))}
+</ul>

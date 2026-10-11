@@ -2,7 +2,7 @@
 import AppIcon from './AppIcon.astro';
 import Icon from './Icon.astro';
 import { DATA, href, type Lang } from '../lib/site';
-import { APP_SHOT, shotSrc, SHOT_W, SHOT_H } from '../lib/shots';
+import { APP_SHOT, shotSrc, shotSet, IMG_W, IMG_H } from '../lib/shots';
 // Showcase card for one app: a framed top crop of its real Odoo screenshot on top, then icon, name, promise, "for whom".
 const { lang, app, wide = false, flip = false } = Astro.props as { lang: Lang; app: any; wide?: boolean; flip?: boolean };
 const d = DATA[lang];
@@ -13,7 +13,7 @@ const alt = (d.odoo.shots as Record<string, { alt: string }>)[key].alt;
   <a href={href(lang, `apps/${app.slug}/`)}>
     <div class="sc__win sc__win--img">
       <div class="sc__bar" aria-hidden="true"><i></i><i></i><i></i></div>
-      <div class="sc__shot"><img src={shotSrc(key)} width={SHOT_W} height={SHOT_H} alt={alt} loading="lazy" decoding="async" /></div>
+      <div class="sc__shot"><img src={shotSrc(key, lang, true)} srcset={shotSet(key, lang)} sizes="(min-width: 960px) 560px, 100vw" width={IMG_W} height={IMG_H} alt={alt} loading="lazy" decoding="async" /></div>
     </div>
     <div class="sc__body">
       <span class="sc__top"><AppIcon name={app.slug} size={40} /><h3>{app.name}</h3><Icon name="arrow" size={20} /></span>

@@ -1,0 +1,7 @@
+---
+import { logoSize, logoSrc } from '../lib/integrations';
+// One partner logo, sized for equal visual weight. Always sits on a light plate (see integrations.css).
+const { id, alt = '', k = 1 } = Astro.props as { id: string; alt?: string; k?: number };
+const s = logoSize(id);
+---
+<img class="int-logo" src={logoSrc(id)} alt={alt} width={s.w} height={s.h} style={`--w:${Math.round(s.w * k)}px;--h:${Math.round(s.h * k)}px`} loading="lazy" decoding="async" draggable="false" />

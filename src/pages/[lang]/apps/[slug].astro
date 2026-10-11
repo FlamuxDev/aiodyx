@@ -10,7 +10,7 @@ import Faq from '../../../components/Faq.astro';
 import CtaBand from '../../../components/CtaBand.astro';
 import { DATA, abs, href, tel, waUrl, pathsFor, slugs, type Lang } from '../../../lib/site';
 import { faqNode, serviceNode } from '../../../lib/schema';
-import { APP_SHOT, DETAIL } from '../../../lib/shots';
+import { APP_PAGE } from '../../../lib/shots';
 
 export const getStaticPaths = () => pathsFor(slugs.apps);
 const { lang, slug } = Astro.params as { lang: Lang; slug: string };
@@ -19,10 +19,12 @@ const app = d.apps.find((a) => a.slug === slug)!;
 const url = abs(href(lang, `apps/${slug}/`));
 const industries = d.industries.filter((i) => (i.apps as string[]).includes(slug));
 const o = d.odoo;
-const heroKey = APP_SHOT[slug];
-const hero = (o.shots as Record<string, { alt: string }>)[heroKey];
-const det = DETAIL[slug];
-const dt = (o.detail as Record<string, { alt: string; lead: string; callouts: string[] }>)[slug];
+const pg = APP_PAGE[slug];
+type ShotText = { label: string; alt: string; caption: string };
+const shots = o.shots as Record<string, ShotText>;
+const hero = shots[pg.hero];
+const dt = (o.views as Record<string, { alt: string; lead: string }>)[pg.detail];
+const more = pg.more.map((k) => ({ k, ...shots[k] }));
 const others = d.apps.filter((a) => a.slug !== slug);
 ---
 <Base lang={lang} path={`apps/${slug}/`} title={app.seo.title} description={app.seo.description} waTopic={app.name}
@@ -37,7 +39,7 @@ const others = d.apps.filter((a) => a.slug !== slug);
       <a class="btn btn--wa btn--lg" href={waUrl(lang, app.name)} rel="noopener"><Icon name="whatsapp" size={20} />{d.site.cta.whatsapp}</a>
       <a class="btn btn--line btn--lg" href={tel(d.offices[2].phone)}><Icon name="phone" size={20} />{d.site.cta.call}</a>
     </div>
-    <div slot="visual"><OdooShot shot={heroKey} lang={lang} alt={hero.alt} eager /></div>
+    <div slot="visual"><OdooShot stem={pg.hero} lang={lang} alt={hero.alt} eager maxw={760} /></div>
   </PageHead>
 
   <section class="sec" aria-labelledby="feat">
@@ -51,7 +53,7 @@ const others = d.apps.filter((a) => a.slug !== slug);
 
   <section class="sec sec--grey" aria-labelledby="zoom">
     <div class="wrap adetail">
-      <div class="adetail__shot"><OdooShot shot={det.shot} lang={lang} alt={dt.alt} crop={det.crop} points={det.points} labels={dt.callouts} /></div>
+      <div class="adetail__shot"><OdooShot view={pg.detail} lang={lang} alt={dt.alt} maxw={700} /></div>
       <div class="adetail__text">
         <h2 id="zoom" class="h-lg">{o.labels.detail}</h2>
         <p>{dt.lead}</p>
@@ -59,6 +61,24 @@ const others = d.apps.filter((a) => a.slug !== slug);
       </div>
     </div>
   </section>
+
+  {more.length > 0 && (
+    <section class="sec" aria-labelledby="more">
+      <div class="wrap">
+        <SectionHead id="more" title={o.labels.more} />
+        <ul class="shotgrid" role="list">
+          {more.map((m) => (
+            <li>
+              <figure>
+                <OdooShot stem={m.k} lang={lang} alt={m.alt} maxw={560} />
+                <figcaption><span class="stabs__label">{m.label}</span>{m.caption}</figcaption>
+              </figure>
+            </li>
+          ))}
+        </ul>
+      </div>
+    </section>
+  )}
 
   <section class="statement" aria-labelledby="out">
     <div class="wrap statement__in">

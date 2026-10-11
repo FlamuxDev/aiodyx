@@ -1,0 +1,75 @@
+---
+import Base from '../../layouts/Base.astro';
+import Icon from '../../components/Icon.astro';
+import PageHead from '../../components/PageHead.astro';
+import SectionHead from '../../components/SectionHead.astro';
+import OdooShot from '../../components/OdooShot.astro';
+import CtaBand from '../../components/CtaBand.astro';
+import IntHeroMap from '../../components/IntHeroMap.astro';
+import IntCard from '../../components/IntCard.astro';
+import IntCompare from '../../components/IntCompare.astro';
+import { INT_SHOTS } from '../../lib/integrations';
+import { DATA, href, waUrl, langPaths, type Lang } from '../../lib/site';
+
+export const getStaticPaths = langPaths;
+const { lang } = Astro.params as { lang: Lang };
+const d = DATA[lang];
+const p = d.integrations;
+const o = d.odoo as { shots: Record<string, { label: string; alt: string; caption: string }>; showcase: { note: string } };
+const [sa, jo, more] = p.groups;
+---
+<Base lang={lang} path="integrations/" title={p.seo.title} description={p.seo.description} waTopic={d.site.nav.integrations}
+  crumbs={[{ name: d.site.nav.integrations, href: href(lang, 'integrations/') }]}>
+  <PageHead title={p.intro.title} lead={p.intro.body}>
+    <div class="btn-row">
+      <a class="btn btn--wa btn--lg" href={waUrl(lang, d.site.nav.integrations)} rel="noopener"><Icon name="whatsapp" size={20} />{d.site.cta.primary}</a>
+    </div>
+    <IntHeroMap slot="visual" lang={lang} />
+  </PageHead>
+
+  {[sa, jo].map((g) => (
+    <section class="sec" aria-labelledby={`g-${g.id}`}>
+      <div class="wrap">
+        <SectionHead id={`g-${g.id}`} title={g.title} lead={g.sub} />
+        <div class="int-grid">{g.items.map((it) => <IntCard lang={lang} item={it} />)}</div>
+      </div>
+    </section>
+  ))}
+
+  <!-- Real screens: the printed Saudi tax invoice and the Jordanian invoice with its JoFotara state -->
+  <section class="sec sec--grey" aria-labelledby="int-shot">
+    <div class="wrap int-shotsec">
+      <div class="shead__text">
+        <h2 id="int-shot" class="h-lg">{p.shot.title}</h2>
+        <p class="lead">{p.shot.body}</p>
+      </div>
+      <ul class="shotgrid" role="list">
+        {INT_SHOTS.map((s) => (
+          <li>
+            <figure>
+              <OdooShot view={s.view} lang={lang} alt={o.shots[s.stem].alt} maxw={620} />
+              <figcaption><span class="stabs__label">{o.shots[s.stem].label}</span>{o.shots[s.stem].caption}</figcaption>
+            </figure>
+          </li>
+        ))}
+      </ul>
+      <p class="sc-note">{o.showcase.note}</p>
+    </div>
+  </section>
+
+  <section class="sec" aria-labelledby={`g-${more.id}`}>
+    <div class="wrap">
+      <SectionHead id={`g-${more.id}`} title={more.title} lead={more.sub} />
+      <div class="int-grid">{more.items.map((it) => <IntCard lang={lang} item={it} />)}</div>
+    </div>
+  </section>
+
+  <section class="sec sec--grey" aria-labelledby="int-cmp">
+    <div class="wrap">
+      <SectionHead id="int-cmp" title={p.compare.title} lead={p.compare.lead} />
+      <IntCompare lang={lang} />
+    </div>
+  </section>
+
+  <CtaBand lang={lang} title={p.cta.title} body={p.cta.body} button={p.cta.button} topic={d.site.nav.integrations} />
+</Base>

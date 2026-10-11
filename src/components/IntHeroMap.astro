@@ -1,0 +1,28 @@
+---
+import IntLogo from './IntLogo.astro';
+import { HERO_LEFT, HERO_RIGHT } from '../lib/integrations';
+import { DATA, type Lang } from '../lib/site';
+// Hero visual: your system in the middle, partner logos on both sides joined by quiet elbow lines.
+// Geometry is physical (left/right) on purpose so the diagram is symmetric in both languages.
+const { lang } = Astro.props as { lang: Lang };
+const I = DATA[lang].integrations;
+const ys = [56, 152, 248, 344];
+const lines = (side: 'l' | 'r') => ys.map((y) => {
+  const x0 = side === 'l' ? 195 : 365, x1 = side === 'l' ? 136 : 424, xm = side === 'l' ? 165 : 395;
+  return `M${x0} 200H${xm}V${y}H${x1}`;
+});
+const col = (ids: string[], side: 'l' | 'r') => ids.map((id, i) => ({ id, side, top: (ys[i] / 400) * 100 }));
+const plates = [...col(HERO_LEFT, 'l'), ...col(HERO_RIGHT, 'r')];
+---
+<figure class="int-map" role="img" aria-label={I.hero.label} dir="ltr">
+  <svg viewBox="0 0 560 400" preserveAspectRatio="none" aria-hidden="true" focusable="false">
+    {[...lines('l'), ...lines('r')].map((d) => <path d={d} />)}
+  </svg>
+  {plates.map((p) => (
+    <span class={`int-map__plate int-map__plate--${p.side}`} style={`top:${p.top}%`}><IntLogo id={p.id} k={1.25} /></span>
+  ))}
+  <div class="int-map__core" dir={lang === 'ar' ? 'rtl' : 'ltr'}>
+    <b>{I.hero.center}</b>
+    <span>{I.hero.centerSub}</span>
+  </div>
+</figure>

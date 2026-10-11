@@ -5,8 +5,10 @@ import SectionHead from '../../../components/SectionHead.astro';
 import AppLauncher from '../../../components/AppLauncher.astro';
 import AppShowcase from '../../../components/AppShowcase.astro';
 import ConnectMap from '../../../components/ConnectMap.astro';
+import OdooShot from '../../../components/OdooShot.astro';
 import CtaBand from '../../../components/CtaBand.astro';
 import { DATA, href, langPaths, type Lang } from '../../../lib/site';
+import { EXTRA_SHOTS } from '../../../lib/shots';
 
 export const getStaticPaths = langPaths;
 const { lang } = Astro.params as { lang: Lang };
@@ -26,6 +28,7 @@ const T = {
   ],
 }[lang];
 const groups = T.map((g) => ({ ...g, list: g.apps.map((s) => d.apps.find((a) => a.slug === s)!) }));
+const oo = d.odoo as { extras: { title: string; lead: string }; shots: Record<string, { label: string; alt: string; caption: string }>; showcase: { note: string } };
 const n = (i: number) => String(i + 1).padStart(2, '0');
 ---
 <Base lang={lang} path="apps/" title={p.seo.title} description={p.seo.description} crumbs={[{ name: d.site.nav.apps, href: href(lang, 'apps/') }]}>
@@ -56,7 +59,24 @@ const n = (i: number) => String(i + 1).padStart(2, '0');
     </section>
   ))}
 
-  <section class="sec sec--grey" aria-labelledby="conn">
+  <section class="sec sec--grey" aria-labelledby="extras">
+    <div class="wrap">
+      <SectionHead id="extras" title={oo.extras.title} lead={oo.extras.lead} />
+      <ul class="shotgrid" role="list">
+        {EXTRA_SHOTS.map((k) => (
+          <li>
+            <figure>
+              <OdooShot stem={k} lang={lang} alt={oo.shots[k].alt} maxw={560} />
+              <figcaption><span class="stabs__label">{oo.shots[k].label}</span>{oo.shots[k].caption}</figcaption>
+            </figure>
+          </li>
+        ))}
+      </ul>
+      <p class="sc-note">{oo.showcase.note}</p>
+    </div>
+  </section>
+
+  <section class="sec" aria-labelledby="conn">
     <div class="wrap">
       <SectionHead id="conn" title={d.site.labels.appConnects} />
       <ConnectMap lang={lang} />

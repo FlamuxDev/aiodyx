@@ -12,6 +12,7 @@ export const GET = () => {
     for (const [key, path] of [['why-odoo', 'why-odoo/'], ['apps', 'apps/'], ['industries', 'industries/'], ['services', 'services/'], ['how-we-work', 'how-we-work/'], ['about', 'about/'], ['faq', 'faq/'], ['contact', 'contact/']] as const) {
       const s = d.pages[key].seo;
       lines.push(L(s.title, path, s.description));
+      if (key === 'industries') lines.push(L(d.integrations.seo.title, 'integrations/', d.integrations.seo.description));
     }
     lines.push('', `### ${d.site.nav.apps}`, '');
     for (const a of d.apps) lines.push(L(a.name, `apps/${a.slug}/`, a.seo.description));

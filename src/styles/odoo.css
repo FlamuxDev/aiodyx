@@ -106,3 +106,13 @@
 /* ---- Why Odoo: dashboard ---- */
 .whydash { display: grid; gap: 28px; align-items: center; }
 @media (min-width: 960px) { .whydash { grid-template-columns: minmax(0, 4fr) minmax(0, 8fr); gap: 56px; } }
+
+/* ---- Figure grids: secondary screens on app pages, integrations, apps index ---- */
+.shotgrid { display: grid; gap: 40px 32px; grid-template-columns: minmax(0, 1fr); align-items: start; }
+.shotgrid > li { min-inline-size: 0; }
+.shotgrid figure { display: grid; gap: 14px; }
+.shotgrid figcaption { font-size: 1rem; color: var(--ink-2); max-inline-size: 54ch; text-wrap: pretty; }
+@media (min-width: 760px) { .shotgrid { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+.shotgrid:has(> li:only-child) { max-inline-size: 760px; }
+.lnch__img { position: absolute; inset-block-start: 0; inset-inline-start: 0; display: block; inline-size: 100%; block-size: auto; filter: brightness(var(--shot-dim)); }
+.shotgrid:has(> li:only-child) { grid-template-columns: minmax(0, 1fr); }

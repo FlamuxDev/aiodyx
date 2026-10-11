@@ -59,6 +59,14 @@ function pages(lang: Lang) {
     ]);
   }
 
+  const g = d.integrations;
+  page('integrations/', g.seo.title, [
+    `${g.intro.title}. ${g.intro.body}`,
+    ...g.groups.map((gr) => `### ${gr.title}\n\n${gr.sub}\n\n${gr.items.map((it) => `**${it.title}** (${it.sub}). ${it.line}\n${list(it.points)}`).join('\n\n')}`),
+    `### ${g.compare.title}\n\n${g.compare.lead}\n\n${list(g.compare.rows.map((r) => `${r.label}: ${g.compare.alone} ${g.labels[r.alone as 'yes' | 'no' | 'needs']}; ${g.compare.with} ${g.labels[r.with as 'yes' | 'no' | 'needs']}`))}`,
+    `### ${g.cta.title}\n\n${g.cta.body}`,
+  ]);
+
   page('services/', p.services.seo.title, [
     `${p.services.intro.title}. ${p.services.intro.body}`,
     ...d.services.map((s) => `### ${s.name}\n\n${s.summary}\n\n${list(s.points)}`),

@@ -1,0 +1,34 @@
+---
+import Icon from './Icon.astro';
+import IntLogo from './IntLogo.astro';
+import { ITEM_ICON } from '../lib/integrations';
+import { DATA, href, waUrl, type Lang } from '../lib/site';
+// One integration: logo plate, title, subtitle, description, four points, "used by" links.
+const { lang, item } = Astro.props as { lang: Lang; item: any };
+const I = DATA[lang].integrations;
+const hid = `int-${item.id}`;
+---
+<article class="int-card" aria-labelledby={hid}>
+  <div class="int-card__plate">
+    {item.logos.length
+      ? item.logos.map((l: string) => <IntLogo id={l} k={item.logos.length > 1 ? 0.9 : 1.3} alt={I.logos[l as keyof typeof I.logos]} />)
+      : <Icon name={ITEM_ICON[item.id] ?? 'layers'} size={30} />}
+  </div>
+  <div class="int-card__head">
+    <h3 id={hid}>{item.title}</h3>
+    <p class="int-card__sub">{item.sub}</p>
+  </div>
+  <p class="int-card__line">{item.line}</p>
+  <ul class="int-card__pts" role="list">
+    {item.points.map((p: string) => <li><Icon name="check" size={16} /><span>{p}</span></li>)}
+  </ul>
+  <div class="int-card__foot">
+    <p class="int-card__used"><span>{I.labels.usedBy}:</span>
+      {item.apps.map((k: string) => {
+        const a = I.apps[k as keyof typeof I.apps] as { name: string; slug: string | null };
+        return a.slug ? <a href={href(lang, `apps/${a.slug}/`)}>{a.name}</a> : <span class="int-card__plain">{a.name}</span>;
+      })}
+    </p>
+    <a class="textlink int-card__ask" href={waUrl(lang, item.sub)} rel="noopener" aria-label={`${I.labels.details}: ${item.title}`}>{I.labels.details}<Icon name="arrow" size={18} /></a>
+  </div>
+</article>

@@ -2,7 +2,7 @@
 import Icon from './Icon.astro';
 import OdooShot from './OdooShot.astro';
 import { DATA, href, type Lang } from '../lib/site';
-import { HOME_TABS, FULL } from '../lib/shots';
+import { HOME_TABS } from '../lib/shots';
 // Home: interactive viewer of real Odoo screens. A vertical list of areas (a horizontal scroller on phones)
 // swaps the framed screenshot, its one-line caption and the link to the matching app page.
 // Without JS every panel is shown in a stack and the list is hidden.
@@ -22,7 +22,7 @@ const tabs = HOME_TABS.map((t) => ({ ...t, ...(o.shots as Record<string, { label
   <div class="stabs__panels">
     {tabs.map((t, i) => (
       <div class="stabs__panel" role="tabpanel" id={`st-p-${i}`} aria-labelledby={`st-t-${i}`} tabindex="0">
-        <OdooShot shot={t.shot} lang={lang} alt={t.alt} crop={FULL} />
+        <OdooShot stem={t.shot} lang={lang} alt={t.alt} maxw={1100} />
         <div class="stabs__cap">
           <p><span class="stabs__label">{t.label}</span>{t.caption}</p>
           <a class="textlink" href={t.app ? href(lang, `apps/${t.app}/`) : href(lang, 'apps/')}>{o.showcase.details}<Icon name="arrow" size={20} /></a>

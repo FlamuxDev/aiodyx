@@ -54,6 +54,8 @@
   --sel: color-mix(in srgb, var(--primary) 22%, transparent);
   --scrim: rgb(11 13 20 / .45);
   --shot-dim: 1;
+  /* Hero isometric stack, bottom to top (mirrors the light palette in scripts/hero3d.ts). */
+  --iso-0: #c3d8e8; --iso-1: #eef2f9; --iso-2: #b4c8e6; --iso-3: #86a9df; --iso-4: #2b3e8c;
 
   --r: 8px;
   --r-sm: 6px;
@@ -113,6 +115,7 @@
   --nav-bg: rgb(10 12 20 / .94);
   --scrim: rgb(0 0 0 / .62);
   --shot-dim: .9;
+  --iso-0: #262d47; --iso-1: #323c5e; --iso-2: #46578f; --iso-3: #6f8ad6; --iso-4: #8fa8ee;
 }
 
 @media (prefers-color-scheme: dark) {
@@ -159,5 +162,6 @@
     --nav-bg: rgb(10 12 20 / .94);
     --scrim: rgb(0 0 0 / .62);
     --shot-dim: .9;
+    --iso-0: #262d47; --iso-1: #323c5e; --iso-2: #46578f; --iso-3: #6f8ad6; --iso-4: #8fa8ee;
   }
 }

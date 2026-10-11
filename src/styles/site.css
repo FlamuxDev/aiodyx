@@ -350,6 +350,9 @@ p a, .prose a { color: var(--primary); text-decoration: underline; text-underlin
 .hero3d { position: relative; inline-size: 100%; block-size: 280px; margin-block-start: 8px; }
 .hero3d canvas { position: absolute; inset: 0; inline-size: 100%; block-size: 100%; display: block; opacity: 0; transition: opacity .8s ease-out; }
 .hero3d__fb { position: absolute; inset: 0; inline-size: 100%; block-size: 100%; transition: opacity .8s ease-out; }
+.hero3d__fb .iso-t { fill: var(--s); }
+.hero3d__fb .iso-l { fill: color-mix(in srgb, var(--s) 88%, #000); }
+.hero3d__fb .iso-r { fill: color-mix(in srgb, var(--s) 78%, #000); }
 .hero3d.is-ready canvas { opacity: 1; }
 .hero3d.is-ready .hero3d__fb { opacity: 0; }
 @media (min-width: 960px) { .hero3d { block-size: 440px; margin: 0; } }
