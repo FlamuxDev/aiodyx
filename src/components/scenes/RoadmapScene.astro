@@ -66,14 +66,14 @@ const [fx, fy] = pts[4];
 
   .draw { stroke-dasharray: 1; stroke-dashoffset: 1; animation: draw 2.6s ease-out forwards; animation-delay: var(--d, 0s); }
   .road-o { fill: none; stroke: var(--line-2); stroke-width: 20; stroke-linecap: round; stroke-linejoin: round; }
-  .road-i { fill: none; stroke: #fff; stroke-width: 17; stroke-linecap: round; stroke-linejoin: round; }
+  .road-i { fill: none; stroke: var(--surface); stroke-width: 17; stroke-linecap: round; stroke-linejoin: round; }
   .road-c { fill: none; stroke: var(--mint); stroke-width: 1.5; stroke-linecap: round; }
 
-  .ring { fill: #fff; stroke: var(--primary); stroke-width: 1.5; }
+  .ring { fill: var(--surface); stroke: var(--primary); stroke-width: 1.5; }
   .dot { fill: var(--primary); }
   .dot.last { fill: var(--primary); }
-  .num { fill: #fff; }
-  .pill { fill: #fff; stroke: var(--line-2); stroke-width: 1.5; }
+  .num { fill: var(--on-primary); }
+  .pill { fill: var(--surface); stroke: var(--line-2); stroke-width: 1.5; }
   .flagc { fill: var(--primary); stroke: var(--primary); stroke-width: 1.5; stroke-linejoin: round; }
 
   .stop { opacity: 0; animation: pop .7s ease-out forwards; animation-delay: var(--d, 0s); }

@@ -8,8 +8,13 @@ import {
 import { RoundedBoxGeometry } from 'three/examples/jsm/geometries/RoundedBoxGeometry.js';
 import { RoomEnvironment } from 'three/examples/jsm/environments/RoomEnvironment.js';
 
-const COLORS = ['#c3d8d0', '#eef5f2', '#b4e0d2', '#86a9df', '#2b3e8c']; // bottom to top
-const N = COLORS.length;
+// Slab palettes, bottom to top. three.js cannot read CSS variables, so the two themes are mirrored here.
+const PALETTE = {
+  light: { slabs: ['#c3d8e8', '#eef2f9', '#b4c8e6', '#86a9df', '#2b3e8c'], spine: '#86a9df', ground: 0xcfd9ee, shadow: 0.08 },
+  dark: { slabs: ['#262d47', '#323c5e', '#46578f', '#6f8ad6', '#8fa8ee'], spine: '#6580cc', ground: 0x1a2140, shadow: 0.35 },
+} as const;
+const themeNow = () => (document.documentElement.dataset.theme === 'dark' ? 'dark' : 'light');
+const N = PALETTE.light.slabs.length;
 const H = 0.34, GAP = 0.025, SPREAD = 0.5;
 const OFFX = [-0.4, 0.32, -0.25, 0.36, 0];
 const OFFR = [0.32, -0.22, 0.18, -0.3, 0.12];
@@ -39,7 +44,8 @@ export function init(el: HTMLElement): () => void {
   scene.environmentIntensity = 0.55;
 
   const camera = new PerspectiveCamera(26, 1, 0.1, 60);
-  scene.add(new HemisphereLight(0xffffff, 0xcfeee5, 0.7));
+  const hemi = new HemisphereLight(0xffffff, PALETTE[themeNow()].ground, 0.7);
+  scene.add(hemi);
   const sun = new DirectionalLight(0xffffff, 2.1);
   sun.position.set(2.5, 8, 4);
   sun.castShadow = !small;
@@ -51,21 +57,30 @@ export function init(el: HTMLElement): () => void {
   const group = new Group();
   scene.add(group);
   const geo = new RoundedBoxGeometry(2.6, H, 2.6, 4, 0.09);
-  const slabs: Mesh[] = COLORS.map((c) => {
+  const slabs: Mesh[] = PALETTE[themeNow()].slabs.map((c) => {
     const m = new Mesh(geo, new MeshStandardMaterial({ color: c, roughness: 0.42, metalness: 0.04, envMapIntensity: 0.9 }));
     m.castShadow = true; m.receiveShadow = true;
     group.add(m);
     return m;
   });
-  const spineMat = new MeshBasicMaterial({ color: '#86a9df', transparent: true, opacity: 0 });
+  const spineMat = new MeshBasicMaterial({ color: PALETTE[themeNow()].spine, transparent: true, opacity: 0 });
   const spine = new Mesh(new CylinderGeometry(0.022, 0.022, 1, 8), spineMat);
   group.add(spine);
 
-  const floor = new Mesh(new PlaneGeometry(14, 14), new ShadowMaterial({ opacity: 0.08 }));
+  const floorMat = new ShadowMaterial({ opacity: PALETTE[themeNow()].shadow });
+  const floor = new Mesh(new PlaneGeometry(14, 14), floorMat);
   floor.rotation.x = -Math.PI / 2;
   floor.position.y = -1.3;
   floor.receiveShadow = true;
   scene.add(floor);
+
+  const onTheme = () => {
+    const p = PALETTE[themeNow()];
+    slabs.forEach((m, i) => (m.material as MeshStandardMaterial).color.set(p.slabs[i]));
+    spineMat.color.set(p.spine); hemi.groundColor.set(p.ground); floorMat.opacity = p.shadow;
+    draw(lastT);
+  };
+  document.addEventListener('themechange', onTheme);
 
   function pose(e: number) {
     const step = H + GAP + e * SPREAD;
@@ -147,6 +162,7 @@ export function init(el: HTMLElement): () => void {
     cancelAnimationFrame(raf); ro.disconnect(); io.disconnect();
     removeEventListener('pointermove', onMove);
     document.removeEventListener('visibilitychange', onVis);
+    document.removeEventListener('themechange', onTheme);
     geo.dispose(); slabs.forEach((m) => (m.material as MeshStandardMaterial).dispose());
     pmrem.dispose(); renderer.dispose();
   };

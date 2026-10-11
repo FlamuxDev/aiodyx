@@ -27,10 +27,10 @@ const t = rtl
 <style>
   .scene { width: 100%; max-width: 420px; margin-inline: auto; font-family: var(--font); }
   .stack { position: relative; display: flex; flex-direction: column; gap: 12px; padding: 44px 8px 18px; }
-  .card { background: #fff; border: 1.5px solid var(--line-2); border-radius: 14px; padding: 16px 18px; display: flex; align-items: center; justify-content: space-between; gap: 14px; opacity: 0; animation: rise .7s ease-out forwards; animation-delay: var(--d, 0s); box-shadow: 0 10px 20px -16px rgba(21, 32, 29, .35); }
+  .card { background: var(--surface); border: 1.5px solid var(--line-2); border-radius: 14px; padding: 16px 18px; display: flex; align-items: center; justify-content: space-between; gap: 14px; opacity: 0; animation: rise .7s ease-out forwards; animation-delay: var(--d, 0s); box-shadow: 0 10px 20px -16px rgb(var(--shadow-rgb) / .35); }
   .c1 { margin-inline-start: 22px; margin-inline-end: 0; padding-top: 22px; }
   .c3 { margin-inline-end: 22px; }
-  .open { display: block; border-color: var(--primary); background: #fff; padding: 18px 20px 16px; box-shadow: 0 18px 30px -20px rgba(43,62,140, .45); }
+  .open { display: block; border-color: var(--primary); background: var(--surface); padding: 18px 20px 16px; box-shadow: 0 18px 30px -20px color-mix(in srgb, var(--primary) 45%, transparent); }
   .head { display: flex; align-items: center; justify-content: space-between; gap: 12px; }
   .head strong { font-size: 15.5px; font-weight: 600; color: var(--ink); line-height: 1.5; }
   .open p { margin: 10px 0 12px; padding-top: 10px; border-top: 1.5px solid var(--line); font-size: 14px; line-height: 1.7; color: var(--muted); }
@@ -40,7 +40,7 @@ const t = rtl
   .plus::before, .minus::before { content: ''; position: absolute; inset: 11px 7px auto; height: 1.5px; background: var(--primary); }
   .plus::after { content: ''; position: absolute; inset: 7px auto 7px 11px; width: 1.5px; background: var(--primary); }
   .badge { position: absolute; inset-block-start: 0; inset-inline-end: 20px; z-index: 2; width: 54px; height: 54px; border-radius: 50%; background: var(--primary); display: grid; place-items: center; box-shadow: 0 0 0 7px var(--primary-soft); opacity: 0; animation: pop .7s ease-out forwards; animation-delay: var(--d, 0s); }
-  .badge span { color: #fff; font-size: 26px; font-weight: 600; line-height: 1; }
+  .badge span { color: var(--on-primary); font-size: 26px; font-weight: 600; line-height: 1; }
   .badge { transform-origin: center; }
   .badge::after { content: ''; position: absolute; inset: -7px; border-radius: 50%; border: 1.5px solid var(--mint); opacity: 0; animation: ping 3.4s ease-out 2s infinite; }
 

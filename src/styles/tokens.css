@@ -1,16 +1,20 @@
 /* ==========================================================================
-   AIODYX design tokens v8: royal blue (palette of dokkanmedia aiodyx-website). White surface, cool grey
-   alternate sections, blue primary, light-blue accent for decoration only.
-   Contrast: --ink #0b0d14 on white 16:1, --muted #5f646e 7.3:1, white on --primary
-   #2b3e8c 6.4:1, --primary on white 6.4:1. Violet survives only in the logo.
+   AIODYX design tokens v9: royal blue, light + dark.
+   Light is the default; dark applies via [data-theme="dark"] (set by the inline head
+   script in Base.astro) and, with JS off, via prefers-color-scheme. Components use
+   semantic tokens only: --surface (cards), --bg (page), --grey / --tint (alternate bands),
+   --on-primary (text on --primary), --skel* (illustration bars), --warn* (warm accent).
+   Contrast: light --ink 16:1, --muted 7.3:1, --on-primary on --primary 6.4:1.
+   Dark: --ink #eef0f6 on #0a0c14 ~17:1, --muted ~7.5:1, --on-primary on #8fa8ee ~8:1.
    ========================================================================== */
 :root {
   color-scheme: light;
 
-  --white: #fff;
+  --surface: #fff;
   --bg: #fff;
   --grey: #f5f6fa;
   --tint: #eef1f8;
+  --panel: #f5f6fa;
 
   --line: #e3e5e9;
   --line-2: #cfd3dc;
@@ -22,9 +26,34 @@
   --primary: #2b3e8c;
   --primary-hover: #1d2a63;
   --primary-soft: #e8ecf6;
+  --on-primary: #fff;
 
   --mint: #86a9df; /* decoration / on dark only, never text on white */
   --brand-mark: #2b3e8c;
+
+  /* illustration neutrals: skeleton bars, chart bars, soft borders */
+  --skel: #dde1ec;
+  --skel-2: #c3cde6;
+  --accent-line: #b8c4e4;
+
+  /* warm accent (warnings, "before" states) */
+  --warn: #c98a2b;
+  --warn-fg: #a9701a;
+  --warn-ink: #7a6a43;
+  --warn-bg: #fbf1df;
+  --warn-soft: #fdf6e7;
+  --warn-line: #d9b86a;
+  --bad-bg: #f3c9c0;
+  --bad-line: #d9988c;
+  --danger: #b3261e;
+
+  --device: #1c2236; /* POS device bezel */
+  --shadow-rgb: 11 13 20;
+  --nav-bg: rgb(255 255 255 / .96);
+  --ring: color-mix(in srgb, var(--primary) 30%, transparent);
+  --sel: color-mix(in srgb, var(--primary) 22%, transparent);
+  --scrim: rgb(11 13 20 / .45);
+  --shot-dim: 1;
 
   --r: 8px;
   --r-sm: 6px;
@@ -37,4 +66,98 @@
   --head-gap: clamp(32px, 4vw, 40px);
   --gap: 24px;
   --nav-h: 72px;
+}
+
+:root[data-theme="light"] { color-scheme: light; }
+
+:root[data-theme="dark"] {
+  color-scheme: dark;
+
+  --surface: #11141f;
+  --bg: #0a0c14;
+  --grey: #0e111a;
+  --tint: #121629;
+  --panel: #161a28;
+
+  --line: #242838;
+  --line-2: #363c55;
+
+  --ink: #eef0f6;
+  --ink-2: #c9cdd9;
+  --muted: #9ca1af;
+
+  --primary: #8fa8ee;
+  --primary-hover: #a9bcf3;
+  --primary-soft: #1a2140;
+  --on-primary: #0a0c14;
+
+  --mint: #6580cc;
+  --brand-mark: #8fa8ee;
+
+  --skel: #262b40;
+  --skel-2: #34406c;
+  --accent-line: #2f3b6b;
+
+  --warn: #d9a04a;
+  --warn-fg: #e0b565;
+  --warn-ink: #c9b480;
+  --warn-bg: #2b2412;
+  --warn-soft: #1f1a10;
+  --warn-line: #6b5526;
+  --bad-bg: #4a2420;
+  --bad-line: #7a403a;
+  --danger: #f08a82;
+
+  --device: #05060b;
+  --shadow-rgb: 0 0 0;
+  --nav-bg: rgb(10 12 20 / .94);
+  --scrim: rgb(0 0 0 / .62);
+  --shot-dim: .9;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    color-scheme: dark;
+
+    --surface: #11141f;
+    --bg: #0a0c14;
+    --grey: #0e111a;
+    --tint: #121629;
+    --panel: #161a28;
+
+    --line: #242838;
+    --line-2: #363c55;
+
+    --ink: #eef0f6;
+    --ink-2: #c9cdd9;
+    --muted: #9ca1af;
+
+    --primary: #8fa8ee;
+    --primary-hover: #a9bcf3;
+    --primary-soft: #1a2140;
+    --on-primary: #0a0c14;
+
+    --mint: #6580cc;
+    --brand-mark: #8fa8ee;
+
+    --skel: #262b40;
+    --skel-2: #34406c;
+    --accent-line: #2f3b6b;
+
+    --warn: #d9a04a;
+    --warn-fg: #e0b565;
+    --warn-ink: #c9b480;
+    --warn-bg: #2b2412;
+    --warn-soft: #1f1a10;
+    --warn-line: #6b5526;
+    --bad-bg: #4a2420;
+    --bad-line: #7a403a;
+    --danger: #f08a82;
+
+    --device: #05060b;
+    --shadow-rgb: 0 0 0;
+    --nav-bg: rgb(10 12 20 / .94);
+    --scrim: rgb(0 0 0 / .62);
+    --shot-dim: .9;
+  }
 }

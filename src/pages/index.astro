@@ -2,6 +2,7 @@
 import '../styles/tokens.css';
 import '../styles/site.css';
 import Logo from '../components/Logo.astro';
+import ThemeHead from '../components/ThemeHead.astro';
 import { abs, asset, href } from '../lib/site';
 // Static redirect to the default market (Arabic) + a no-JS language chooser.
 ---
@@ -10,6 +11,7 @@ import { abs, asset, href } from '../lib/site';
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <ThemeHead />
     <title>AIODYX</title>
     <meta http-equiv="refresh" content={`0; url=${href('ar')}`} />
     <link rel="canonical" href={abs(href('ar'))} />

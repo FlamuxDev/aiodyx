@@ -2,6 +2,7 @@
 import '../styles/tokens.css';
 import '../styles/site.css';
 import Logo from '../components/Logo.astro';
+import ThemeHead from '../components/ThemeHead.astro';
 import { asset, href } from '../lib/site';
 // Generic 404 for hosts that serve /404.html: bilingual, no language guess.
 ---
@@ -10,6 +11,7 @@ import { asset, href } from '../lib/site';
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <ThemeHead />
     <title>404 | AIODYX</title>
     <meta name="robots" content="noindex" />
     <link rel="icon" href={asset('/favicon.svg')} type="image/svg+xml" />

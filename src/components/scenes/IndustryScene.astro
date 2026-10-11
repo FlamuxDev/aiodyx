@@ -163,8 +163,8 @@ const todayX = rtl ? 440 - 214 : 40 + 214;
         </g>
       ))}
       <!-- trucks -->
-      <g class="truck t1"><circle r="9" class="halo" /><rect x="-8" y="-5" width="16" height="10" rx="2.5" class="fp" /><rect x="-8" y="-5" width="9" height="10" rx="2" fill="#fff" fill-opacity=".35" /></g>
-      <g class="truck t2"><circle r="9" class="halo" /><rect x="-8" y="-5" width="16" height="10" rx="2.5" class="fp" /><rect x="-8" y="-5" width="9" height="10" rx="2" fill="#fff" fill-opacity=".35" /></g>
+      <g class="truck t1"><circle r="9" class="halo" /><rect x="-8" y="-5" width="16" height="10" rx="2.5" class="fp" /><rect x="-8" y="-5" width="9" height="10" rx="2" fill="var(--surface)" fill-opacity=".35" /></g>
+      <g class="truck t2"><circle r="9" class="halo" /><rect x="-8" y="-5" width="16" height="10" rx="2.5" class="fp" /><rect x="-8" y="-5" width="9" height="10" rx="2" fill="var(--surface)" fill-opacity=".35" /></g>
       <!-- order cards -->
       <g class="floatA">
         <g class="pop" style="--d:1s">
@@ -239,9 +239,9 @@ const todayX = rtl ? 440 - 214 : 40 + 214;
       ))}
       {blocks.map((b, i) => (
         <g class="pop" style={`--d:${0.3 + i * 0.12}s`}>
-          <rect x={colX(b.c) + 4} y={78 + b.r * 38 + 4} width="68" height={b.h * 38 - 8} rx="7" class={b.k === 'a' ? 'fa' : b.k === 'm' ? 'ft' : 'fs'} stroke={b.k === 'a' ? '#c98a2b' : 'var(--primary)'} stroke-width="1.5" />
-          <rect x={colX(b.c) + 12} y={78 + b.r * 38 + 13} width="34" height="5" rx="2.5" fill={b.k === 'a' ? '#c98a2b' : 'var(--primary)'} fill-opacity=".55" />
-          {b.h > 1 && <rect x={colX(b.c) + 12} y={78 + b.r * 38 + 24} width="24" height="5" rx="2.5" fill={b.k === 'a' ? '#c98a2b' : 'var(--primary)'} fill-opacity=".3" />}
+          <rect x={colX(b.c) + 4} y={78 + b.r * 38 + 4} width="68" height={b.h * 38 - 8} rx="7" class={b.k === 'a' ? 'fa' : b.k === 'm' ? 'ft' : 'fs'} stroke={b.k === 'a' ? 'var(--warn)' : 'var(--primary)'} stroke-width="1.5" />
+          <rect x={colX(b.c) + 12} y={78 + b.r * 38 + 13} width="34" height="5" rx="2.5" fill={b.k === 'a' ? 'var(--warn)' : 'var(--primary)'} fill-opacity=".55" />
+          {b.h > 1 && <rect x={colX(b.c) + 12} y={78 + b.r * 38 + 24} width="24" height="5" rx="2.5" fill={b.k === 'a' ? 'var(--warn)' : 'var(--primary)'} fill-opacity=".3" />}
         </g>
       ))}
       <g class="floatB">
@@ -334,7 +334,7 @@ const todayX = rtl ? 440 - 214 : 40 + 214;
           {t.restaurants.items.map((it: string, i: number) => (
             <g>
               <circle cx={rtl ? 436 : 340} cy={124 + i * 34} r="6" class={i === 0 ? 'fp' : 'fw'} stroke="var(--primary)" stroke-width="1.5" />
-              {i === 0 && <path d={`M${rtl ? 433 : 337} ${124} l2.4 2.4 l4 -5`} stroke="#fff" stroke-width="1.5" fill="none" stroke-linecap="round" transform={`translate(${rtl ? -3.4 : 3.4},0)`} display="none" />}
+              {i === 0 && <path d={`M${rtl ? 433 : 337} ${124} l2.4 2.4 l4 -5`} stroke="var(--on-primary)" stroke-width="1.5" fill="none" stroke-linecap="round" transform={`translate(${rtl ? -3.4 : 3.4},0)`} display="none" />}
               <text x={rtl ? 424 : 354} y={129 + i * 34} font-size="13.5" class={i === 0 ? 't-m strike' : ''} text-anchor="start">{it}</text>
             </g>
           ))}
@@ -346,7 +346,7 @@ const todayX = rtl ? 440 - 214 : 40 + 214;
       <g class="pop" style="--d:1.6s">
         <rect class="shadow" x="332" y="302" width="124" height="44" rx="12" />
         <rect class="ln fw" x="332" y="298" width="124" height="44" rx="12" />
-        <circle cx="354" cy="320" r="9" class="fa" /><circle cx="354" cy="320" r="3.5" fill="#c98a2b" class="blink" />
+        <circle cx="354" cy="320" r="9" class="fa" /><circle cx="354" cy="320" r="3.5" fill="var(--warn)" class="blink" />
         <rect x="374" y="311" width="64" height="6" rx="3" class="bar" /><rect x="374" y="324" width="42" height="6" rx="3" class="bar2" />
       </g>
     </svg>
@@ -359,19 +359,19 @@ const todayX = rtl ? 440 - 214 : 40 + 214;
   svg.rtl { direction: rtl; }
   text { font-family: var(--font); fill: var(--ink); }
   .t-m { fill: var(--muted); }
-  .t-w { fill: #fff; }
+  .t-w { fill: var(--on-primary); }
   .t-b { font-weight: 600; }
   .pri { fill: var(--primary); }
   .bg { fill: var(--tint); stroke: var(--line); stroke-width: 1.5; }
   .ln { fill: none; stroke: var(--ink); stroke-width: 1.5; stroke-linecap: round; stroke-linejoin: round; }
   .ln.pr { stroke: var(--primary); }
   .ln.mu { stroke: var(--line-2); }
-  .pr { stroke: var(--primary); } .amb { stroke: #c98a2b; } .mu2 { stroke: var(--line-2); }
-  .ln.amb { stroke: #c98a2b; }
-  .fw { fill: #fff; } .fs { fill: var(--primary-soft); } .ft { fill: var(--tint); }
-  .fp { fill: var(--primary); } .fm { fill: var(--mint); } .fa { fill: #fdf6e7; }
-  .ln.fw { fill: #fff; } .ln.fs { fill: var(--primary-soft); } .ln.ft { fill: var(--tint); }
-  .ln.fp { fill: var(--primary); } .ln.fa { fill: #fdf6e7; } .ln.fm { fill: var(--mint); }
+  .pr { stroke: var(--primary); } .amb { stroke: var(--warn); } .mu2 { stroke: var(--line-2); }
+  .ln.amb { stroke: var(--warn); }
+  .fw { fill: var(--surface); } .fs { fill: var(--primary-soft); } .ft { fill: var(--tint); }
+  .fp { fill: var(--primary); } .fm { fill: var(--mint); } .fa { fill: var(--warn-soft); }
+  .ln.fw { fill: var(--surface); } .ln.fs { fill: var(--primary-soft); } .ln.ft { fill: var(--tint); }
+  .ln.fp { fill: var(--primary); } .ln.fa { fill: var(--warn-soft); } .ln.fm { fill: var(--mint); }
   .shadow { fill: var(--ink); opacity: .06; }
   .bar { fill: var(--line); } .bar2 { fill: var(--line-2); } .bar3 { fill: var(--line-2); }
   .halo { fill: var(--primary); opacity: .18; }

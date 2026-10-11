@@ -28,10 +28,10 @@ const lab = (i: number): [number, number] => {
   <svg viewBox="0 0 480 400" class={rtl ? 'rtl' : ''}>
     <defs>
       <pattern id="sv-grid" width="24" height="24" patternUnits="userSpaceOnUse">
-        <path d="M24 0 H0 V24" fill="none" stroke="#2b3e8c" stroke-opacity=".10" stroke-width="1" />
+        <path d="M24 0 H0 V24" fill="none" stroke="var(--primary)" stroke-opacity=".10" stroke-width="1" />
       </pattern>
       <pattern id="sv-grid2" width="120" height="120" patternUnits="userSpaceOnUse">
-        <path d="M120 0 H0 V120" fill="none" stroke="#2b3e8c" stroke-opacity=".16" stroke-width="1" />
+        <path d="M120 0 H0 V120" fill="none" stroke="var(--primary)" stroke-opacity=".16" stroke-width="1" />
       </pattern>
     </defs>
     <rect class="bg" x="1" y="1" width="478" height="398" rx="20" />
@@ -76,13 +76,13 @@ const lab = (i: number): [number, number] => {
   svg { display: block; width: 100%; height: auto; }
   svg.rtl { direction: rtl; }
   text { font-family: var(--font); fill: var(--ink); }
-  .t-w { fill: #fff; } .t-b { font-weight: 600; }
+  .t-w { fill: var(--on-primary); } .t-b { font-weight: 600; }
   .bg { fill: var(--tint); stroke: var(--line); stroke-width: 1.5; }
   .ln { fill: none; stroke: var(--ink); stroke-width: 1.5; stroke-linecap: round; stroke-linejoin: round; }
   .ln.mu { stroke: var(--line-2); } .ln.pr { stroke: var(--primary); }
   .ring { stroke-dasharray: 5 6; }
   .ring.draw { stroke-dasharray: 1; }
-  .nodebox { fill: #fff; stroke: var(--primary); }
+  .nodebox { fill: var(--surface); stroke: var(--primary); }
   .labbg { fill: var(--tint); fill-opacity: .92; }
   .hub { fill: var(--primary); }
   .hubhalo { fill: var(--primary); opacity: .1; transform-box: fill-box; transform-origin: center; animation: breathe 5s ease-in-out 2s infinite; }

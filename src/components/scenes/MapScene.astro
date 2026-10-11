@@ -37,7 +37,7 @@ const pin = 'M0 0 C-7 -10 -9 -17 -9 -21 a9 9 0 1 1 18 0 c0 4 -2 11 -9 21z';
   <svg viewBox="0 0 480 420" class={rtl ? 'rtl' : ''}>
     <defs>
       <pattern id="mp-dots" width="9" height="9" patternUnits="userSpaceOnUse">
-        <circle cx="4.5" cy="4.5" r="1.5" fill="#86a9df" fill-opacity=".55" />
+        <circle cx="4.5" cy="4.5" r="1.5" fill="var(--mint)" fill-opacity=".55" />
       </pattern>
       <clipPath id="mp-ksa"><path d={ksaD} /></clipPath>
     </defs>
@@ -68,7 +68,7 @@ const pin = 'M0 0 C-7 -10 -9 -17 -9 -21 a9 9 0 1 1 18 0 c0 4 -2 11 -9 21z';
     <g class="pinset" style="--d:1.2s">
       {[[-8, 0], [8, 5]].map(([dx, dy]) => (
         <g transform={`translate(${amm[0] + dx},${amm[1] + dy})`}>
-          <circle r="5" class="pulse" /><g class="pinbody"><path d={pin} class="pinp" /><circle cy="-21" r="3.4" fill="#fff" /></g>
+          <circle r="5" class="pulse" /><g class="pinbody"><path d={pin} class="pinp" /><circle cy="-21" r="3.4" fill="var(--surface)" /></g>
         </g>
       ))}
       <g transform={`translate(${amm[0] + 62},${amm[1] - 36})`}>
@@ -83,7 +83,7 @@ const pin = 'M0 0 C-7 -10 -9 -17 -9 -21 a9 9 0 1 1 18 0 c0 4 -2 11 -9 21z';
     <!-- Riyadh -->
     <g class="pinset" style="--d:1.5s">
       <g transform={`translate(${ryd[0]},${ryd[1]})`}>
-        <circle r="5" class="pulse p2" /><g class="pinbody"><path d={pin} class="pinp" /><circle cy="-21" r="3.4" fill="#fff" /></g>
+        <circle r="5" class="pulse p2" /><g class="pinbody"><path d={pin} class="pinp" /><circle cy="-21" r="3.4" fill="var(--surface)" /></g>
       </g>
       <g transform={`translate(${ryd[0] + 22},${ryd[1] - 4})`}>
         <rect x="0" y="-4" width="116" height="42" rx="12" class="chip-s" />
@@ -102,17 +102,17 @@ const pin = 'M0 0 C-7 -10 -9 -17 -9 -21 a9 9 0 1 1 18 0 c0 4 -2 11 -9 21z';
   text { font-family: var(--font); fill: var(--ink); }
   .t-m { fill: var(--muted); } .t-b { font-weight: 600; }
   .water { opacity: .75; letter-spacing: .04em; }
-  .cname { letter-spacing: .08em; paint-order: stroke; stroke: #fff; stroke-width: 4px; stroke-linejoin: round; }
+  .cname { letter-spacing: .08em; paint-order: stroke; stroke: var(--surface); stroke-width: 4px; stroke-linejoin: round; }
   .water { paint-order: stroke; stroke: var(--tint); stroke-width: 3px; }
   .bg { fill: var(--tint); stroke: var(--line); stroke-width: 1.5; }
-  .ksa-fill { fill: #fff; fill-opacity: .7; }
+  .ksa-fill { fill: var(--surface); fill-opacity: .7; }
   .contour { fill: none; stroke: var(--mint); stroke-width: 1.5; stroke-linejoin: round; }
   .jor-fill { fill: var(--primary-soft); }
   .jor-line { fill: none; stroke: var(--primary); stroke-width: 2; stroke-linejoin: round; }
   .link { fill: none; stroke: var(--primary); stroke-width: 1.5; stroke-linecap: round; }
   .ln { fill: none; stroke-width: 1.5; stroke-linecap: round; } .ln.mu { stroke: var(--line-2); }
   .pinp { fill: var(--primary); }
-  .chip { fill: #fff; stroke: var(--line-2); stroke-width: 1.5; }
+  .chip { fill: var(--surface); stroke: var(--line-2); stroke-width: 1.5; }
   .chip-s { fill: var(--ink); opacity: .06; transform: translateY(4px); }
   .pulse { fill: var(--primary); opacity: .25; transform-box: fill-box; transform-origin: center; animation: pulse 2.8s ease-out 2s infinite; }
   .p2 { animation-delay: 2.6s; }

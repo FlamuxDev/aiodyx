@@ -13,7 +13,7 @@ export async function captureViewport(highlight?: Element | null): Promise<strin
   const prevOffset = highlight instanceof HTMLElement ? highlight.style.outlineOffset : '';
   try {
     if (highlight instanceof HTMLElement) {
-      highlight.style.outline = '3px solid #2b3e8c';
+      highlight.style.outline = '3px solid var(--primary)';
       highlight.style.outlineOffset = '2px';
     }
     const { domToCanvas } = await import('modern-screenshot');
@@ -22,7 +22,7 @@ export async function captureViewport(highlight?: Element | null): Promise<strin
       width: innerWidth,
       height: innerHeight,
       scale,
-      backgroundColor: '#ffffff',
+      backgroundColor: getComputedStyle(document.body).backgroundColor || undefined, // follows the active theme
       style: { transform: `translate(${-scrollX}px, ${-scrollY}px)`, transformOrigin: 'top left' },
       filter: (node) => !(node instanceof Element && (node.classList.contains('fb') || node.localName === 'canvas')),
       timeout: 8000,

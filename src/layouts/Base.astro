@@ -13,6 +13,8 @@ import '../styles/odoo.css';
 import Logo from '../components/Logo.astro';
 import Icon from '../components/Icon.astro';
 import Feedback from '../components/Feedback.astro';
+import ThemeHead from '../components/ThemeHead.astro';
+import ThemeToggle from '../components/ThemeToggle.astro';
 import { DATA, META, UI, LANGS, SITE, abs, asset, href, waUrl, tel, type Lang } from '../lib/site';
 import { pageGraph, ldJson, type Crumb } from '../lib/schema';
 
@@ -48,6 +50,7 @@ const ld = ldJson(pageGraph({ lang, url, title, description, crumbs: fullCrumbs,
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <ThemeHead />
     <title>{title}</title>
     <meta name="description" content={description} />
     <link rel="canonical" href={url} />
@@ -69,7 +72,6 @@ const ld = ldJson(pageGraph({ lang, url, title, description, crumbs: fullCrumbs,
     <meta name="twitter:title" content={title} />
     <meta name="twitter:description" content={description} />
     <meta name="twitter:image" content={ogImage} />
-    <meta name="theme-color" content="#ffffff" />
     <link rel="icon" href={asset('/favicon.svg')} type="image/svg+xml" />
     <link rel="sitemap" href={asset('/sitemap-index.xml')} />
     <script type="application/ld+json" set:html={ld} />
@@ -83,6 +85,7 @@ const ld = ldJson(pageGraph({ lang, url, title, description, crumbs: fullCrumbs,
           {nav.map(([k, p]) => <a href={href(lang, p)} aria-current={current(p)}>{d.site.nav[k]}</a>)}
         </nav>
         <div class="nav__end">
+          <ThemeToggle labels={d.site.theme} />
           <a class="lang" href={href(m.other, path)} hreflang={m.other} lang={m.other}>{m.switchLabel}</a>
           <a class="btn btn--wa nav__cta" href={waUrl(lang, waTopic)} rel="noopener"><Icon name="whatsapp" size={20} />{d.site.cta.whatsapp}</a>
           <details class="menu">
@@ -160,6 +163,6 @@ const ld = ldJson(pageGraph({ lang, url, title, description, crumbs: fullCrumbs,
       </div>
     </footer>
     <Feedback lang={lang} />
-  <script>import '../scripts/motion';</script>
+  <script>import '../scripts/motion'; import '../scripts/theme';</script>
   </body>
 </html>

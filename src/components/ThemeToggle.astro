@@ -1,0 +1,12 @@
+---
+// Two-state button (light / dark). aria-pressed = dark mode on; the icon shows the current mode.
+// Hidden until the head script has set data-theme (no JS = no dead control).
+import Icon from './Icon.astro';
+const { labels, class: cls = '' } = Astro.props as { labels: { label: string; light: string; dark: string }; class?: string };
+---
+<button type="button" class={`theme-btn icon-btn ${cls}`} data-theme-toggle aria-pressed="false"
+  data-light={labels.light} data-dark={labels.dark} aria-label={labels.dark} title={labels.dark}>
+  <Icon name="sun" class="theme-i theme-i--light" />
+  <Icon name="moon" class="theme-i theme-i--dark" />
+</button>
+<span class="sr" role="status" aria-live="polite" data-theme-status></span>

@@ -1,0 +1,43 @@
+---
+// Runs before first paint: stored choice (light | dark) or, on a first visit, the OS scheme; sets <html data-theme>, keeps the two
+// theme-color metas in step and follows OS changes until the user picks one.
+// Every storage access is wrapped in try/catch (storage can throw in private windows or when blocked).
+---
+<meta name="theme-color" content="#ffffff" media="(prefers-color-scheme: light)" data-tc="light" />
+<meta name="theme-color" content="#0a0c14" media="(prefers-color-scheme: dark)" data-tc="dark" />
+<script is:inline>
+(function () {
+  var d = document.documentElement, K = 'aiodyx-theme', C = { light: '#ffffff', dark: '#0a0c14' };
+  var mq = matchMedia('(prefers-color-scheme: dark)');
+  function stored() { try { var v = localStorage.getItem(K); return v === 'light' || v === 'dark' ? v : 'system'; } catch (e) { return 'system'; } }
+  function apply(pref) {
+    var t = pref === 'system' ? (mq.matches ? 'dark' : 'light') : pref;
+    d.setAttribute('data-theme', t);
+    var ms = document.querySelectorAll('meta[name="theme-color"][data-tc]');
+    for (var i = 0; i < ms.length; i++) {
+      var own = ms[i].getAttribute('data-tc');
+      ms[i].setAttribute('content', pref === 'system' ? C[own] : C[t]);
+    }
+    try { document.dispatchEvent(new CustomEvent('themechange', { detail: { theme: t } })); } catch (e) {}
+  }
+  var pref = stored();
+  apply(pref);
+  window.__theme = {
+    get: function () { return d.getAttribute('data-theme') === 'dark' ? 'dark' : 'light'; },
+    set: function (next) {
+      try { localStorage.setItem(K, next); } catch (e) {}
+      if (!matchMedia('(prefers-reduced-motion: reduce)').matches) {
+        d.classList.add('theme-anim');
+        clearTimeout(window.__themeT);
+        window.__themeT = setTimeout(function () { d.classList.remove('theme-anim'); }, 400);
+      }
+      apply(next);
+    },
+  };
+  // first visit (nothing stored): follow the OS until the user picks one
+  var onOs = function () { if (stored() === 'system') apply('system'); };
+  if (mq.addEventListener) mq.addEventListener('change', onOs); else if (mq.addListener) mq.addListener(onOs);
+  // another tab changed the choice
+  addEventListener('storage', function (e) { if (e.key === K || e.key === null) apply(stored()); });
+})();
+</script>

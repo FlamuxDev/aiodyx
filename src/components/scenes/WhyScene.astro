@@ -115,16 +115,16 @@ const ax = rtl ? 22 : 272;
   svg { display: block; width: 100%; height: auto; }
   svg.rtl { direction: rtl; }
   text { font-family: var(--font); fill: var(--ink); }
-  .t-m { fill: var(--muted); } .t-w { fill: #fff; } .t-b { font-weight: 600; }
+  .t-m { fill: var(--muted); } .t-w { fill: var(--on-primary); } .t-b { font-weight: 600; }
   .bg { fill: var(--tint); stroke: var(--line); stroke-width: 1.5; }
   .ln { fill: none; stroke: var(--ink); stroke-width: 1.5; stroke-linecap: round; stroke-linejoin: round; }
-  .ln.pr { stroke: var(--primary); } .ln.mu { stroke: var(--line-2); } .ln.amb { stroke: #c98a2b; }
-  .ln.fw { fill: #fff; } .ln.fs { fill: var(--primary-soft); }
+  .ln.pr { stroke: var(--primary); } .ln.mu { stroke: var(--line-2); } .ln.amb { stroke: var(--warn); }
+  .ln.fw { fill: var(--surface); } .ln.fs { fill: var(--primary-soft); }
   .fs { fill: var(--primary-soft); } .fp { fill: var(--primary); } .fm { fill: var(--mint); }
   .dot { fill: var(--line-2); }
   .gx { fill: var(--primary); } .gx2 { fill: var(--primary-soft); }
   .shadow { fill: var(--ink); opacity: .06; }
-  .pill { fill: #fff; stroke: var(--line-2); stroke-width: 1.5; }
+  .pill { fill: var(--surface); stroke: var(--line-2); stroke-width: 1.5; }
   .pill.on { fill: var(--primary); stroke: var(--primary); }
 
   .draw { stroke-dasharray: 1; stroke-dashoffset: 1; animation: draw 1s ease-out forwards; animation-delay: var(--d, 0s); }

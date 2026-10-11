@@ -190,6 +190,11 @@
       "faq": "FAQ",
       "contact": "Contact"
     },
+    "theme": {
+      "label": "Theme",
+      "light": "Light mode",
+      "dark": "Dark mode"
+    },
     "cta": {
       "primary": "Book a free consultation",
       "whatsapp": "WhatsApp us",
