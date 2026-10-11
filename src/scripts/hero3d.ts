@@ -8,7 +8,7 @@ import {
 import { RoundedBoxGeometry } from 'three/examples/jsm/geometries/RoundedBoxGeometry.js';
 import { RoomEnvironment } from 'three/examples/jsm/environments/RoomEnvironment.js';
 
-const COLORS = ['#c3d8d0', '#eef5f2', '#b4e0d2', '#3fb59a', '#0e6b5c']; // bottom to top
+const COLORS = ['#c3d8d0', '#eef5f2', '#b4e0d2', '#86a9df', '#2b3e8c']; // bottom to top
 const N = COLORS.length;
 const H = 0.34, GAP = 0.025, SPREAD = 0.5;
 const OFFX = [-0.4, 0.32, -0.25, 0.36, 0];
@@ -57,7 +57,7 @@ export function init(el: HTMLElement): () => void {
     group.add(m);
     return m;
   });
-  const spineMat = new MeshBasicMaterial({ color: '#3fb59a', transparent: true, opacity: 0 });
+  const spineMat = new MeshBasicMaterial({ color: '#86a9df', transparent: true, opacity: 0 });
   const spine = new Mesh(new CylinderGeometry(0.022, 0.022, 1, 8), spineMat);
   group.add(spine);
 

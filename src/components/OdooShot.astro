@@ -1,0 +1,46 @@
+---
+import { DATA, type Lang } from '../lib/site';
+import { SHOT_W, SHOT_H, FULL, shotSrc, viewOf, type Crop, type Point } from '../lib/shots';
+// Framed real Odoo screenshot: window chrome (three dots + address bar), 1px border, soft shadow.
+// `crop` zooms into an area (source pixels); `points` + `labels` add numbered callouts at source-pixel anchors.
+// Frame geometry is physical (the screenshot itself is not mirrored); callout text follows the page language.
+// Under 640px the chips are replaced by the numbered legend below the frame so nothing overflows.
+interface Props {
+  shot: string;
+  lang: Lang;
+  alt: string;
+  crop?: Crop;
+  points?: Point[];
+  labels?: string[];
+  eager?: boolean;
+  bleed?: boolean;
+  url?: string;
+}
+const { shot, lang, alt, crop, points = [], labels = [], eager = false, bleed = false, url = 'aiodyx.odoo.com' } = Astro.props as Props;
+const c = crop ?? viewOf(shot) ?? FULL;
+const o = DATA[lang].odoo;
+const dir = lang === 'ar' ? 'rtl' : 'ltr';
+const view = `--ar:${c.w}/${c.h};--iw:${(SHOT_W / c.w) * 100}%;--il:${(-c.x / c.w) * 100}%;--it:${(-c.y / c.h) * 100}%`;
+const pos = (p: Point) => `left:${((p.x - c.x) / c.w) * 100}%;top:${((p.y - c.y) / c.h) * 100}%`;
+const notes = points.map((p, i) => ({ p, t: labels[i] })).filter((n) => n.t);
+---
+<div class={`oshot ${bleed ? 'oshot--bleed' : ''}`}>
+  <div class="oshot__frame">
+    <div class="oshot__bar" aria-hidden="true"><i></i><i></i><i></i><span class="oshot__url" dir="ltr">{url}</span></div>
+    <div class="oshot__view" style={view} dir="ltr">
+      <img src={shotSrc(shot)} width={SHOT_W} height={SHOT_H} alt={alt}
+        loading={eager ? 'eager' : 'lazy'} fetchpriority={eager ? 'high' : undefined} decoding="async" draggable="false" />
+      {notes.map((n, i) => (
+        <span class="oshot__co" data-side={n.p.side} style={pos(n.p)} aria-hidden="true">
+          <i class="oshot__dot">{i + 1}</i>
+          <b class="oshot__chip" dir={dir}>{n.t}</b>
+        </span>
+      ))}
+    </div>
+  </div>
+  {notes.length > 0 && (
+    <ol class="oshot__legend" aria-label={o.labels.legend}>
+      {notes.map((n, i) => <li><span class="oshot__dot" aria-hidden="true">{i + 1}</span>{n.t}</li>)}
+    </ol>
+  )}
+</div>

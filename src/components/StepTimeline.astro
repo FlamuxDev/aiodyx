@@ -1,7 +1,7 @@
 ---
 import Icon from './Icon.astro';
 import { type Lang } from '../lib/site';
-// Scroll-driven project timeline: a centre spine (start side on phones) fills with emerald as you scroll; steps
+// Scroll-driven project timeline: a centre spine (start side on phones) fills with blue as you scroll; steps
 // alternate sides; the "what we need from you" block is styled as a clipboard note. No JS: spine is full, all steps shown.
 const { lang, steps, fromYou } = Astro.props as { lang: Lang; steps: { title: string; body: string; fromYou: string }[]; fromYou: string };
 const icons = ['phone', 'target', 'layers', 'sheet', 'user', 'grow', 'shield'];

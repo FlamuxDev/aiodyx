@@ -1,4 +1,181 @@
 {
+  "odoo": {
+    "labels": {
+      "detail": "Inside the system",
+      "legend": "Notes on the image",
+      "chrome": "System window"
+    },
+    "stats": [
+      {
+        "v": "9",
+        "l": "connected apps"
+      },
+      {
+        "v": "3",
+        "l": "offices in Jordan and Saudi Arabia"
+      },
+      {
+        "v": "2",
+        "l": "countries served"
+      },
+      {
+        "v": "2",
+        "l": "languages: Arabic and English"
+      }
+    ],
+    "heroCallouts": [
+      "Ready for e-invoicing",
+      "15% VAT"
+    ],
+    "showcase": {
+      "eyebrow": "Inside the system",
+      "title": "This is your system, in Arabic",
+      "lead": "Real screens from Odoo 19. Pick an area to see how it works.",
+      "note": "Screenshots are from Odoo 19 with a demo Saudi company. Names and figures are fictional.",
+      "details": "App details",
+      "tabs": "System areas"
+    },
+    "why": {
+      "eyebrow": "Inside the system",
+      "title": "Your numbers on one screen",
+      "body": "Sales, orders and revenue sit on one dashboard and update as each transaction is recorded. No more collecting figures from scattered files."
+    },
+    "shots": {
+      "accounting": {
+        "label": "Accounting",
+        "alt": "A customer invoice in Odoo 19 in Arabic: product lines, 15% VAT, the total and the e-invoicing status.",
+        "caption": "A customer invoice in Arabic: lines, tax and total, with the e-invoicing status."
+      },
+      "crm-sales": {
+        "label": "Sales",
+        "alt": "The deal pipeline in Odoo 19: opportunity cards spread across sales stages with each stage's value.",
+        "caption": "Every opportunity in its stage, with each stage's value on top."
+      },
+      "hr": {
+        "label": "Employees",
+        "alt": "Employee cards in Odoo 19 in Arabic, each with a photo, job title and phone number.",
+        "caption": "Employee records by department; attendance and payroll start from here."
+      },
+      "business-intelligence": {
+        "label": "Dashboards",
+        "alt": "The Odoo 19 dashboard: revenue and orders, a monthly sales curve, and the top quotations and sales orders.",
+        "caption": "Sales, orders and revenue on one screen, with today's numbers."
+      },
+      "point-of-sale": {
+        "label": "Point of sale",
+        "alt": "The Odoo 19 point of sale screen: product grid, current order, numpad and pay button.",
+        "caption": "A fast cashier screen: items, quantity and payment."
+      },
+      "ecommerce": {
+        "label": "Online shop",
+        "alt": "An online shop page in Arabic: products, categories, filters and prices.",
+        "caption": "A shop in Arabic, with products and prices from the same system."
+      },
+      "inventory-purchase": {
+        "label": "Inventory",
+        "alt": "The Odoo 19 inventory overview: receipts, delivery orders and manufacturing with count charts.",
+        "caption": "Receipts, deliveries and manufacturing, and what is late, at a glance."
+      },
+      "projects": {
+        "label": "Projects",
+        "alt": "A project task board in Odoo 19: stage columns and task cards with deadlines and hours.",
+        "caption": "Tasks in columns, each with its deadline and hours."
+      },
+      "manufacturing": {
+        "label": "Manufacturing",
+        "alt": "The Odoo 19 manufacturing orders list with statuses and component availability.",
+        "caption": "Manufacturing orders with their status and component availability."
+      },
+      "sales": {
+        "label": "Quotations",
+        "alt": "The Odoo 19 list of quotations and sales orders with statuses and totals.",
+        "caption": "Quotations and sales orders with their statuses and totals."
+      }
+    },
+    "detail": {
+      "accounting": {
+        "alt": "A close-up of the invoice lines, tax and total in Odoo 19.",
+        "lead": "Tax is calculated on every line, and the total and amount due are clear.",
+        "callouts": [
+          "15% VAT",
+          "VAT total",
+          "Amount due"
+        ]
+      },
+      "sales-crm": {
+        "alt": "A close-up of two columns of the deal pipeline in Odoo 19.",
+        "lead": "Each deal is a card in its stage, with the stage's value and progress above.",
+        "callouts": [
+          "Stage progress",
+          "Deal priority",
+          "Overdue activity"
+        ]
+      },
+      "inventory": {
+        "alt": "A close-up of the delivery orders card in the inventory overview.",
+        "lead": "Delivery orders with their counts, and what is late stands out.",
+        "callouts": [
+          "Ready to deliver",
+          "Late orders",
+          "Orders per status"
+        ]
+      },
+      "purchase": {
+        "alt": "A close-up of order statuses and totals in the price list.",
+        "lead": "Orders with their statuses and totals in one table.",
+        "callouts": [
+          "Order status",
+          "Total",
+          "Next activity"
+        ]
+      },
+      "manufacturing": {
+        "alt": "A close-up of manufacturing order status and component availability.",
+        "lead": "Each manufacturing order with its status, and whether components are available.",
+        "callouts": [
+          "Order status",
+          "Component availability",
+          "Draft before confirmation"
+        ]
+      },
+      "hr-payroll": {
+        "alt": "A close-up of four employee cards in Odoo 19.",
+        "lead": "Every employee gets a card: title, phone and tags.",
+        "callouts": [
+          "Employee photo",
+          "Phone number",
+          "Tags"
+        ]
+      },
+      "point-of-sale": {
+        "alt": "A close-up of the order, total and product categories on the cashier screen.",
+        "lead": "The order lines and total sit beside the product grid.",
+        "callouts": [
+          "Order lines",
+          "Total",
+          "Product categories"
+        ]
+      },
+      "website-ecommerce": {
+        "alt": "A close-up of the top of the shop page: title, search and a product price.",
+        "lead": "The shop page in Arabic, with its categories, search and prices.",
+        "callouts": [
+          "Shop page",
+          "Search and sort",
+          "Price in riyals"
+        ]
+      },
+      "project-timesheets": {
+        "alt": "A close-up of two columns of the project task board.",
+        "lead": "Tasks in columns, each with its deadline and hours.",
+        "callouts": [
+          "Stage progress",
+          "Task tags",
+          "Task hours"
+        ]
+      }
+    }
+  },
   "site": {
     "name": "AIODYX",
     "tagline": "Odoo for companies in Jordan and Saudi Arabia",

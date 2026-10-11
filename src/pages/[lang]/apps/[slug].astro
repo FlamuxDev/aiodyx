@@ -1,7 +1,7 @@
 ---
 import Base from '../../../layouts/Base.astro';
 import Icon from '../../../components/Icon.astro';
-import AppMock from '../../../components/mocks/AppMock.astro';
+import OdooShot from '../../../components/OdooShot.astro';
 import PageHead from '../../../components/PageHead.astro';
 import SectionHead from '../../../components/SectionHead.astro';
 import AppTiles from '../../../components/AppTiles.astro';
@@ -10,6 +10,7 @@ import Faq from '../../../components/Faq.astro';
 import CtaBand from '../../../components/CtaBand.astro';
 import { DATA, abs, href, tel, waUrl, pathsFor, slugs, type Lang } from '../../../lib/site';
 import { faqNode, serviceNode } from '../../../lib/schema';
+import { APP_SHOT, DETAIL } from '../../../lib/shots';
 
 export const getStaticPaths = () => pathsFor(slugs.apps);
 const { lang, slug } = Astro.params as { lang: Lang; slug: string };
@@ -17,6 +18,11 @@ const d = DATA[lang];
 const app = d.apps.find((a) => a.slug === slug)!;
 const url = abs(href(lang, `apps/${slug}/`));
 const industries = d.industries.filter((i) => (i.apps as string[]).includes(slug));
+const o = d.odoo;
+const heroKey = APP_SHOT[slug];
+const hero = (o.shots as Record<string, { alt: string }>)[heroKey];
+const det = DETAIL[slug];
+const dt = (o.detail as Record<string, { alt: string; lead: string; callouts: string[] }>)[slug];
 const others = d.apps.filter((a) => a.slug !== slug);
 ---
 <Base lang={lang} path={`apps/${slug}/`} title={app.seo.title} description={app.seo.description} waTopic={app.name}
@@ -25,13 +31,13 @@ const others = d.apps.filter((a) => a.slug !== slug);
     serviceNode({ id: `${url}#service`, name: app.name, description: app.seo.description, url, lang, type: 'Odoo implementation' }),
     faqNode(lang, url, app.faq),
   ]}>
-  <PageHead title={app.name} lead={app.promise}>
+  <PageHead title={app.name} lead={app.promise} wide>
     <p class="phead__for"><span class="label">{d.site.labels.appFor}</span>{app.for}</p>
     <div class="btn-row">
       <a class="btn btn--wa btn--lg" href={waUrl(lang, app.name)} rel="noopener"><Icon name="whatsapp" size={20} />{d.site.cta.whatsapp}</a>
       <a class="btn btn--line btn--lg" href={tel(d.offices[2].phone)}><Icon name="phone" size={20} />{d.site.cta.call}</a>
     </div>
-    <AppMock slot="visual" slug={slug} lang={lang} />
+    <div slot="visual"><OdooShot shot={heroKey} lang={lang} alt={hero.alt} eager /></div>
   </PageHead>
 
   <section class="sec" aria-labelledby="feat">
@@ -40,6 +46,17 @@ const others = d.apps.filter((a) => a.slug !== slug);
       <ul class="checks checks--2" role="list">
         {app.features.map((f) => <li><Icon name="check" size={18} /><span>{f}</span></li>)}
       </ul>
+    </div>
+  </section>
+
+  <section class="sec sec--grey" aria-labelledby="zoom">
+    <div class="wrap adetail">
+      <div class="adetail__shot"><OdooShot shot={det.shot} lang={lang} alt={dt.alt} crop={det.crop} points={det.points} labels={dt.callouts} /></div>
+      <div class="adetail__text">
+        <h2 id="zoom" class="h-lg">{o.labels.detail}</h2>
+        <p>{dt.lead}</p>
+        <p class="sc-note">{o.showcase.note}</p>
+      </div>
     </div>
   </section>
 

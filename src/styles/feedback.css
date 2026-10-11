@@ -1,6 +1,6 @@
 /* ==========================================================================
    Review tool (src/components/Feedback.astro + src/scripts/feedback*.ts).
-   Calm emerald, white surfaces, logical properties so RTL and LTR both work.
+   Calm blue, white surfaces, logical properties so RTL and LTR both work.
    Stacking: dock 60 < ring 64 < pins 65 < fab 70 < chip 71 < panel 80 < toast 90.
    ========================================================================== */
 .fb [hidden] { display: none !important; }

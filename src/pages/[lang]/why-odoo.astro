@@ -4,6 +4,7 @@ import Icon from '../../components/Icon.astro';
 import AppIcon from '../../components/AppIcon.astro';
 import PageHead from '../../components/PageHead.astro';
 import SectionHead from '../../components/SectionHead.astro';
+import OdooShot from '../../components/OdooShot.astro';
 import WhyScene from '../../components/scenes/WhyScene.astro';
 import DeskToggle from '../../components/DeskToggle.astro';
 import CtaBand from '../../components/CtaBand.astro';
@@ -35,6 +36,17 @@ const n = (i: number) => String(i + 1).padStart(2, '0');
       <div class="whatis">
         {p.whatIs.body.map((t, i) => <p class={i === 0 ? 'whatis__lead' : ''}><span class="num">{n(i)}</span>{t}</p>)}
       </div>
+    </div>
+  </section>
+
+  <section class="sec" aria-labelledby="dash">
+    <div class="wrap whydash">
+      <div class="shead__text">
+        <p class="eyebrow">{d.odoo.why.eyebrow}</p>
+        <h2 id="dash" class="h-lg">{d.odoo.why.title}</h2>
+        <p class="lead">{d.odoo.why.body}</p>
+      </div>
+      <OdooShot shot="business-intelligence" lang={lang} alt={d.odoo.shots['business-intelligence'].alt} />
     </div>
   </section>
 

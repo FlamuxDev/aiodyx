@@ -13,7 +13,7 @@ export async function captureViewport(highlight?: Element | null): Promise<strin
   const prevOffset = highlight instanceof HTMLElement ? highlight.style.outlineOffset : '';
   try {
     if (highlight instanceof HTMLElement) {
-      highlight.style.outline = '3px solid #0e6b5c';
+      highlight.style.outline = '3px solid #2b3e8c';
       highlight.style.outlineOffset = '2px';
     }
     const { domToCanvas } = await import('modern-screenshot');

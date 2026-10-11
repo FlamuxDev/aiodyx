@@ -1,0 +1,62 @@
+---
+import Icon from './Icon.astro';
+import OdooShot from './OdooShot.astro';
+import { DATA, href, type Lang } from '../lib/site';
+import { HOME_TABS, FULL } from '../lib/shots';
+// Home: interactive viewer of real Odoo screens. A vertical list of areas (a horizontal scroller on phones)
+// swaps the framed screenshot, its one-line caption and the link to the matching app page.
+// Without JS every panel is shown in a stack and the list is hidden.
+const { lang } = Astro.props as { lang: Lang };
+const d = DATA[lang];
+const o = d.odoo;
+const tabs = HOME_TABS.map((t) => ({ ...t, ...(o.shots as Record<string, { label: string; alt: string; caption: string }>)[t.shot] }));
+---
+<div class="stabs" data-stabs>
+  <div class="stabs__list" role="tablist" aria-label={o.showcase.tabs}>
+    {tabs.map((t, i) => (
+      <button type="button" role="tab" class="stabs__tab" id={`st-t-${i}`} aria-controls={`st-p-${i}`} aria-selected={i === 0 ? 'true' : 'false'} tabindex={i === 0 ? 0 : -1}>
+        <span class="stabs__n" aria-hidden="true">{String(i + 1).padStart(2, '0')}</span><span>{t.label}</span>
+      </button>
+    ))}
+  </div>
+  <div class="stabs__panels">
+    {tabs.map((t, i) => (
+      <div class="stabs__panel" role="tabpanel" id={`st-p-${i}`} aria-labelledby={`st-t-${i}`} tabindex="0">
+        <OdooShot shot={t.shot} lang={lang} alt={t.alt} crop={FULL} />
+        <div class="stabs__cap">
+          <p><span class="stabs__label">{t.label}</span>{t.caption}</p>
+          <a class="textlink" href={t.app ? href(lang, `apps/${t.app}/`) : href(lang, 'apps/')}>{o.showcase.details}<Icon name="arrow" size={20} /></a>
+        </div>
+      </div>
+    ))}
+  </div>
+</div>
+<script>
+  document.querySelectorAll<HTMLElement>('[data-stabs]').forEach((root) => {
+    root.classList.add('is-js');
+    const tabs = [...root.querySelectorAll<HTMLButtonElement>('[role="tab"]')];
+    const panels = [...root.querySelectorAll<HTMLElement>('[role="tabpanel"]')];
+    const rtl = () => getComputedStyle(root).direction === 'rtl';
+    const show = (i: number, focus = false) => {
+      tabs.forEach((t, k) => { t.setAttribute('aria-selected', String(k === i)); t.tabIndex = k === i ? 0 : -1; });
+      panels.forEach((p, k) => (p.hidden = k !== i));
+      if (focus) tabs[i].focus();
+      const list = tabs[i].parentElement as HTMLElement;
+      if (list.scrollWidth > list.clientWidth) {
+        const r = tabs[i].getBoundingClientRect(), l = list.getBoundingClientRect();
+        list.scrollBy({ left: r.left - l.left - (l.width - r.width) / 2, behavior: 'smooth' });
+      }
+    };
+    const go = (i: number) => (i + tabs.length) % tabs.length;
+    tabs.forEach((t, i) => {
+      t.addEventListener('click', () => show(i));
+      t.addEventListener('keydown', (e) => {
+        const step = e.key === 'ArrowDown' ? 1 : e.key === 'ArrowUp' ? -1 : e.key === 'ArrowRight' ? (rtl() ? -1 : 1) : e.key === 'ArrowLeft' ? (rtl() ? 1 : -1) : 0;
+        if (step) { e.preventDefault(); show(go(i + step), true); }
+        else if (e.key === 'Home') { e.preventDefault(); show(0, true); }
+        else if (e.key === 'End') { e.preventDefault(); show(tabs.length - 1, true); }
+      });
+    });
+    show(0);
+  });
+</script>

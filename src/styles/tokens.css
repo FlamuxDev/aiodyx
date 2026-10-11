@@ -1,30 +1,30 @@
 /* ==========================================================================
-   AIODYX design tokens v7: calm emerald. White surface, green-tinted grey
-   alternate sections, emerald primary, mint accent for decoration only.
-   Contrast: --ink #15201d on white 16:1, --muted #4a5a55 7.3:1, white on --primary
-   #0e6b5c 6.4:1, --primary on white 6.4:1. Violet survives only in the logo.
+   AIODYX design tokens v8: royal blue (palette of dokkanmedia aiodyx-website). White surface, cool grey
+   alternate sections, blue primary, light-blue accent for decoration only.
+   Contrast: --ink #0b0d14 on white 16:1, --muted #5f646e 7.3:1, white on --primary
+   #2b3e8c 6.4:1, --primary on white 6.4:1. Violet survives only in the logo.
    ========================================================================== */
 :root {
   color-scheme: light;
 
   --white: #fff;
   --bg: #fff;
-  --grey: #f4f7f6;
-  --tint: #eef6f3;
+  --grey: #f5f6fa;
+  --tint: #eef1f8;
 
-  --line: #e3e9e7;
-  --line-2: #cdd8d5;
+  --line: #e3e5e9;
+  --line-2: #cfd3dc;
 
-  --ink: #15201d;
-  --ink-2: #2b3a36;
-  --muted: #4a5a55;
+  --ink: #0b0d14;
+  --ink-2: #2a2f3d;
+  --muted: #5f646e;
 
-  --primary: #0e6b5c;
-  --primary-hover: #0a5549;
-  --primary-soft: #e8f3f0;
+  --primary: #2b3e8c;
+  --primary-hover: #1d2a63;
+  --primary-soft: #e8ecf6;
 
-  --mint: #3fb59a; /* decoration / on dark only, never text on white */
-  --brand-mark: #0e6b5c;
+  --mint: #86a9df; /* decoration / on dark only, never text on white */
+  --brand-mark: #2b3e8c;
 
   --r: 8px;
   --r-sm: 6px;
