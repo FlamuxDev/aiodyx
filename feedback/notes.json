@@ -1,96 +1,96 @@
 [
-  {
-    "id": "89092336-7f26-4be7-9521-014f521ae971",
-    "createdAt": "2026-10-07T10:40:56.021Z",
-    "updatedAt": "2026-10-13T10:11:46.089Z",
-    "status": "resolved",
-    "page": "/aiodyx/ar/",
-    "lang": "ar",
-    "kind": "page",
-    "anchor": {
-      "exact": "",
-      "prefix": "",
-      "suffix": "",
-      "selector": "",
-      "section": "",
-      "element": ""
+    {
+        "id": "89092336-7f26-4be7-9521-014f521ae971",
+        "createdAt": "2026-10-07T10:40:56.021Z",
+        "updatedAt": "2026-10-13T10:11:46.089Z",
+        "status": "resolved",
+        "page": "/aiodyx/ar/",
+        "lang": "ar",
+        "kind": "page",
+        "anchor": {
+            "exact": "",
+            "prefix": "",
+            "suffix": "",
+            "selector": "",
+            "section": "",
+            "element": ""
+        },
+        "note": "متوافق مع متطلبات الفوتر في الأردن والسعودية",
+        "name": "",
+        "viewport": "1280x639",
+        "ua": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/154.0.0.0 Safari/537.36",
+        "shot": "feedback/shots/89092336-7f26-4be7-9521-014f521ae971.webp",
+        "replies": [],
+        "tokenHash": "7c21c3dbd1458b962955161a20fbb95948aed2c3460a5156765b693348ffa830"
     },
-    "note": "متوافق مع متطلبات الفوتر في الأردن والسعودية",
-    "name": "",
-    "viewport": "1280x639",
-    "ua": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/154.0.0.0 Safari/537.36",
-    "shot": "feedback/shots/89092336-7f26-4be7-9521-014f521ae971.webp",
-    "replies": [],
-    "tokenHash": "7c21c3dbd1458b962955161a20fbb95948aed2c3460a5156765b693348ffa830"
-  },
-  {
-    "id": "5ffb6511-bdeb-4aef-93fa-67615468653a",
-    "createdAt": "2026-10-07T21:21:35.061Z",
-    "updatedAt": "2026-10-08T08:01:45.253Z",
-    "status": "resolved",
-    "page": "/aiodyx/ar/",
-    "lang": "ar",
-    "kind": "element",
-    "anchor": {
-      "exact": "© 2026 AIODYX. جميع الحقوق محفوظة. Odoo علامة تجارية مسجلة لشركة Odoo S.A.",
-      "prefix": "",
-      "suffix": "",
-      "selector": "body > footer > div:nth-of-type(2) > p",
-      "section": "لنتحدث عن شركتك",
-      "element": "p \"© 2026 AIODYX. جميع الحقوق محفوظة. Odoo علامة تجارية مسجلة ل\""
+    {
+        "id": "5ffb6511-bdeb-4aef-93fa-67615468653a",
+        "createdAt": "2026-10-07T21:21:35.061Z",
+        "updatedAt": "2026-10-08T08:01:45.253Z",
+        "status": "resolved",
+        "page": "/aiodyx/ar/",
+        "lang": "ar",
+        "kind": "element",
+        "anchor": {
+            "exact": "© 2026 AIODYX. جميع الحقوق محفوظة. Odoo علامة تجارية مسجلة لشركة Odoo S.A.",
+            "prefix": "",
+            "suffix": "",
+            "selector": "body > footer > div:nth-of-type(2) > p",
+            "section": "لنتحدث عن شركتك",
+            "element": "p \"© 2026 AIODYX. جميع الحقوق محفوظة. Odoo علامة تجارية مسجلة ل\""
+        },
+        "note": "© 2026 AIODYX جميع الحقوق محفوظة لشركة امبريلا برايم",
+        "name": "مهند",
+        "viewport": "1440x765",
+        "ua": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/154.0.0.0 Safari/537.36",
+        "replies": [],
+        "tokenHash": "dc61628c0cb5609d11633dcc414162ab0e712088f25590f492278f98da092b40"
     },
-    "note": "© 2026 AIODYX جميع الحقوق محفوظة لشركة امبريلا برايم",
-    "name": "مهند",
-    "viewport": "1440x765",
-    "ua": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/154.0.0.0 Safari/537.36",
-    "replies": [],
-    "tokenHash": "dc61628c0cb5609d11633dcc414162ab0e712088f25590f492278f98da092b40"
-  },
-  {
-    "id": "9aa966c9-7024-4313-9264-0740d08ba209",
-    "createdAt": "2026-10-07T21:24:14.530Z",
-    "updatedAt": "2026-10-13T10:11:46.089Z",
-    "status": "resolved",
-    "page": "/aiodyx/ar/about/",
-    "lang": "ar",
-    "kind": "element",
-    "anchor": {
-      "exact": "AIODYX شريك Odoo في الأردن والسعودية. نجهّز ونُدرّب وندعم.",
-      "prefix": "",
-      "suffix": "",
-      "selector": "#main > section:nth-of-type(1) > div > div:nth-of-type(1) > p",
-      "section": "من نحن",
-      "element": "p \"AIODYX شريك Odoo في الأردن والسعودية. نجهّز ونُدرّب وندعم.\""
+    {
+        "id": "9aa966c9-7024-4313-9264-0740d08ba209",
+        "createdAt": "2026-10-07T21:24:14.530Z",
+        "updatedAt": "2026-10-13T10:11:46.089Z",
+        "status": "resolved",
+        "page": "/aiodyx/ar/about/",
+        "lang": "ar",
+        "kind": "element",
+        "anchor": {
+            "exact": "AIODYX شريك Odoo في الأردن والسعودية. نجهّز ونُدرّب وندعم.",
+            "prefix": "",
+            "suffix": "",
+            "selector": "#main > section:nth-of-type(1) > div > div:nth-of-type(1) > p",
+            "section": "من نحن",
+            "element": "p \"AIODYX شريك Odoo في الأردن والسعودية. نجهّز ونُدرّب وندعم.\""
+        },
+        "note": "AIODYX كتابة نبذة عن شركة شمسية و أمبريلا برايم",
+        "name": "مهند",
+        "viewport": "1440x765",
+        "ua": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/154.0.0.0 Safari/537.36",
+        "shot": "feedback/shots/9aa966c9-7024-4313-9264-0740d08ba209.webp",
+        "replies": [],
+        "tokenHash": "dc61628c0cb5609d11633dcc414162ab0e712088f25590f492278f98da092b40"
     },
-    "note": "AIODYX كتابة نبذة عن شركة شمسية و أمبريلا برايم",
-    "name": "مهند",
-    "viewport": "1440x765",
-    "ua": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/154.0.0.0 Safari/537.36",
-    "shot": "feedback/shots/9aa966c9-7024-4313-9264-0740d08ba209.webp",
-    "replies": [],
-    "tokenHash": "dc61628c0cb5609d11633dcc414162ab0e712088f25590f492278f98da092b40"
-  },
-  {
-    "id": "74404077-8dc7-4015-8361-1677dc4e7fe0",
-    "createdAt": "2026-10-13T10:13:38.306Z",
-    "updatedAt": "2026-10-13T10:13:38.306Z",
-    "status": "open",
-    "page": "/aiodyx/ar/",
-    "lang": "ar",
-    "kind": "element",
-    "anchor": {
-      "exact": "",
-      "prefix": "",
-      "suffix": "",
-      "selector": "#main > section:nth-of-type(1) > div > div:nth-of-type(2) > div:nth-of-type(1) > canvas",
-      "section": "شركتك كلها في نظام واحد",
-      "element": "canvas"
-    },
-    "note": "اريد انميشن احسن و افضل من هذا بكثير",
-    "name": "عبد الرحمن",
-    "viewport": "949x942",
-    "ua": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/149.0.0.0 Safari/537.36",
-    "replies": [],
-    "tokenHash": "005a38db94f32870b83f59f90bf3b31bd5cd8d1f58538ca777ec04afb3d33083"
-  }
+    {
+        "id": "74404077-8dc7-4015-8361-1677dc4e7fe0",
+        "createdAt": "2026-10-13T10:13:38.306Z",
+        "updatedAt": "2026-10-13T10:25:41.800Z",
+        "status": "resolved",
+        "page": "/aiodyx/ar/",
+        "lang": "ar",
+        "kind": "element",
+        "anchor": {
+            "exact": "",
+            "prefix": "",
+            "suffix": "",
+            "selector": "#main > section:nth-of-type(1) > div > div:nth-of-type(2) > div:nth-of-type(1) > canvas",
+            "section": "شركتك كلها في نظام واحد",
+            "element": "canvas"
+        },
+        "note": "اريد انميشن احسن و افضل من هذا بكثير",
+        "name": "عبد الرحمن",
+        "viewport": "949x942",
+        "ua": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/149.0.0.0 Safari/537.36",
+        "replies": [],
+        "tokenHash": "005a38db94f32870b83f59f90bf3b31bd5cd8d1f58538ca777ec04afb3d33083"
+    }
 ]
