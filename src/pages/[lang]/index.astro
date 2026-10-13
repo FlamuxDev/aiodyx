@@ -35,15 +35,15 @@ const T = ar
 const trustIcons = ['target', 'globe', 'chat', 'receipt'];
 const o = d.odoo;
 const n = (i: number) => String(i + 1).padStart(2, '0');
-// Static isometric stack: shown until (or instead of) the WebGL scene. Slab colours are theme tokens (--iso-0..4).
+// Static isometric core: shown until (or instead of) the WebGL scene, sized like its core. Slab colours are theme tokens (--iso-*).
 const iso = (cy: number) => {
-  const a = 120, b = 69, t = 20;
+  const a = 62, b = 36, t = 13;
   const top = `${200},${cy - b} ${200 + a},${cy} ${200},${cy + b} ${200 - a},${cy}`;
   const l = `${200 - a},${cy} ${200},${cy + b} ${200},${cy + b + t} ${200 - a},${cy + t}`;
   const r = `${200 + a},${cy} ${200},${cy + b} ${200},${cy + b + t} ${200 + a},${cy + t}`;
   return { top, l, r };
 };
-const stack = [0, 1, 2, 3, 4].map((i) => iso(300 - i * 34));
+const stack = [0, 2, 4].map((tone, i) => ({ tone, ...iso(206 - i * 17) }));
 ---
 <Base lang={lang} path="" title={p.seo.title} description={p.seo.description} extra={[faqNode(lang, abs(href(lang)), faqs)]}>
   <!-- 1. Hero: promise + 3D anchor with three floating UI cards -->
@@ -61,8 +61,8 @@ const stack = [0, 1, 2, 3, 4].map((i) => iso(300 - i * 34));
       <div class="hero__vis">
         <div class="hero3d" data-hero3d aria-hidden="true">
           <svg class="hero3d__fb" viewBox="0 0 400 400" focusable="false">
-            {stack.map((s, i) => (
-              <g style={`--s: var(--iso-${i})`}><polygon class="iso-l" points={s.l} /><polygon class="iso-r" points={s.r} /><polygon class="iso-t" points={s.top} /></g>
+            {stack.map((s) => (
+              <g style={`--s: var(--iso-${s.tone})`}><polygon class="iso-l" points={s.l} /><polygon class="iso-r" points={s.r} /><polygon class="iso-t" points={s.top} /></g>
             ))}
           </svg>
         </div>

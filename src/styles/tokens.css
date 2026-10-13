@@ -54,7 +54,7 @@
   --sel: color-mix(in srgb, var(--primary) 22%, transparent);
   --scrim: rgb(11 13 20 / .45);
   --shot-dim: 1;
-  /* Hero isometric stack, bottom to top (mirrors the light palette in scripts/hero3d.ts). */
+  /* Hero static fallback (shown before/without WebGL), bottom to top. */
   --iso-0: #c3d8e8; --iso-1: #eef2f9; --iso-2: #b4c8e6; --iso-3: #86a9df; --iso-4: #2b3e8c;
 
   --r: 8px;

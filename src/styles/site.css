@@ -1156,7 +1156,7 @@ p a, .prose a { color: var(--primary); text-decoration: underline; text-underlin
 .fc__i--warn { background: var(--warn-bg); color: var(--warn-fg); }
 .fc--a { inset-block-start: 4%; inset-inline-start: 0; --d: 1.4s; }
 .fc--b { inset-block-end: 4%; inset-inline-start: 2%; --d: 2s; }
-.fc--c { inset-block-start: 36%; inset-inline-end: 0; --d: 2.6s; }
+.fc--c { inset-block-start: 6%; inset-inline-end: 0; --d: 2.6s; }
 .fc--b, .fc--c { display: none; }
 @keyframes fcin { from { opacity: 0; transform: translateY(14px); } to { opacity: 1; transform: none; } }
 @keyframes fcfloat { 0%, 100% { translate: 0 0; } 50% { translate: 0 -6px; } }
