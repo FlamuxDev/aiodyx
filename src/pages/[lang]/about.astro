@@ -18,6 +18,13 @@ const p = d.pages.about;
     <MapScene slot="visual" lang={lang} />
   </PageHead>
 
+  <section class="sec" aria-labelledby="group">
+    <div class="wrap split">
+      <SectionHead id="group" side title={p.group.title} />
+      <div class="prose">{p.group.items.map((t, i) => <p class={i === 0 ? 'prose__lead' : undefined}>{t}</p>)}</div>
+    </div>
+  </section>
+
   <section class="sec" aria-labelledby="who">
     <div class="wrap split">
       <SectionHead id="who" side title={p.whoWeServe.title} />

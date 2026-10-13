@@ -29,6 +29,6 @@ const hid = `int-${item.id}`;
         return a.slug ? <a href={href(lang, `apps/${a.slug}/`)}>{a.name}</a> : <span class="int-card__plain">{a.name}</span>;
       })}
     </p>
-    <a class="textlink int-card__ask" href={waUrl(lang, item.sub)} rel="noopener" aria-label={`${I.labels.details}: ${item.title}`}>{I.labels.details}<Icon name="arrow" size={18} /></a>
+    <a class="textlink int-card__ask" href={waUrl(lang, item.sub)} target="_blank" rel="noopener" aria-label={`${I.labels.details}: ${item.title}`}>{I.labels.details}<Icon name="arrow" size={18} /></a>
   </div>
 </article>

@@ -27,10 +27,10 @@ const fq = d.pages.faq.cta;
 const ar = lang === 'ar';
 const T = ar
   ? { inv: 'فاتورة INV-0148', paid: 'مدفوعة', stock: 'تنبيه مخزون', stockSub: 'المتبقي 58 قطعة', deal: 'صفقة جديدة', dealSub: '45,000 ر.س',
-      trust: ['3 مكاتب', 'الأردن والسعودية', 'عربي وإنجليزي', 'جاهز لـ ZATCA وJoFotara'],
+      trust: ['3 مكاتب', 'الأردن والسعودية', 'عربي وإنجليزي', 'متوافق مع متطلبات الفوترة في الأردن والسعودية'],
       cost: 'التكلفة', time: 'المدة', plan: 'خطة', hi: 'مرحبًا، نرغب في تنظيم شركتنا', re: 'حسنًا، متى نتحدث؟' }
   : { inv: 'Invoice INV-0148', paid: 'Paid', stock: 'Stock alert', stockSub: '58 pieces left', deal: 'New deal', dealSub: 'SAR 45,000',
-      trust: ['3 offices', 'Jordan and Saudi Arabia', 'Arabic and English', 'ZATCA and JoFotara ready'],
+      trust: ['3 offices', 'Jordan and Saudi Arabia', 'Arabic and English', 'Meets e-invoicing requirements in Jordan and Saudi Arabia'],
       cost: 'Cost', time: 'Timeline', plan: 'Plan', hi: 'Hi, we want to get organised', re: 'Great, when can we talk?' };
 const trustIcons = ['target', 'globe', 'chat', 'receipt'];
 const o = d.odoo;
@@ -54,7 +54,7 @@ const stack = [0, 1, 2, 3, 4].map((i) => iso(300 - i * 34));
         <h1 set:html={heroTitle(lang)} />
         <p class="hero__sub">{p.hero.body}</p>
         <div class="hero__btns">
-          <a class="btn btn--wa" href={wa} rel="noopener"><Icon name="whatsapp" size={20} />{d.site.cta.primary}</a>
+          <a class="btn btn--wa" href={wa} target="_blank" rel="noopener"><Icon name="whatsapp" size={20} />{d.site.cta.primary}</a>
           <a class="btn btn--line" href={call}><Icon name="phone" size={20} />{d.site.cta.call}</a>
         </div>
       </div>
@@ -158,7 +158,7 @@ const stack = [0, 1, 2, 3, 4].map((i) => iso(300 - i * 34));
           <span class="ask__ico" aria-hidden="true"><Icon name="chat" size={26} /></span>
           <h3>{fq.title}</h3>
           <p>{fq.body}</p>
-          <a class="btn btn--wa" href={wa} rel="noopener"><Icon name="whatsapp" size={20} />{d.site.cta.whatsapp}</a>
+          <a class="btn btn--wa" href={wa} target="_blank" rel="noopener"><Icon name="whatsapp" size={20} />{d.site.cta.whatsapp}</a>
           <a class="btn btn--line" href={call}><Icon name="phone" size={20} />{d.site.cta.call}</a>
         </aside>
       </div>

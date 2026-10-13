@@ -88,7 +88,7 @@ const ld = ldJson(pageGraph({ lang, url, title, description, crumbs: fullCrumbs,
         <div class="nav__end">
           <ThemeToggle labels={d.site.theme} />
           <a class="lang" href={href(m.other, path)} hreflang={m.other} lang={m.other}>{m.switchLabel}</a>
-          <a class="btn btn--wa nav__cta" href={waUrl(lang, waTopic)} rel="noopener"><Icon name="whatsapp" size={20} />{d.site.cta.whatsapp}</a>
+          <a class="btn btn--wa nav__cta" href={waUrl(lang, waTopic)} target="_blank" rel="noopener"><Icon name="whatsapp" size={20} />{d.site.cta.whatsapp}</a>
           <details class="menu">
             <summary class="icon-btn" aria-label={ui.menu}><Icon name="menu" class="menu__open" /><Icon name="close" class="menu__close" /></summary>
             <div class="menu__panel">
@@ -97,7 +97,7 @@ const ld = ldJson(pageGraph({ lang, url, title, description, crumbs: fullCrumbs,
                 <a href={href(lang, 'about/')} aria-current={current('about/')}>{d.site.nav.about}</a>
                 <a href={href(lang, 'contact/')} aria-current={current('contact/')}>{d.site.nav.contact}</a>
               </nav>
-              <a class="btn btn--wa btn--lg" href={waUrl(lang, waTopic)} rel="noopener"><Icon name="whatsapp" size={22} />{d.site.cta.whatsapp}</a>
+              <a class="btn btn--wa btn--lg" href={waUrl(lang, waTopic)} target="_blank" rel="noopener"><Icon name="whatsapp" size={22} />{d.site.cta.whatsapp}</a>
               <a class="btn btn--primary btn--lg" href={href(lang, 'contact/')}>{d.site.cta.primary}</a>
             </div>
           </details>
@@ -115,7 +115,7 @@ const ld = ldJson(pageGraph({ lang, url, title, description, crumbs: fullCrumbs,
     )}
 
     <div class="dock">
-      <a class="btn btn--wa" href={waUrl(lang, waTopic)} rel="noopener"><Icon name="whatsapp" size={22} />{d.site.cta.whatsapp}</a>
+      <a class="btn btn--wa" href={waUrl(lang, waTopic)} target="_blank" rel="noopener"><Icon name="whatsapp" size={22} />{d.site.cta.whatsapp}</a>
       <a class="btn btn--primary" href={tel(d.offices[2].phone)}><Icon name="phone" size={22} />{d.site.cta.call}</a>
     </div>
 
@@ -131,7 +131,7 @@ const ld = ldJson(pageGraph({ lang, url, title, description, crumbs: fullCrumbs,
             <p>{d.site.footer.about}</p>
             <p class="foot__links">
               <a class="tel" dir="ltr" href={tel(d.offices[2].phone)}>{d.offices[2].phone}</a>
-              <a href={waUrl(lang)} rel="noopener">{d.site.cta.whatsapp}</a>
+              <a href={waUrl(lang)} target="_blank" rel="noopener">{d.site.cta.whatsapp}</a>
             </p>
           </div>
           <div class="foot__offices">

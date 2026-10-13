@@ -24,7 +24,7 @@ const n = (i: number) => String(i + 1).padStart(2, '0');
   extra={[faqNode(lang, url, it.faq)]}>
   <PageHead title={it.name} lead={it.promise}>
     <div class="btn-row">
-      <a class="btn btn--wa btn--lg" href={waUrl(lang, it.name)} rel="noopener"><Icon name="whatsapp" size={20} />{d.site.cta.whatsapp}</a>
+      <a class="btn btn--wa btn--lg" href={waUrl(lang, it.name)} target="_blank" rel="noopener"><Icon name="whatsapp" size={20} />{d.site.cta.whatsapp}</a>
       <a class="btn btn--line btn--lg" href={tel(d.offices[2].phone)}><Icon name="phone" size={20} />{d.site.cta.call}</a>
     </div>
     <IndustryScene slot="visual" slug={slug} lang={lang} />

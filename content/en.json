@@ -677,7 +677,14 @@
       },
       "intro": {
         "title": "About AIODYX",
-        "body": "AIODYX is an Odoo partner serving companies in Jordan and Saudi Arabia. We set up Odoo, adapt it where needed, train your team and support you after go-live."
+        "body": "AIODYX is an Odoo partner serving companies in Jordan and Saudi Arabia, part of Shamsieh Technology Services and its Saudi arm, Umbrella Prime. We set up Odoo, adapt it where needed, train your team and support you after go-live."
+      },
+      "group": {
+        "title": "Shamsieh and Umbrella Prime",
+        "items": [
+          "Shamsieh Technology Services was founded in Jordan in 2019. It builds software products, implements business platforms such as Odoo, and provides specialized technology teams to organizations across industries in Jordan and Saudi Arabia.",
+          "Umbrella Prime is a fully owned Saudi company under Shamsieh, established in 2026 as the group's arm in the Kingdom. It handles project delivery and customer service inside Saudi Arabia, so you work with a team close to you."
+        ]
       },
       "whoWeServe": {
         "title": "Who we work with",

@@ -22,7 +22,7 @@ const [sa, jo, more] = p.groups;
   crumbs={[{ name: d.site.nav.integrations, href: href(lang, 'integrations/') }]}>
   <PageHead title={p.intro.title} lead={p.intro.body}>
     <div class="btn-row">
-      <a class="btn btn--wa btn--lg" href={waUrl(lang, d.site.nav.integrations)} rel="noopener"><Icon name="whatsapp" size={20} />{d.site.cta.primary}</a>
+      <a class="btn btn--wa btn--lg" href={waUrl(lang, d.site.nav.integrations)} target="_blank" rel="noopener"><Icon name="whatsapp" size={20} />{d.site.cta.primary}</a>
     </div>
     <IntHeroMap slot="visual" lang={lang} />
   </PageHead>
